@@ -1,5 +1,99 @@
 # API compatible con Discord v10
 
+> Documento operativo: solo enumera endpoints implementados y probados por esta API. Las rutas marcadas aquí como funcionales persisten cambios en `data/discord.json` cuando el recurso es mutable.
+
+## Convenciones
+
+- Base URL: `/api/v10`
+- Respuestas JSON con errores `{ code, message }`.
+- Paginación compatible: `after`, `before` y `limit` (1–100) en colecciones que la soportan.
+- Esta implementación no es el backend oficial de Discord y no incluye infraestructura distribuida, CDN, voz RTP ni un Gateway WebSocket real.
+
+## Endpoints funcionales
+
+### Usuarios y guilds
+
+| Método | Ruta |
+|---|---|
+| GET/PATCH | `/users/@me` |
+| GET | `/users/{user.id}` |
+| GET | `/users/@me/guilds` |
+| GET | `/guilds` |
+| POST | `/guilds` |
+| GET/PATCH/DELETE | `/guilds/{guild.id}` |
+| GET | `/guilds/{guild.id}/{resource}` |
+| POST/PATCH/DELETE | `/guilds/{guild.id}/{resource}[/{resource.id}]` |
+
+Recursos de guild disponibles: `bans`, `stickers`, `scheduled-events`, `automod-rules`, `voice-states` y `onboarding`.
+
+### Canales y mensajes
+
+| Método | Ruta |
+|---|---|
+| GET/POST | `/guilds/{guild.id}/channels` |
+| GET | `/channels/{channel.id}/pins` |
+| GET/POST/PATCH/DELETE | `/channels/{channel.id}/messages[/{message.id}]` |
+| POST | `/channels/{channel.id}/messages/{message.id}/crosspost` |
+| PUT/DELETE | `/channels/{channel.id}/pins/{message.id}` |
+| PUT/DELETE | `/channels/{channel.id}/recipients/{user.id}` |
+
+### Miembros, roles y recursos
+
+| Método | Ruta |
+|---|---|
+| GET | `/guilds/{guild.id}/members` |
+| GET/PATCH/DELETE | `/guilds/{guild.id}/members/{user.id}` |
+| GET/POST/PATCH/DELETE | `/guilds/{guild.id}/roles[/{role.id}]` |
+| PUT/DELETE | `/guilds/{guild.id}/members/{user.id}/roles/{role.id}` |
+| GET/POST/PATCH/DELETE | `/guilds/{guild.id}/emojis[/{emoji.id}]` |
+
+### Invitaciones, webhooks y comandos
+
+| Método | Ruta |
+|---|---|
+| GET/DELETE | `/invites/{invite.code}` |
+| GET/POST | `/guilds/{guild.id}/invites` |
+| GET/PATCH/DELETE | `/webhooks/{webhook.id}` |
+| POST | `/webhooks/{webhook.id}/{token}` |
+| GET/POST | `/applications/{application.id}/commands` |
+| PATCH/DELETE | `/applications/{application.id}/commands/{command.id}` |
+| POST | `/interactions/{interaction.id}/{token}/callback` |
+
+### Gateway, voz y Safety Hub
+
+| Método | Ruta |
+|---|---|
+| GET | `/gateway` y `/gateway/bot` |
+| GET/PATCH | `/guilds/{guild.id}/voice-states/{user.id}` |
+| GET | `/safety-hub/@me` |
+| POST | `/safety-hub/suspended/@me` |
+| PUT | `/safety-hub/request-review/{classification.id}` |
+| PUT | `/safety-hub/suspended/request-review/{classification.id}` |
+| POST | `/safety-hub/suspended/check-verification` |
+| POST | `/safety-hub/suspended/request-verification` |
+
+### Colecciones genéricas
+
+| Método | Ruta |
+|---|---|
+| GET/POST/PATCH/DELETE | `/users`, `/invites`, `/webhooks`, `/audit`, `/applications`, `/sessions` |
+| OPTIONS/HEAD | Cualquier ruta `/api/v10/*` |
+
+## Safety Hub
+
+Se implementan los campos documentados de Safety Hub: `classifications`, `guild_classifications`, `account_standing`, `is_dsa_eligible`, `is_appeal_eligible`, `username` y `appeal_eligibility`. Las apelaciones validan `signal` (0–3) y `user_input` (máximo 1000 caracteres). La verificación suspendida exige `token` y devuelve un identificador de solicitud, proveedor y URL de webview.
+
+## Referencias
+
+- [Discord Userdoccers](https://docs.discord.food/)
+- [Safety Hub](https://docs.discord.food/resources/safety-hub)
+- [Discord API oficial](https://docs.discord.com/developers/docs/intro)
+
+## Limitaciones no anunciadas como funcionales
+
+OAuth2 completo, autenticación Bearer, rate limits distribuidos, permisos calculados, CDN/adjuntos, voz RTP, Gateway WebSocket persistente, interacciones firmadas y almacenamiento multiinstancia requieren infraestructura adicional y no se presentan como implementados en este documento.
+
+
 Esta implementación expone rutas bajo `/api/v10`. Usa `data/discord.json` como almacenamiento temporal local. La forma de los objetos sigue Discord API v10; no es una copia oficial ni sustituye autenticación, permisos, CDN, Gateway WebSocket, voz, presencia o infraestructura distribuida de Discord.
 
 ## Estado de implementación

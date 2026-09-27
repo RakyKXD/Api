@@ -127,7 +127,16 @@ export async function POST(request: NextRequest, { params }: Params) {
     return json(await getSafetyHub('900000000000000001'))
   }
   if (resource === 'safety-hub' && resourceId === 'suspended' && subresource === 'check-verification') {
+    if (typeof input.token !== 'string' || !input.token) return error(50035, 'token is required', 400)
     return json({ success: false })
+  }
+  if (resource === 'safety-hub' && resourceId === 'suspended' && subresource === 'request-verification') {
+    if (typeof input.token !== 'string' || !input.token) return error(50035, 'token is required', 400)
+    return json({
+      verification_request_id: crypto.randomUUID(),
+      verification_vendor_name: 'K_ID',
+      verification_webview_url: 'https://verify.discord.com/age-verification',
+    })
   }
   if (resource === 'guilds' && resourceId && guildResourceNames.has(subresource ?? '')) {
     const values = await guildArray(resourceId, subresource as string)
