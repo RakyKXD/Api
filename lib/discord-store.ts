@@ -62,6 +62,7 @@ export type Database = {
   audit_logs?: Array<Record<string, unknown>>
   applications?: Array<Record<string, unknown>>
   sessions?: Array<Record<string, unknown>>
+  safety_hubs?: Array<Record<string, unknown>>
 }
 
 async function mutate<T>(callback: (database: Database) => T): Promise<T> {
@@ -111,6 +112,50 @@ async function readDatabase(): Promise<Database> {
 
 async function writeDatabase(database: Database) {
   await fs.writeFile(filePath, JSON.stringify(database, null, 2) + '\n', 'utf8')
+}
+
+const storeId = () => `${Date.now()}${Math.floor(Math.random() * 1000)}`
+
+const defaultSafetyHub = (userId: string): Record<string, unknown> => ({
+  username: userId === '900000000000000001' ? 'api-bot' : `user-${userId}`,
+  classifications: [],
+  guild_classifications: [],
+  account_standing: { state: 100 },
+  is_dsa_eligible: false,
+  is_appeal_eligible: false,
+  appeal_eligibility: [],
+})
+
+export async function getSafetyHub(userId: string) {
+  const database = await readDatabase()
+  return database.safety_hubs?.find((hub) => hub.user_id === userId)?.data ?? defaultSafetyHub(userId)
+}
+
+export async function requestSafetyReview(userId: string, classificationId: string, input: Record<string, unknown>) {
+  return mutate((database) => {
+    const appeal = { id: storeId(), classification_id: classificationId, user_id: userId, ...input, status: 1, created_at: new Date().toISOString() }
+    database.safety_hubs ??= []
+    const existing = database.safety_hubs.find((hub) => hub.user_id === userId)
+    if (existing) {
+      const data = existing.data as Record<string, unknown>
+      data.classifications = Array.isArray(data.classifications) ? data.classifications : []
+      ;(data.classifications as unknown[]).push({ id: classificationId, appeal_status: { status: 1 }, appeal })
+      existing.data = data
+    } else {
+      database.safety_hubs.push({ id: storeId(), user_id: userId, data: { ...defaultSafetyHub(userId), classifications: [{ id: classificationId, appeal_status: { status: 1 }, appeal }] } })
+    }
+    return { appeal_id: appeal.id }
+  })
+}
+
+export async function setSafetyHub(userId: string, data: Record<string, unknown>) {
+  return mutate((database) => {
+    database.safety_hubs ??= []
+    const existing = database.safety_hubs.find((hub) => hub.user_id === userId)
+    if (existing) existing.data = data
+    else database.safety_hubs.push({ id: storeId(), user_id: userId, data })
+    return data
+  })
 }
 
 export async function listGuilds() { return (await readDatabase()).guilds }

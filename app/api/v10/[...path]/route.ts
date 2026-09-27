@@ -18,6 +18,8 @@ import {
   getGuildResource,
   addGuildResource,
   removeGuildResource,
+  getSafetyHub,
+  requestSafetyReview,
 } from '@/lib/discord-store'
 
 export const dynamic = 'force-dynamic'
@@ -67,6 +69,8 @@ export async function GET(request: NextRequest, { params }: Params) {
     return pinned ? json(pinned) : error(10003, 'Unknown Channel', 404)
   }
   if (!resource) return json({ message: 'Discord-compatible API', version: 10 })
+  if (resource === 'safety-hub' && resourceId === '@me') return json(await getSafetyHub('900000000000000001'))
+  if (resource === 'safety-hub' && resourceId === 'suspended') return error(10013, 'Suspended user token required', 401)
   if (resource === 'users' && resourceId === '@me' && subresource === 'guilds') return json(await listUserGuilds('900000000000000001'))
   if (resource === 'users' && resourceId === '@me') {
     return json(await getUser('900000000000000001'))
@@ -118,6 +122,13 @@ export async function POST(request: NextRequest, { params }: Params) {
   const { path } = await params
   const [resource, resourceId, subresource] = path
   const input = await bodyOf(request)
+  if (resource === 'safety-hub' && resourceId === 'suspended' && subresource === '@me') {
+    if (typeof input.token !== 'string' || !input.token) return error(50035, 'token is required', 400)
+    return json(await getSafetyHub('900000000000000001'))
+  }
+  if (resource === 'safety-hub' && resourceId === 'suspended' && subresource === 'check-verification') {
+    return json({ success: false })
+  }
   if (resource === 'guilds' && resourceId && guildResourceNames.has(subresource ?? '')) {
     const values = await guildArray(resourceId, subresource as string)
     if (!values) return error(10004, 'Unknown Guild', 404)
@@ -147,6 +158,16 @@ export async function PATCH(request: NextRequest, { params }: Params) {
   const { path } = await params
   const [resource, resourceId, subresource, subId] = path
   const input = await bodyOf(request)
+  if (resource === 'safety-hub' && resourceId === 'request-review' && subresource) {
+    const signal = Number(input.signal)
+    if (![0, 1, 2, 3].includes(signal) || typeof input.user_input !== 'string' || input.user_input.length > 1000) return validationError('Invalid appeal payload')
+    return json(await requestSafetyReview('900000000000000001', subresource, { signal, user_input: input.user_input }))
+  }
+  if (resource === 'safety-hub' && resourceId === 'suspended' && subresource === 'request-review' && subId) {
+    const signal = Number(input.signal)
+    if (typeof input.token !== 'string' || !input.token || ![0, 1, 2, 3].includes(signal) || typeof input.user_input !== 'string' || input.user_input.length > 1000) return validationError('Invalid appeal payload')
+    return json(await requestSafetyReview('900000000000000001', subId, { signal, user_input: input.user_input }))
+  }
   if (resource === 'guilds' && resourceId && guildResourceNames.has(subresource ?? '') && subId) {
     const values = await guildArray(resourceId, subresource as string)
     if (!values) return error(10004, 'Unknown Guild', 404)
