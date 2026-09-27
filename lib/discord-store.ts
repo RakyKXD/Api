@@ -63,6 +63,13 @@ export type Database = {
   applications?: Array<Record<string, unknown>>
   sessions?: Array<Record<string, unknown>>
   safety_hubs?: Array<Record<string, unknown>>
+  user_settings?: Array<Record<string, unknown>>
+  user_consents?: Array<Record<string, unknown>>
+  email_settings?: Array<Record<string, unknown>>
+  notification_settings?: Array<Record<string, unknown>>
+  payment_sources?: Array<Record<string, unknown>>
+  connections?: Array<Record<string, unknown>>
+  experiments?: Array<Record<string, unknown>>
 }
 
 async function mutate<T>(callback: (database: Database) => T): Promise<T> {

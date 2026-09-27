@@ -20,6 +20,7 @@ import {
   removeGuildResource,
   getSafetyHub,
   requestSafetyReview,
+  updateUser,
 } from '@/lib/discord-store'
 
 export const dynamic = 'force-dynamic'
@@ -35,6 +36,7 @@ const error = (code: number, message: string, status: number) => json({ code, me
 function collectionFor(resource: string): keyof Omit<import('@/lib/discord-store').Database, 'guilds'> | null {
   const map: Record<string, keyof Omit<import('@/lib/discord-store').Database, 'guilds'>> = {
     users: 'users', invites: 'invites', webhooks: 'webhooks', audit: 'audit_logs', applications: 'applications', sessions: 'sessions',
+    connections: 'connections', experiments: 'experiments', 'payment-sources': 'payment_sources',
   }
   return map[resource] ?? null
 }
@@ -58,12 +60,31 @@ async function saveGuildArray(guildId: string, name: string, values: Item[]) {
 }
 
 function validationError(message: string) { return error(50035, message, 400) }
+function validateAuthorization(request: NextRequest) {
+  const value = request.headers.get('authorization')
+  if (value && !/^(Bearer|Bot)\s+\S+$/i.test(value)) return error(40001, 'Invalid Authorization header', 401)
+  return null
+}
 
 export async function GET(request: NextRequest, { params }: Params) {
+  const authError = validateAuthorization(request); if (authError) return authError
   const { path } = await params
   const [resource, resourceId, subresource, subId, action] = path
   const query = request.nextUrl.searchParams
+  const currentUser = '900000000000000001'
 
+  if (resource === 'users' && resourceId === '@me' && subresource === 'settings') {
+    const settings = (await listCollection('user_settings'))[0] ?? { locale: 'en-US', theme: 'dark', status: 'online', afk_timeout: 600, animate_emoji: true, render_embeds: true, render_reactions: true, guild_folders: [] }
+    return json(settings)
+  }
+  if (resource === 'users' && resourceId === '@me' && subresource === 'consent') return json((await listCollection('user_consents'))[0] ?? { personalization: { consented: false }, usage_statistics: { consented: false } })
+  if (resource === 'users' && resourceId === '@me' && subresource === 'email-settings') return json((await listCollection('email_settings'))[0] ?? { initialized: true, categories: {} })
+  if (resource === 'users' && resourceId === '@me' && subresource === 'notification-settings') return json((await listCollection('notification_settings'))[0] ?? { flags: 0 })
+  if (resource === 'users' && resourceId === '@me' && subresource === 'connections') return json(await listCollection('connections'))
+  if (resource === 'users' && resourceId === '@me' && subresource === 'billing') return json({ country_code: 'US', subdivision_code: null })
+  if (resource === 'voice' && resourceId === 'regions') return json([{ id: 'us-west', name: 'US West', optimal: true, deprecated: false, custom: false }, { id: 'us-east', name: 'US East', optimal: false, deprecated: false, custom: false }])
+  if (resource === 'guilds' && resourceId && subresource === 'regions') return json([{ id: 'us-west', name: 'US West', optimal: true, deprecated: false, custom: false }])
+  if (resource === 'billing' && resourceId === 'popup-bridge') return json({ state: crypto.randomUUID() })
   if (resource === 'channels' && resourceId && subresource === 'pins') {
     const pinned = await listPinnedMessages('', resourceId)
     return pinned ? json(pinned) : error(10003, 'Unknown Channel', 404)
@@ -119,9 +140,24 @@ export async function GET(request: NextRequest, { params }: Params) {
 }
 
 export async function POST(request: NextRequest, { params }: Params) {
+  const authError = validateAuthorization(request); if (authError) return authError
   const { path } = await params
   const [resource, resourceId, subresource] = path
   const input = await bodyOf(request)
+  if (resource === 'users' && resourceId === '@me' && subresource === 'consent') {
+    const current = (await listCollection('user_consents'))[0] ?? {}
+    const next = { ...current }
+    for (const key of Array.isArray(input.grant) ? input.grant : []) next[String(key)] = { consented: true }
+    for (const key of Array.isArray(input.revoke) ? input.revoke : []) next[String(key)] = { consented: false }
+    return json((await createCollectionItem('user_consents', next)))
+  }
+  if (resource === 'users' && resourceId === '@me' && subresource === 'billing') return json({ id: id(), ...input, created_at: now() }, 201)
+  if (resource === 'users' && resourceId === '@me' && subresource === 'connections') return json(await createCollectionItem('connections', input), 201)
+  if (resource === 'voice' && resourceId === 'public-keys') return new NextResponse(null, { status: 204 })
+  if (resource === 'channels' && resourceId && (subresource === 'voice-channel-effects' || subresource === 'custom-call-sounds')) return new NextResponse(null, { status: 204 })
+  if (resource === 'users' && resourceId === '@me' && subresource === 'settings') return json(await createCollectionItem('user_settings', input))
+  if (resource === 'users' && resourceId === '@me' && subresource === 'email-settings') return json(await createCollectionItem('email_settings', input))
+  if (resource === 'users' && resourceId === '@me' && subresource === 'notification-settings') return json(await createCollectionItem('notification_settings', input))
   if (resource === 'safety-hub' && resourceId === 'suspended' && subresource === '@me') {
     if (typeof input.token !== 'string' || !input.token) return error(50035, 'token is required', 400)
     return json(await getSafetyHub('900000000000000001'))
@@ -164,9 +200,15 @@ export async function POST(request: NextRequest, { params }: Params) {
 }
 
 export async function PATCH(request: NextRequest, { params }: Params) {
+  const authError = validateAuthorization(request); if (authError) return authError
   const { path } = await params
   const [resource, resourceId, subresource, subId] = path
   const input = await bodyOf(request)
+  if (resource === 'users' && resourceId === '@me' && subresource === 'settings') return json(await createCollectionItem('user_settings', input))
+  if (resource === 'users' && resourceId === '@me' && subresource === 'email-settings') return json(await createCollectionItem('email_settings', input))
+  if (resource === 'users' && resourceId === '@me' && subresource === 'notification-settings') return json(await createCollectionItem('notification_settings', input))
+  if (resource === 'users' && resourceId === '@me' && subresource === 'connections' && subId) return json(await updateCollectionItem('connections', subId, input))
+  if (resource === 'guilds' && resourceId && subresource === 'voice-states') return new NextResponse(null, { status: 204 })
   if (resource === 'safety-hub' && resourceId === 'request-review' && subresource) {
     const signal = Number(input.signal)
     if (![0, 1, 2, 3].includes(signal) || typeof input.user_input !== 'string' || input.user_input.length > 1000) return validationError('Invalid appeal payload')
@@ -208,6 +250,7 @@ export async function PATCH(request: NextRequest, { params }: Params) {
 export async function PUT(request: NextRequest, context: Params) { return PATCH(request, context) }
 
 export async function DELETE(_request: NextRequest, { params }: Params) {
+  const authError = validateAuthorization(_request); if (authError) return authError
   const { path } = await params
   const [resource, resourceId, subresource, subId] = path
   if (resource === 'guilds' && resourceId && guildResourceNames.has(subresource ?? '') && subId) {
