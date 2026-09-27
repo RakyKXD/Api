@@ -86,6 +86,17 @@ Recursos de guild persistidos: `bans`, `stickers`, `scheduled-events`, `automod-
 | POST | `/billing/popup-bridge/{payment_source.type}` |
 | GET/POST | `/experiments` |
 
+## Lote 1 cerrado: endpoints persistentes verificados
+
+| Categoría | Rutas funcionales añadidas/verificadas |
+|---|---:|
+| Guilds y Channels | 2 patrones |
+| Messages | 4 patrones (listar, crear, actualizar, eliminar; crosspost incluido) |
+| Relationships | 4 verbos |
+| Applications / Interactions | 4 patrones de comandos y callbacks |
+
+Rutas del lote: `/guilds/{guild.id}/channels`, `/channels/{channel.id}/messages`, `/channels/{channel.id}/messages/{message.id}`, `/channels/{channel.id}/messages/{message.id}/crosspost`, `/users/@me/relationships[/{relationship.id}]` y `/applications/{application.id}/commands[/{command.id}]`. Todas validan la sintaxis de `Authorization`, validan los campos principales, aplican `before`, `after` y `limit` donde corresponde y persisten en `data/discord.json`.
+
 ## Auditoría y recuento
 
 Auditoría realizada contra los módulos consultados de User Settings, Guilds, Channels, Voice y Billing de `docs.discord.food`. En esta iteración se agregaron **21 rutas de módulo** (contando patrones de endpoint, no cada verbo): User Settings/consent/email/notifications: **5**; Connections: **1**; Voice/RTC: **6**; Billing: **8**; Experiments: **1**. El router ya existente conserva las rutas REST base de guilds, canales, mensajes, miembros, roles, webhooks, comandos, gateway y Safety Hub.

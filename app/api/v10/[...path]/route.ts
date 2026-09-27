@@ -36,7 +36,7 @@ const error = (code: number, message: string, status: number) => json({ code, me
 function collectionFor(resource: string): keyof Omit<import('@/lib/discord-store').Database, 'guilds'> | null {
   const map: Record<string, keyof Omit<import('@/lib/discord-store').Database, 'guilds'>> = {
     users: 'users', invites: 'invites', webhooks: 'webhooks', audit: 'audit_logs', applications: 'applications', sessions: 'sessions',
-    connections: 'connections', experiments: 'experiments', 'payment-sources': 'payment_sources',
+    connections: 'connections', experiments: 'experiments', relationships: 'relationships', 'payment-sources': 'payment_sources',
   }
   return map[resource] ?? null
 }
@@ -72,6 +72,24 @@ export async function GET(request: NextRequest, { params }: Params) {
   const [resource, resourceId, subresource, subId, action] = path
   const query = request.nextUrl.searchParams
   const currentUser = '900000000000000001'
+
+  // Batch 1: persistent guild/channel/message/relationship/application reads.
+  if (resource === 'channels' && resourceId && subresource === 'messages') {
+    const guilds = await listGuilds()
+    const guild = guilds.find((item) => item.channels.some((channel) => channel.id === resourceId))
+    if (!guild) return error(10003, 'Unknown Channel', 404)
+    const messages = (await import('@/lib/discord-store')).listMessages(guild.id, resourceId)
+    const values = (await messages) ?? []
+    if (subId) return json(values.find((item) => item.id === subId) ?? error(10008, 'Unknown Message', 404))
+    const before = query.get('before'); const after = query.get('after')
+    return json(values.filter((item) => (!before || item.id < before) && (!after || item.id > after)).slice(0, validLimit(query.get('limit'))))
+  }
+  if (resource === 'guilds' && resourceId && subresource === 'channels' && !subId) {
+    const channels = await (await import('@/lib/discord-store')).listChannels(resourceId)
+    return channels ? json(channels) : error(10004, 'Unknown Guild', 404)
+  }
+  if (resource === 'users' && resourceId === '@me' && subresource === 'relationships') return json(await listCollection('relationships'))
+  if (resource === 'applications' && resourceId && subresource === 'commands') return json((await listCollection('application_commands')).filter((item) => item.application_id === resourceId))
 
   if (resource === 'users' && resourceId === '@me' && subresource === 'settings') {
     const settings = (await listCollection('user_settings'))[0] ?? { locale: 'en-US', theme: 'dark', status: 'online', afk_timeout: 600, animate_emoji: true, render_embeds: true, render_reactions: true, guild_folders: [] }
@@ -142,8 +160,24 @@ export async function GET(request: NextRequest, { params }: Params) {
 export async function POST(request: NextRequest, { params }: Params) {
   const authError = validateAuthorization(request); if (authError) return authError
   const { path } = await params
-  const [resource, resourceId, subresource] = path
+  const [resource, resourceId, subresource, subId, action] = path
   const input = await bodyOf(request)
+  if (resource === 'channels' && resourceId && subresource === 'messages') {
+    const guild = (await listGuilds()).find((item) => item.channels.some((channel) => channel.id === resourceId))
+    if (!guild) return error(10003, 'Unknown Channel', 404)
+    if (subId && action === 'crosspost') return json((await crosspostMessage(guild.id, resourceId, subId)) ?? error(10008, 'Unknown Message', 404))
+    if (subId) return json((await (await import('@/lib/discord-store')).updateMessage(guild.id, resourceId, subId, input)) ?? error(10008, 'Unknown Message', 404))
+    if (typeof input.content !== 'string' || input.content.length > 2000) return validationError('content must be a string of 2000 characters or fewer')
+    return json((await (await import('@/lib/discord-store')).createMessage(guild.id, resourceId, input.content)) ?? error(10003, 'Unknown Channel', 404), 201)
+  }
+  if (resource === 'users' && resourceId === '@me' && subresource === 'relationships') {
+    if (typeof input.id !== 'string' || typeof input.type !== 'number') return validationError('id and type are required')
+    return json(await createCollectionItem('relationships', { ...input, user_id: '900000000000000001' }), 201)
+  }
+  if (resource === 'applications' && resourceId && subresource === 'commands') {
+    if (typeof input.name !== 'string' || !input.name) return validationError('name is required')
+    return json(await createCollectionItem('application_commands', { ...input, application_id: resourceId, type: input.type ?? 1 }), 201)
+  }
   if (resource === 'users' && resourceId === '@me' && subresource === 'consent') {
     const current = (await listCollection('user_consents'))[0] ?? {}
     const next = { ...current }
@@ -204,6 +238,14 @@ export async function PATCH(request: NextRequest, { params }: Params) {
   const { path } = await params
   const [resource, resourceId, subresource, subId] = path
   const input = await bodyOf(request)
+  if (resource === 'applications' && resourceId && subresource === 'commands' && subId) {
+    const updated = await updateCollectionItem('application_commands', subId, { ...input, application_id: resourceId })
+    return updated ? json(updated) : error(10063, 'Unknown Application Command', 404)
+  }
+  if (resource === 'users' && resourceId === '@me' && subresource === 'relationships' && subId) {
+    const updated = await updateCollectionItem('relationships', subId, input)
+    return updated ? json(updated) : error(10013, 'Unknown Relationship', 404)
+  }
   if (resource === 'users' && resourceId === '@me' && subresource === 'settings') return json(await createCollectionItem('user_settings', input))
   if (resource === 'users' && resourceId === '@me' && subresource === 'email-settings') return json(await createCollectionItem('email_settings', input))
   if (resource === 'users' && resourceId === '@me' && subresource === 'notification-settings') return json(await createCollectionItem('notification_settings', input))
@@ -252,7 +294,19 @@ export async function PUT(request: NextRequest, context: Params) { return PATCH(
 export async function DELETE(_request: NextRequest, { params }: Params) {
   const authError = validateAuthorization(_request); if (authError) return authError
   const { path } = await params
-  const [resource, resourceId, subresource, subId] = path
+  const [resource, resourceId, subresource, subId, action] = path
+  if (resource === 'channels' && resourceId && subresource === 'messages' && subId) {
+    const guild = (await listGuilds()).find((item) => item.channels.some((channel) => channel.id === resourceId))
+    if (!guild) return error(10003, 'Unknown Channel', 404)
+    const removed = await (await import('@/lib/discord-store')).deleteMessage(guild.id, resourceId, subId)
+    return removed ? new NextResponse(null, { status: 204 }) : error(10008, 'Unknown Message', 404)
+  }
+  if (resource === 'applications' && resourceId && subresource === 'commands' && subId) {
+    return (await deleteCollectionItem('application_commands', subId)) ? new NextResponse(null, { status: 204 }) : error(10063, 'Unknown Application Command', 404)
+  }
+  if (resource === 'users' && resourceId === '@me' && subresource === 'relationships' && subId) {
+    return (await deleteCollectionItem('relationships', subId)) ? new NextResponse(null, { status: 204 }) : error(10013, 'Unknown Relationship', 404)
+  }
   if (resource === 'guilds' && resourceId && guildResourceNames.has(subresource ?? '') && subId) {
     const values = await guildArray(resourceId, subresource as string)
     if (!values) return error(10004, 'Unknown Guild', 404)
