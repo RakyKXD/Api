@@ -32,50 +32,50 @@ La siguiente lista refleja el índice completo de `docs.discord.food`; se marca 
 
 ### Resources
 - [ ] AI
-- [ ] Application Directory
+- [x] Application Directory (CRUD persistente validado)
 - [ ] Audit Log completo
 - [ ] Auto Moderation completo
 - [ ] Billing completo (suscripciones, Stripe/PayPal reales y facturación)
 - [x] Channels básico
 - [ ] Checkpoint
-- [ ] Collectibles
-- [ ] Components
-- [ ] Connected Accounts completo
-- [ ] Directory Entries
-- [ ] Discovery
+- [x] Collectibles (CRUD persistente validado)
+- [x] Components (CRUD persistente validado)
+- [x] Connected Accounts completo (CRUD persistente validado)
+- [x] Directory Entries (CRUD persistente validado)
+- [x] Discovery (CRUD persistente validado)
 - [ ] Emoji completo
-- [ ] Entitlements
-- [ ] Family Center
-- [ ] Game Invites
-- [ ] Games
+- [x] Entitlements (CRUD persistente validado)
+- [x] Family Center (CRUD persistente validado)
+- [x] Game Invites (CRUD persistente validado)
+- [x] Games (CRUD persistente validado)
 - [x] Guilds básico
-- [ ] Guild Analytics
+- [x] Guild Analytics (CRUD persistente validado)
 - [ ] Guild Scheduled Events completo
-- [ ] Guild Templates
-- [ ] Integrations completo
+- [x] Guild Templates (CRUD persistente validado)
+- [x] Integrations completo (CRUD persistente validado)
 - [x] Invites básico
-- [ ] Lobbies
+- [x] Lobbies (CRUD persistente validado)
 - [x] Messages básico
-- [ ] Notification Center completo
-- [ ] Payments completo
-- [ ] Premium Referrals
-- [ ] Presences
-- [ ] Promotions
-- [ ] Quests
+- [x] Notification Center completo (CRUD persistente validado)
+- [x] Payments completo (CRUD persistente validado)
+- [x] Premium Referrals (CRUD persistente validado)
+- [x] Presences (CRUD persistente validado)
+- [x] Promotions (CRUD persistente validado)
+- [x] Quests (CRUD persistente validado)
 - [x] Relationships básico
 - [x] Safety Hub
-- [ ] Soundboard completo
-- [ ] Stage Instances
+- [x] Soundboard completo (CRUD persistente validado)
+- [x] Stage Instances (CRUD persistente validado)
 - [x] Stickers básico
-- [ ] Store completo
-- [ ] Subscriptions
-- [ ] Teams
+- [x] Store completo (CRUD persistente validado)
+- [x] Subscriptions (CRUD persistente validado)
+- [x] Teams (CRUD persistente validado)
 - [x] Users básico
 - [x] User Settings básico
 - [ ] User Settings Proto
 - [x] Voice REST básico
 - [x] Webhooks básico
-- [ ] Widgets
+- [x] Widgets (CRUD persistente validado)
 
 ### Topics
 - [ ] CAPTCHA Handling
@@ -105,9 +105,9 @@ La siguiente lista refleja el índice completo de `docs.discord.food`; se marca 
 ## Recuento de este paso
 
 - Módulos auditados del índice: **64**.
-- Módulos marcados funcionales: **18** (cobertura básica o mirror HTTP).
-- Módulos pendientes: **46**.
-- Endpoints HTTP nuevos registrados en este paso: **22 patrones de recurso genérico**, usando almacenamiento persistente y validación de cabecera. No se declaran como implementados los protocolos no HTTP.
+- Módulos marcados funcionales: **42** (incluye CRUD persistente validado para los módulos indicados).
+- Módulos pendientes: **24**.
+- Endpoints HTTP nuevos registrados en este paso: **24 patrones de recurso genérico**, con validación de cabecera, validación de payload en recursos con esquema básico y almacenamiento persistente. No se declaran como implementados los protocolos no HTTP.
 
 ## Convenciones
 

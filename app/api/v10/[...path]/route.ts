@@ -36,9 +36,9 @@ const error = (code: number, message: string, status: number) => json({ code, me
 function collectionFor(resource: string): keyof Omit<import('@/lib/discord-store').Database, 'guilds'> | null {
   const map: Record<string, keyof Omit<import('@/lib/discord-store').Database, 'guilds'>> = {
     users: 'users', invites: 'invites', webhooks: 'webhooks', audit: 'audit_logs', applications: 'applications', sessions: 'sessions',
-    connections: 'connections', experiments: 'experiments', relationships: 'relationships', 'payment-sources': 'payment_sources',
+    ai: 'ai', connections: 'connections', experiments: 'experiments', relationships: 'relationships', 'payment-sources': 'payment_sources',
     'application-directory': 'application_directory', 'audit-log': 'audit_logs', 'auto-moderation': 'automod_rules',
-    collectibles: 'collectibles', checkpoints: 'checkpoints', components: 'components', 'connected-accounts': 'connections',
+    captcha: 'captcha', 'client-distribution': 'client_distribution', collectibles: 'collectibles', checkpoints: 'checkpoints', components: 'components', 'connected-accounts': 'connections',
     'directory-entries': 'directory_entries', discovery: 'discovery', entitlements: 'entitlements', 'family-center': 'family_center',
     'game-invites': 'game_invites', games: 'games', 'guild-analytics': 'guild_analytics', 'guild-templates': 'guild_templates',
     integrations: 'integrations', lobbies: 'lobbies', 'notification-center': 'notification_center', payments: 'payments',
@@ -172,6 +172,26 @@ export async function POST(request: NextRequest, { params }: Params) {
   const { path } = await params
   const [resource, resourceId, subresource, subId, action] = path
   const input = await bodyOf(request)
+  const mappedCollection = collectionFor(resource)
+  if (mappedCollection && !resourceId) {
+    const required: Record<string, string[]> = {
+      ai: ['model', 'prompt'],
+      'application-directory': ['application_id'],
+      checkpoints: ['name'],
+      components: ['type'],
+      'directory-entries': ['guild_id'],
+      entitlements: ['sku_id', 'user_id'],
+      'game-invites': ['application_id', 'user_id'],
+      'guild-templates': ['name', 'code'],
+      integrations: ['type'],
+      lobbies: ['application_id'],
+      payments: ['amount', 'currency'],
+      subscriptions: ['user_id', 'sku_id'],
+      teams: ['name'],
+    }
+    const missing = (required[resource] ?? []).filter((field) => input[field] === undefined || input[field] === null || input[field] === '')
+    if (missing.length) return validationError(`Missing required fields: ${missing.join(', ')}`)
+  }
   if (resource === 'channels' && resourceId && subresource === 'messages') {
     const guild = (await listGuilds()).find((item) => item.channels.some((channel) => channel.id === resourceId))
     if (!guild) return error(10003, 'Unknown Channel', 404)
