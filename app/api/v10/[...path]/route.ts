@@ -37,6 +37,16 @@ function collectionFor(resource: string): keyof Omit<import('@/lib/discord-store
   const map: Record<string, keyof Omit<import('@/lib/discord-store').Database, 'guilds'>> = {
     users: 'users', invites: 'invites', webhooks: 'webhooks', audit: 'audit_logs', applications: 'applications', sessions: 'sessions',
     connections: 'connections', experiments: 'experiments', relationships: 'relationships', 'payment-sources': 'payment_sources',
+    'application-directory': 'application_directory', 'audit-log': 'audit_logs', 'auto-moderation': 'automod_rules',
+    collectibles: 'collectibles', checkpoints: 'checkpoints', components: 'components', 'connected-accounts': 'connections',
+    'directory-entries': 'directory_entries', discovery: 'discovery', entitlements: 'entitlements', 'family-center': 'family_center',
+    'game-invites': 'game_invites', games: 'games', 'guild-analytics': 'guild_analytics', 'guild-templates': 'guild_templates',
+    integrations: 'integrations', lobbies: 'lobbies', 'notification-center': 'notification_center', payments: 'payments',
+    'premium-referrals': 'premium_referrals', presences: 'presences', promotions: 'promotions', quests: 'quests',
+    soundboard: 'soundboard', 'stage-instances': 'stage_instances', store: 'store', subscriptions: 'subscriptions', teams: 'teams',
+    widgets: 'widgets', oauth2: 'oauth2_data', 'remote-auth': 'remote_auth', 'push-notifications': 'push_notifications',
+    'read-state': 'read_state', reports: 'reports', rpc: 'rpc', threads: 'threads', 'voice-connections': 'voice_connections',
+    'cloud-uploads': 'cloud_uploads', verification: 'verification',
   }
   return map[resource] ?? null
 }

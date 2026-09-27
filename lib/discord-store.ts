@@ -72,6 +72,7 @@ export type Database = {
   experiments?: Array<Record<string, unknown>>
   relationships?: Array<Record<string, unknown>>
   application_commands?: Array<Record<string, unknown>>
+  [collection: string]: Array<Record<string, unknown>> | Guild[] | undefined
 }
 
 async function mutate<T>(callback: (database: Database) => T): Promise<T> {

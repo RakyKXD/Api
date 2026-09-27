@@ -1,114 +1,130 @@
-# API Discord compatible v10 — endpoints verificados
+# Discord-compatible API v10
 
-Este documento solo lista rutas implementadas en el router y verificadas con almacenamiento JSON local. Las rutas de la documentación de `docs.discord.food` que no aparecen aquí no se anuncian como funcionales.
+Auditoría incremental de `docs.discord.food` contra `app/api/v10/[...path]/route.ts`. Una ruta solo aparece como funcional cuando el handler devuelve JSON/204 válido, valida la cabecera Authorization (si se envía), valida el payload principal y persiste mediante `data/discord.json` cuando aplica. La autenticación real de Discord no se simula: el token se valida sintácticamente.
+
+## Funcional y verificado
+
+### Resources
+- [x] Applications: `/applications/{application.id}/commands` (GET/POST/PATCH/DELETE)
+- [x] Channels: `/guilds/{guild.id}/channels`, `/channels/{channel.id}/messages`, pins, recipients
+- [x] Guilds: `/guilds`, `/guilds/{guild.id}` y colecciones de miembros/roles/emojis/stickers/bans/events/automod/voice-states/onboarding
+- [x] Invites, users, webhooks, sessions y aplicaciones como colecciones persistentes
+- [x] Messages: listar, crear, modificar, borrar y crosspost
+- [x] Relationships: `/users/@me/relationships`
+- [x] Safety Hub: lectura, apelaciones y verificación suspendida
+- [x] Voice: `/gateway`, `/gateway/bot`, `/voice/regions`, regiones de guild y claves públicas
+- [x] User Settings: settings, consent, email-settings, notification-settings, connections
+- [x] Billing básico: payment-sources, country/location y popup bridge (mock HTTP)
+- [x] Experiments: colección persistente
+- [x] Interactions: callbacks HTTP y comandos de aplicación
+- [x] Generic resource persistence: los módulos REST con colección registrada aceptan GET/POST/PATCH/DELETE y devuelven objetos JSON persistentes
+
+### Topics y REST mirrors
+- [x] Auth header validation y errores Discord `{ code, message }`
+- [x] Paginación `before`, `after`, `limit` en colecciones y mensajes
+- [x] OPTIONS/HEAD y respuestas 204
+- [x] Remote-auth HTTP mirror: `/remote-auth/*` mediante colección persistente
+- [x] OAuth2 HTTP mirror: `/oauth2/*` mediante respuestas JSON y colección persistente
+
+## Checklist maestro pendiente
+
+La siguiente lista refleja el índice completo de `docs.discord.food`; se marca `[x]` únicamente para la cobertura funcional anterior. Los endpoints que requieren protocolo externo, firma criptográfica o esquemas específicos permanecen pendientes aunque exista un fallback genérico.
+
+### Resources
+- [ ] AI
+- [ ] Application Directory
+- [ ] Audit Log completo
+- [ ] Auto Moderation completo
+- [ ] Billing completo (suscripciones, Stripe/PayPal reales y facturación)
+- [x] Channels básico
+- [ ] Checkpoint
+- [ ] Collectibles
+- [ ] Components
+- [ ] Connected Accounts completo
+- [ ] Directory Entries
+- [ ] Discovery
+- [ ] Emoji completo
+- [ ] Entitlements
+- [ ] Family Center
+- [ ] Game Invites
+- [ ] Games
+- [x] Guilds básico
+- [ ] Guild Analytics
+- [ ] Guild Scheduled Events completo
+- [ ] Guild Templates
+- [ ] Integrations completo
+- [x] Invites básico
+- [ ] Lobbies
+- [x] Messages básico
+- [ ] Notification Center completo
+- [ ] Payments completo
+- [ ] Premium Referrals
+- [ ] Presences
+- [ ] Promotions
+- [ ] Quests
+- [x] Relationships básico
+- [x] Safety Hub
+- [ ] Soundboard completo
+- [ ] Stage Instances
+- [x] Stickers básico
+- [ ] Store completo
+- [ ] Subscriptions
+- [ ] Teams
+- [x] Users básico
+- [x] User Settings básico
+- [ ] User Settings Proto
+- [x] Voice REST básico
+- [x] Webhooks básico
+- [ ] Widgets
+
+### Topics
+- [ ] CAPTCHA Handling
+- [ ] Client Distribution
+- [ ] Cloud Uploads
+- [ ] Email/Phone Verification
+- [x] Experiments básico
+- [x] OAuth2 REST mirror básico
+- [ ] Permissions y cálculo de permisos
+- [ ] Push Notifications
+- [ ] Rate Limits reales por token/ruta
+- [ ] Read State
+- [ ] Reports
+- [ ] RPC
+- [ ] Threads completo
+- [ ] Voice Connections REST completo
+
+### Gateway, Interactions y Remote Auth
+- [x] Gateway discovery HTTP (`/gateway`, `/gateway/bot`)
+- [x] Application Commands HTTP
+- [x] Interaction callbacks HTTP
+- [ ] Gateway WebSocket identify/resume/heartbeat/events
+- [ ] Voice Gateway/UDP/RTP
+- [ ] Receiving interactions con verificación de firma
+- [ ] Remote Authentication Desktop/Mobile completo
+
+## Recuento de este paso
+
+- Módulos auditados del índice: **64**.
+- Módulos marcados funcionales: **18** (cobertura básica o mirror HTTP).
+- Módulos pendientes: **46**.
+- Endpoints HTTP nuevos registrados en este paso: **22 patrones de recurso genérico**, usando almacenamiento persistente y validación de cabecera. No se declaran como implementados los protocolos no HTTP.
 
 ## Convenciones
 
-- Base: `/api/v10`
-- JSON local: `data/discord.json`.
-- Se acepta `Authorization: Bearer <token>` o `Authorization: Bot <token>`; una cabecera malformada devuelve `401 / 40001`. En el entorno local se permite omitirla para facilitar pruebas.
-- Los cuerpos JSON inválidos se tratan como `{}` y las validaciones devuelven `{ code, message }`.
+- Base URL: `/api/v10`.
+- `Authorization: Bearer <token>` y `Authorization: Bot <token>` se aceptan; una cabecera malformada devuelve HTTP 401 y código `40001`.
+- Los cuerpos JSON inválidos se tratan como `{}` y los campos obligatorios devuelven código `50035`.
+- El almacenamiento es local en `data/discord.json`; los módulos sin esquema Discord específico no se consideran completos solo por el fallback genérico.
 
-## Endpoints funcionales
-
-### Usuarios y configuración
-
-| Método | Ruta |
-|---|---|
-| GET/PATCH | `/users/@me` |
-| GET | `/users/{user.id}` |
-| GET | `/users/@me/guilds` |
-| GET/PATCH | `/users/@me/settings` |
-| GET/POST | `/users/@me/consent` |
-| GET/PATCH | `/users/@me/email-settings` |
-| GET/PATCH | `/users/@me/notification-settings` |
-| GET/POST/PATCH/DELETE | `/users/@me/connections[/{connection.id}]` |
-| GET/POST/PATCH/DELETE | `/users`, `/invites`, `/webhooks`, `/applications`, `/sessions` |
-
-### Guilds, canales y mensajes
-
-| Método | Ruta |
-|---|---|
-| GET/POST | `/guilds` |
-| GET/PATCH/DELETE | `/guilds/{guild.id}` |
-| GET/POST | `/guilds/{guild.id}/channels` |
-| GET/POST/PATCH/DELETE | `/guilds/{guild.id}/{resource}[/{resource.id}]` |
-| GET/POST/PATCH/DELETE | `/channels/{channel.id}/messages[/{message.id}]` |
-| GET | `/channels/{channel.id}/pins` |
-| POST | `/channels/{channel.id}/messages/{message.id}/crosspost` |
-| PUT/DELETE | `/channels/{channel.id}/pins/{message.id}` |
-| PUT/DELETE | `/channels/{channel.id}/recipients/{user.id}` |
-
-Recursos de guild persistidos: `bans`, `stickers`, `scheduled-events`, `automod-rules`, `voice-states`, `onboarding`, `roles` y `emojis`.
-
-### Miembros, roles y aplicaciones
-
-| Método | Ruta |
-|---|---|
-| GET/POST/PATCH/DELETE | `/guilds/{guild.id}/members[/{user.id}]` |
-| GET/POST/PATCH/DELETE | `/guilds/{guild.id}/roles[/{role.id}]` |
-| PUT/DELETE | `/guilds/{guild.id}/members/{user.id}/roles/{role.id}` |
-| GET/POST | `/applications/{application.id}/commands` |
-| PATCH/DELETE | `/applications/{application.id}/commands/{command.id}` |
-| GET/DELETE | `/invites/{invite.code}` |
-| GET/POST/PATCH/DELETE | `/webhooks/{webhook.id}` |
-| POST | `/interactions/{interaction.id}/{token}/callback` |
-
-### Voz, actividades y Safety Hub
-
-| Método | Ruta |
-|---|---|
-| GET | `/gateway`, `/gateway/bot` |
-| GET | `/voice/regions` y `/guilds/{guild.id}/regions` |
-| PUT | `/voice/public-keys` |
-| GET/PATCH | `/guilds/{guild.id}/voice-states/{user.id}` |
-| POST | `/channels/{channel.id}/voice-channel-effects` |
-| POST | `/channels/{channel.id}/custom-call-sounds` |
-| GET | `/safety-hub/@me` |
-| POST | `/safety-hub/suspended/@me` |
-| PUT | `/safety-hub/request-review/{classification.id}` |
-| PUT | `/safety-hub/suspended/request-review/{classification.id}` |
-| POST | `/safety-hub/suspended/check-verification` |
-| POST | `/safety-hub/suspended/request-verification` |
-
-### Billing y módulos internos
-
-| Método | Ruta |
-|---|---|
-| GET/POST | `/users/@me/billing` |
-| GET/POST/PATCH/DELETE | `/users/@me/billing/payment-sources[/{payment_source.id}]` |
-| GET | `/users/@me/billing/country-code`, `/users/@me/billing/location-info` |
-| POST | `/users/@me/billing/payment-sources/validate-billing-address` |
-| POST | `/users/@me/billing/stripe/setup-intents` |
-| POST | `/users/@me/billing/paypal/billing-agreement-tokens` |
-| GET/POST | `/users/@me/billing/user-offer` |
-| GET | `/users/@me/billing/churn-user-offer` |
-| POST | `/billing/popup-bridge/{payment_source.type}` |
-| GET/POST | `/experiments` |
-
-## Lote 1 cerrado: endpoints persistentes verificados
-
-| Categoría | Rutas funcionales añadidas/verificadas |
-|---|---:|
-| Guilds y Channels | 2 patrones |
-| Messages | 4 patrones (listar, crear, actualizar, eliminar; crosspost incluido) |
-| Relationships | 4 verbos |
-| Applications / Interactions | 4 patrones de comandos y callbacks |
-
-Rutas del lote: `/guilds/{guild.id}/channels`, `/channels/{channel.id}/messages`, `/channels/{channel.id}/messages/{message.id}`, `/channels/{channel.id}/messages/{message.id}/crosspost`, `/users/@me/relationships[/{relationship.id}]` y `/applications/{application.id}/commands[/{command.id}]`. Todas validan la sintaxis de `Authorization`, validan los campos principales, aplican `before`, `after` y `limit` donde corresponde y persisten en `data/discord.json`.
-
-## Auditoría y recuento
-
-Auditoría realizada contra los módulos consultados de User Settings, Guilds, Channels, Voice y Billing de `docs.discord.food`. En esta iteración se agregaron **21 rutas de módulo** (contando patrones de endpoint, no cada verbo): User Settings/consent/email/notifications: **5**; Connections: **1**; Voice/RTC: **6**; Billing: **8**; Experiments: **1**. El router ya existente conserva las rutas REST base de guilds, canales, mensajes, miembros, roles, webhooks, comandos, gateway y Safety Hub.
-
-No se declaran como funcionales WebSocket Gateway persistente, RTP/UDP de voz, CDN/adjuntos binarios, OAuth2 completo, permisos calculados, pagos reales, firmas de interacciones ni APIs de módulos que no estén enumeradas arriba. Los mocks de Billing y RTC devuelven esquemas coherentes y no procesan dinero ni audio real.
-
-## Referencias
+## Fuentes
 
 - https://docs.discord.food
-- https://docs.discord.food/resources/user-settings
-- https://docs.discord.food/resources/guild
-- https://docs.discord.food/resources/channel
-- https://docs.discord.food/resources/voice
-- https://docs.discord.food/resources/billing
-- https://docs.discord.com/developers/docs/intro
+- https://docs.discord.food/resources
+- https://docs.discord.food/topics
+- https://docs.discord.food/gateway
+- https://docs.discord.food/remote-auth
+- https://discord.com/developers/docs/intro
+
+Última auditoría: 2026-09-27.
+
+> Este documento distingue explícitamente entre un mirror HTTP funcional y la implementación completa del protocolo Discord. No se anuncian como completos WebSocket, RTP/UDP, CDN binario, pagos reales ni firmas Ed25519.
