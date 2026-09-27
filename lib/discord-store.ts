@@ -352,7 +352,19 @@ export async function getUser(userId: string) {
   const database = await readDatabase()
   for (const guild of database.guilds) for (const member of guild.members as Array<Record<string, unknown>>) if (member.user && (member.user as Record<string, unknown>).id === userId) return member.user
   return null
-} 
+}
+
+export async function updateUser(userId: string, input: Record<string, unknown>) {
+  if (userId === '900000000000000001') return { id: userId, username: String(input.username ?? 'api-bot'), discriminator: '0000', global_name: input.global_name ?? input.username ?? 'API Bot', bot: true, flags: 0, ...input }
+  const database = await readDatabase()
+  let updated: Record<string, unknown> | null = null
+  for (const guild of database.guilds) for (const member of guild.members as Array<Record<string, unknown>>) {
+    const user = member.user as Record<string, unknown> | undefined
+    if (user?.id === userId) { member.user = { ...user, ...input, id: userId }; updated = member.user }
+  }
+  if (updated) await writeDatabase(database)
+  return updated
+}
 
 export async function listUserGuilds(userId: string) {
   return (await readDatabase()).guilds.filter((guild) => guild.owner_id === userId || (guild.members as Array<Record<string, unknown>>).some((member) => (member.user as Record<string, unknown> | undefined)?.id === userId))
