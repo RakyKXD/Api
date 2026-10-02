@@ -16,8 +16,8 @@
         1447446
       ],
       "flags": 0,
-      "premium_type": 2,
-      "premium_since": "2026-10-02T14:58:56.161Z",
+      "premium_type": 0,
+      "premium_since": null,
       "verified": true,
       "email": "test@raky.es",
       "phone": "+34600000000",
@@ -39,10 +39,10 @@
         10181046
       ],
       "flags": 64,
-      "premium_type": 2,
+      "premium_type": 0,
       "verified": true,
       "email": "alex@discord.local",
-      "premium_since": "2026-10-02T14:58:13.572Z"
+      "premium_since": null
     },
     {
       "id": "900000000000000003",
@@ -107,8 +107,8 @@
       "bot": false,
       "flags": 0,
       "verified": true,
-      "premium_type": 2,
-      "premium_since": "2026-01-01T00:00:00.000Z"
+      "premium_type": 0,
+      "premium_since": null
     },
     {
       "id": "1790692321627",
@@ -265,6 +265,18 @@
     },
     {
       "id": "179095183684327"
+    },
+    {
+      "id": "1790953296765555",
+      "action_type": "nitro_unsubbed"
+    },
+    {
+      "id": "1790955827835217"
+    },
+    {
+      "id": "1790956394988928",
+      "sku_id": "521847234246082599",
+      "country_code": "US"
     }
   ],
   "user_settings": [
@@ -508,8 +520,8 @@
               1447446
             ],
             "flags": 0,
-            "premium_type": 2,
-            "premium_since": "2026-10-02T14:58:56.161Z",
+            "premium_type": 0,
+            "premium_since": null,
             "verified": true,
             "email": "test@raky.es",
             "phone": "+34600000000",
@@ -521,7 +533,7 @@
           "deaf": false,
           "mute": false,
           "flags": 0,
-          "premium_since": "2026-10-02T14:53:33.374Z"
+          "premium_since": null
         },
         {
           "user": {
@@ -549,8 +561,8 @@
             "bot": false,
             "flags": 0,
             "verified": true,
-            "premium_type": 2,
-            "premium_since": "2026-01-01T00:00:00.000Z"
+            "premium_type": 0,
+            "premium_since": null
           },
           "roles": [],
           "joined_at": "2026-10-01T18:35:23.276Z"
@@ -627,7 +639,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -728,7 +740,7 @@
             "verified": true,
             "email": "bot@discord.local",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -805,7 +817,7 @@
             "verified": true,
             "email": "bot@discord.local",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -850,7 +862,7 @@
             "verified": true,
             "email": "bot@discord.local",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -1219,10 +1231,10 @@
               1447446
             ],
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "verified": true,
             "email": "test@raky.es",
-            "premium_since": "2026-10-02T14:58:56.161Z",
+            "premium_since": null,
             "phone": "+34600000000",
             "phone_verified": true
           },
@@ -1242,8 +1254,8 @@
             "bot": false,
             "flags": 0,
             "verified": true,
-            "premium_type": 2,
-            "premium_since": "2026-01-01T00:00:00.000Z"
+            "premium_type": 0,
+            "premium_since": null
           },
           "roles": [],
           "joined_at": "2026-10-01T18:35:23.277Z"
@@ -1401,8 +1413,8 @@
             "bot": false,
             "flags": 0,
             "verified": true,
-            "premium_type": 2,
-            "premium_since": "2026-01-01T00:00:00.000Z"
+            "premium_type": 0,
+            "premium_since": null
           },
           "roles": [],
           "joined_at": "2026-10-01T18:35:23.277Z"
@@ -1437,7 +1449,7 @@
               2895667
             ],
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "verified": true,
             "email": "bot@discord.local"
           },
@@ -1508,7 +1520,7 @@
       "vanity_url_code": null,
       "description": null,
       "banner": null,
-      "premium_tier": 0,
+      "premium_tier": 3,
       "preferred_locale": "es-ES",
       "public_updates_channel_id": "1",
       "max_video_channel_users": 25,
@@ -1611,13 +1623,14 @@
             "bot": false,
             "flags": 0,
             "verified": true,
-            "premium_type": 2,
-            "premium_since": "2026-01-01T00:00:00.000Z"
+            "premium_type": 0,
+            "premium_since": null
           },
           "roles": [],
           "joined_at": "2026-09-29T14:36:01.771Z",
           "deaf": false,
-          "mute": false
+          "mute": false,
+          "premium_since": null
         },
         {
           "id": "1790884188921",
@@ -1638,7 +1651,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": "+34600000000",
             "nsfw_allowed": true,
@@ -1649,7 +1662,7 @@
               2443673,
               1447446
             ],
-            "premium_since": "2026-10-02T14:58:56.161Z",
+            "premium_since": null,
             "phone_verified": true
           },
           "roles": [],
@@ -1688,7 +1701,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -1753,7 +1766,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -1799,7 +1812,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -1845,7 +1858,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -1919,7 +1932,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -1965,7 +1978,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2040,7 +2053,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2086,7 +2099,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2143,7 +2156,7 @@
             "verified": true,
             "email": "bot@discord.local",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2217,7 +2230,7 @@
             "verified": true,
             "email": "bot@discord.local",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2262,7 +2275,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2308,7 +2321,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2354,7 +2367,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2429,7 +2442,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2475,7 +2488,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2521,7 +2534,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2567,7 +2580,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2613,7 +2626,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2659,7 +2672,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2705,7 +2718,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2751,7 +2764,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2797,7 +2810,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2843,7 +2856,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2889,7 +2902,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2935,7 +2948,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -2981,7 +2994,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -3027,7 +3040,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
@@ -3247,6 +3260,30 @@
         {
           "id": "17909491526327975",
           "created_at": "2026-10-02T13:52:32.632Z"
+        },
+        {
+          "id": "17909534720581857",
+          "created_at": "2026-10-02T15:04:32.059Z"
+        },
+        {
+          "id": "1790953488920778",
+          "created_at": "2026-10-02T15:04:48.920Z"
+        },
+        {
+          "id": "17909535043197108",
+          "created_at": "2026-10-02T15:05:04.319Z"
+        },
+        {
+          "id": "17909539562872259",
+          "created_at": "2026-10-02T15:12:36.287Z"
+        },
+        {
+          "id": "17909553891753110",
+          "created_at": "2026-10-02T15:36:29.175Z"
+        },
+        {
+          "id": "17909577417436025",
+          "created_at": "2026-10-02T16:15:41.743Z"
         }
       ],
       "members-search": [
@@ -3479,6 +3516,30 @@
           {
             "id": "17909491526327975",
             "created_at": "2026-10-02T13:52:32.632Z"
+          },
+          {
+            "id": "17909534720581857",
+            "created_at": "2026-10-02T15:04:32.059Z"
+          },
+          {
+            "id": "1790953488920778",
+            "created_at": "2026-10-02T15:04:48.920Z"
+          },
+          {
+            "id": "17909535043197108",
+            "created_at": "2026-10-02T15:05:04.319Z"
+          },
+          {
+            "id": "17909539562872259",
+            "created_at": "2026-10-02T15:12:36.287Z"
+          },
+          {
+            "id": "17909553891753110",
+            "created_at": "2026-10-02T15:36:29.175Z"
+          },
+          {
+            "id": "17909577417436025",
+            "created_at": "2026-10-02T16:15:41.743Z"
           }
         ],
         "id": "1790692561769",
@@ -3544,7 +3605,7 @@
               "verified": true,
               "email": "test@raky.es",
               "flags": 0,
-              "premium_type": 2,
+              "premium_type": 0,
               "public_flags": 0,
               "phone": null,
               "nsfw_allowed": true,
@@ -3705,7 +3766,7 @@
         "description": "",
         "welcome_channels": []
       },
-      "premium_subscription_count": 0
+      "premium_subscription_count": 14
     },
     {
       "id": "1790692812959",
@@ -3836,8 +3897,8 @@
             "bot": false,
             "flags": 0,
             "verified": true,
-            "premium_type": 2,
-            "premium_since": "2026-01-01T00:00:00.000Z"
+            "premium_type": 0,
+            "premium_since": null
           },
           "roles": [],
           "joined_at": "2026-09-29T14:40:12.961Z",
@@ -4146,14 +4207,14 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": null,
             "nsfw_allowed": true,
             "bio": "",
             "pronouns": "",
             "avatar_decoration_data": null,
-            "premium_since": "2026-01-01T00:00:00.000Z"
+            "premium_since": null
           },
           "roles": [],
           "joined_at": "2026-09-29T14:44:28.789Z",
@@ -4473,7 +4534,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": "+34600000000",
             "nsfw_allowed": true,
@@ -4484,7 +4545,7 @@
               2443673,
               1447446
             ],
-            "premium_since": "2026-10-02T14:58:56.161Z",
+            "premium_since": null,
             "phone_verified": true
           },
           "roles": [],
@@ -4503,8 +4564,8 @@
             "bot": false,
             "flags": 0,
             "verified": true,
-            "premium_type": 2,
-            "premium_since": "2026-01-01T00:00:00.000Z"
+            "premium_type": 0,
+            "premium_since": null
           },
           "roles": [],
           "joined_at": "2026-10-01T18:35:23.277Z"
@@ -4726,7 +4787,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": "+34600000000",
             "nsfw_allowed": true,
@@ -4737,7 +4798,7 @@
               2443673,
               1447446
             ],
-            "premium_since": "2026-10-02T14:58:56.161Z",
+            "premium_since": null,
             "phone_verified": true
           },
           "roles": [],
@@ -4756,8 +4817,8 @@
             "bot": false,
             "flags": 0,
             "verified": true,
-            "premium_type": 2,
-            "premium_since": "2026-01-01T00:00:00.000Z"
+            "premium_type": 0,
+            "premium_since": null
           },
           "roles": [],
           "joined_at": "2026-10-01T18:35:23.277Z"
@@ -4981,7 +5042,7 @@
             "verified": true,
             "email": "test@raky.es",
             "flags": 0,
-            "premium_type": 2,
+            "premium_type": 0,
             "public_flags": 0,
             "phone": "+34600000000",
             "nsfw_allowed": true,
@@ -4992,7 +5053,7 @@
               2443673,
               1447446
             ],
-            "premium_since": "2026-10-02T14:58:56.161Z",
+            "premium_since": null,
             "phone_verified": true
           },
           "roles": [],
@@ -5011,8 +5072,8 @@
             "bot": false,
             "flags": 0,
             "verified": true,
-            "premium_type": 2,
-            "premium_since": "2026-01-01T00:00:00.000Z"
+            "premium_type": 0,
+            "premium_since": null
           },
           "roles": [],
           "joined_at": "2026-10-01T18:35:23.277Z"
@@ -5447,7 +5508,7 @@
       "user_id": "1790691200486",
       "version": "1",
       "encoding": "base64",
-      "data": "Yg0SCwiI//////////8B"
+      "data": "ImAKXgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI="
     },
     {
       "id": "1790708906193225",
@@ -6532,80 +6593,7 @@
       ]
     }
   ],
-  "subscriptions": [
-    {
-      "id": "600000000000000001",
-      "type": 1,
-      "status": 1,
-      "created_at": "2026-10-02T14:30:22.289Z",
-      "canceled_at": null,
-      "current_period_start": "2026-10-02T14:30:22.289Z",
-      "current_period_end": "2027-10-02T14:30:22.289Z",
-      "plan_id": "511651880837840896",
-      "sku_id": "521847234246082599",
-      "items": [
-        {
-          "id": "600000000000000002",
-          "plan_id": "511651880837840896",
-          "quantity": 1
-        }
-      ],
-      "payment_source_id": "500000000000000001",
-      "payment_gateway": 1,
-      "flags": 0,
-      "user_id": "1790691200486",
-      "country_code": "ES",
-      "currency": "eur"
-    },
-    {
-      "id": "sub_1790953093572",
-      "type": 1,
-      "status": 1,
-      "created_at": "2026-10-02T14:58:13.572Z",
-      "canceled_at": null,
-      "current_period_start": "2026-10-02T14:58:13.572Z",
-      "current_period_end": "2026-11-01T14:58:13.572Z",
-      "plan_id": "511651880837840896",
-      "sku_id": "521847234246082599",
-      "items": [
-        {
-          "id": "item_1790953093572",
-          "plan_id": "511651880837840896",
-          "quantity": 1
-        }
-      ],
-      "payment_source_id": "500000000000000001",
-      "payment_gateway": 1,
-      "flags": 0,
-      "user_id": "900000000000000002",
-      "country_code": "ES",
-      "currency": "eur"
-    },
-    {
-      "id": "sub_1790953136152",
-      "type": 1,
-      "status": 1,
-      "created_at": "2026-10-02T14:58:56.152Z",
-      "canceled_at": null,
-      "current_period_start": "2026-10-02T14:58:56.152Z",
-      "current_period_end": "2027-10-02T14:58:56.152Z",
-      "plan_id": "511651880837840896",
-      "sku_id": "521847234246082599",
-      "items": [
-        {
-          "id": "item_1790953136152",
-          "plan_id": "511651880837840896",
-          "quantity": 1
-        }
-      ],
-      "payment_source_id": "500000000000000001",
-      "payment_gateway": 1,
-      "flags": 0,
-      "user_id": "900000000000000001",
-      "country_code": "ES",
-      "currency": "eur"
-    }
-  ],
+  "subscriptions": [],
   "payment_sources": [
     {
       "id": "500000000000000001",
@@ -6765,117 +6753,370 @@
   ],
   "guild_boost_slots": [
     {
-      "id": "700000000000000001",
-      "user_id": "900000000000000001",
+      "id": "slot_1790691200486_1790953292752_1",
+      "user_id": "1790691200486",
       "subscription_id": "600000000000000001",
-      "premium_guild_subscription": null,
+      "premium_guild_subscription": {
+        "id": "boost_1790953477317_ttecw6",
+        "guild_id": "1790692561769"
+      },
       "canceled": false,
       "cooldown_ends_at": null
     },
     {
-      "id": "700000000000000002",
-      "user_id": "900000000000000001",
+      "id": "slot_1790691200486_1790953292752_2",
+      "user_id": "1790691200486",
       "subscription_id": "600000000000000001",
-      "premium_guild_subscription": null,
+      "premium_guild_subscription": {
+        "id": "boost_1790954001971_3s6240",
+        "guild_id": "1790692561769"
+      },
       "canceled": false,
       "cooldown_ends_at": null
     },
     {
-      "id": "slot_900000000000000001_1790953093705_1",
-      "user_id": "900000000000000001",
-      "subscription_id": "sub_1790953093059",
-      "premium_guild_subscription": null,
+      "id": "slot_1790691200486_1790953292752_3",
+      "user_id": "1790691200486",
+      "subscription_id": "600000000000000001",
+      "premium_guild_subscription": {
+        "id": "boost_1790954005435_jk4f5v",
+        "guild_id": "1790692561769"
+      },
       "canceled": false,
       "cooldown_ends_at": null
     },
     {
-      "id": "slot_900000000000000001_1790953093705_2",
-      "user_id": "900000000000000001",
-      "subscription_id": "sub_1790953093059",
-      "premium_guild_subscription": null,
+      "id": "slot_1790691200486_1790953292752_4",
+      "user_id": "1790691200486",
+      "subscription_id": "600000000000000001",
+      "premium_guild_subscription": {
+        "id": "boost_1790954013888_epiyy0",
+        "guild_id": "1790692561769"
+      },
       "canceled": false,
       "cooldown_ends_at": null
     },
     {
-      "id": "slot_900000000000000001_1790953093705_3",
-      "user_id": "900000000000000001",
-      "subscription_id": "sub_1790953093059",
-      "premium_guild_subscription": null,
+      "id": "slot_1790691200486_1790953292752_5",
+      "user_id": "1790691200486",
+      "subscription_id": "600000000000000001",
+      "premium_guild_subscription": {
+        "id": "boost_1790954013888_ai3lzg",
+        "guild_id": "1790692561769"
+      },
       "canceled": false,
       "cooldown_ends_at": null
     },
     {
-      "id": "slot_900000000000000001_1790953093705_4",
-      "user_id": "900000000000000001",
-      "subscription_id": "sub_1790953093059",
-      "premium_guild_subscription": null,
+      "id": "slot_1790691200486_1790953292752_6",
+      "user_id": "1790691200486",
+      "subscription_id": "600000000000000001",
+      "premium_guild_subscription": {
+        "id": "boost_1790954013888_vilqmu",
+        "guild_id": "1790692561769"
+      },
       "canceled": false,
       "cooldown_ends_at": null
     },
     {
-      "id": "slot_900000000000000001_1790953093705_5",
-      "user_id": "900000000000000001",
-      "subscription_id": "sub_1790953093059",
-      "premium_guild_subscription": null,
+      "id": "slot_1790691200486_1790953292752_7",
+      "user_id": "1790691200486",
+      "subscription_id": "600000000000000001",
+      "premium_guild_subscription": {
+        "id": "boost_1790954013888_6rk34w",
+        "guild_id": "1790692561769"
+      },
       "canceled": false,
       "cooldown_ends_at": null
     },
     {
-      "id": "slot_900000000000000001_1790953093705_6",
-      "user_id": "900000000000000001",
-      "subscription_id": "sub_1790953093059",
-      "premium_guild_subscription": null,
+      "id": "slot_1790691200486_1790953292752_8",
+      "user_id": "1790691200486",
+      "subscription_id": "600000000000000001",
+      "premium_guild_subscription": {
+        "id": "boost_1790954013888_9vu9gj",
+        "guild_id": "1790692561769"
+      },
       "canceled": false,
       "cooldown_ends_at": null
     },
     {
-      "id": "slot_900000000000000001_1790953093705_7",
-      "user_id": "900000000000000001",
-      "subscription_id": "sub_1790953093059",
-      "premium_guild_subscription": null,
+      "id": "slot_1790691200486_1790953292752_9",
+      "user_id": "1790691200486",
+      "subscription_id": "600000000000000001",
+      "premium_guild_subscription": {
+        "id": "boost_1790954013888_z2lrwa",
+        "guild_id": "1790692561769"
+      },
       "canceled": false,
       "cooldown_ends_at": null
     },
     {
-      "id": "slot_900000000000000001_1790953093705_8",
-      "user_id": "900000000000000001",
-      "subscription_id": "sub_1790953093059",
-      "premium_guild_subscription": null,
+      "id": "slot_1790691200486_1790953292752_10",
+      "user_id": "1790691200486",
+      "subscription_id": "600000000000000001",
+      "premium_guild_subscription": {
+        "id": "boost_1790954013888_ka4zwg",
+        "guild_id": "1790692561769"
+      },
       "canceled": false,
       "cooldown_ends_at": null
     },
     {
-      "id": "slot_900000000000000001_1790953093705_9",
-      "user_id": "900000000000000001",
-      "subscription_id": "sub_1790953093059",
-      "premium_guild_subscription": null,
+      "id": "slot_1790691200486_1790953292752_11",
+      "user_id": "1790691200486",
+      "subscription_id": "600000000000000001",
+      "premium_guild_subscription": {
+        "id": "boost_1790954013888_gyf8oh",
+        "guild_id": "1790692561769"
+      },
       "canceled": false,
       "cooldown_ends_at": null
     },
     {
-      "id": "slot_900000000000000001_1790953093705_10",
-      "user_id": "900000000000000001",
-      "subscription_id": "sub_1790953093059",
-      "premium_guild_subscription": null,
+      "id": "slot_1790691200486_1790953292752_12",
+      "user_id": "1790691200486",
+      "subscription_id": "600000000000000001",
+      "premium_guild_subscription": {
+        "id": "boost_1790954013888_gzrw8p",
+        "guild_id": "1790692561769"
+      },
       "canceled": false,
       "cooldown_ends_at": null
     },
     {
-      "id": "slot_900000000000000001_1790953093705_11",
-      "user_id": "900000000000000001",
-      "subscription_id": "sub_1790953093059",
-      "premium_guild_subscription": null,
+      "id": "slot_1790691200486_1790953292752_13",
+      "user_id": "1790691200486",
+      "subscription_id": "600000000000000001",
+      "premium_guild_subscription": {
+        "id": "boost_1790954013889_t2y13z",
+        "guild_id": "1790692561769"
+      },
       "canceled": false,
       "cooldown_ends_at": null
     },
     {
-      "id": "slot_900000000000000001_1790953093705_12",
-      "user_id": "900000000000000001",
-      "subscription_id": "sub_1790953093059",
-      "premium_guild_subscription": null,
+      "id": "slot_1790691200486_1790953292752_14",
+      "user_id": "1790691200486",
+      "subscription_id": "600000000000000001",
+      "premium_guild_subscription": {
+        "id": "boost_1790954013889_jei59u",
+        "guild_id": "1790692561769"
+      },
       "canceled": false,
       "cooldown_ends_at": null
     }
   ],
-  "guild_boosts": []
+  "guild_boosts": [
+    {
+      "id": "boost_1790953477317_ttecw6",
+      "guild_id": "1790692561769",
+      "user_id": "1790691200486",
+      "user": {
+        "id": "1790691200486",
+        "username": "rakytest",
+        "discriminator": "0",
+        "avatar": null,
+        "global_name": "Raky Test"
+      },
+      "user_premium_guild_subscription_slot_id": "slot_1790691200486_1790953292752_1",
+      "ended": false,
+      "ends_at": null
+    },
+    {
+      "id": "boost_1790954001971_3s6240",
+      "guild_id": "1790692561769",
+      "user_id": "1790691200486",
+      "user": {
+        "id": "1790691200486",
+        "username": "rakytest",
+        "discriminator": "0",
+        "avatar": null,
+        "global_name": "Raky Test"
+      },
+      "user_premium_guild_subscription_slot_id": "slot_1790691200486_1790953292752_2",
+      "ended": false,
+      "ends_at": null
+    },
+    {
+      "id": "boost_1790954005435_jk4f5v",
+      "guild_id": "1790692561769",
+      "user_id": "1790691200486",
+      "user": {
+        "id": "1790691200486",
+        "username": "rakytest",
+        "discriminator": "0",
+        "avatar": null,
+        "global_name": "Raky Test"
+      },
+      "user_premium_guild_subscription_slot_id": "slot_1790691200486_1790953292752_3",
+      "ended": false,
+      "ends_at": null
+    },
+    {
+      "id": "boost_1790954013888_epiyy0",
+      "guild_id": "1790692561769",
+      "user_id": "1790691200486",
+      "user": {
+        "id": "1790691200486",
+        "username": "rakytest",
+        "discriminator": "0",
+        "avatar": null,
+        "global_name": "Raky Test"
+      },
+      "user_premium_guild_subscription_slot_id": "slot_1790691200486_1790953292752_4",
+      "ended": false,
+      "ends_at": null
+    },
+    {
+      "id": "boost_1790954013888_ai3lzg",
+      "guild_id": "1790692561769",
+      "user_id": "1790691200486",
+      "user": {
+        "id": "1790691200486",
+        "username": "rakytest",
+        "discriminator": "0",
+        "avatar": null,
+        "global_name": "Raky Test"
+      },
+      "user_premium_guild_subscription_slot_id": "slot_1790691200486_1790953292752_5",
+      "ended": false,
+      "ends_at": null
+    },
+    {
+      "id": "boost_1790954013888_vilqmu",
+      "guild_id": "1790692561769",
+      "user_id": "1790691200486",
+      "user": {
+        "id": "1790691200486",
+        "username": "rakytest",
+        "discriminator": "0",
+        "avatar": null,
+        "global_name": "Raky Test"
+      },
+      "user_premium_guild_subscription_slot_id": "slot_1790691200486_1790953292752_6",
+      "ended": false,
+      "ends_at": null
+    },
+    {
+      "id": "boost_1790954013888_6rk34w",
+      "guild_id": "1790692561769",
+      "user_id": "1790691200486",
+      "user": {
+        "id": "1790691200486",
+        "username": "rakytest",
+        "discriminator": "0",
+        "avatar": null,
+        "global_name": "Raky Test"
+      },
+      "user_premium_guild_subscription_slot_id": "slot_1790691200486_1790953292752_7",
+      "ended": false,
+      "ends_at": null
+    },
+    {
+      "id": "boost_1790954013888_9vu9gj",
+      "guild_id": "1790692561769",
+      "user_id": "1790691200486",
+      "user": {
+        "id": "1790691200486",
+        "username": "rakytest",
+        "discriminator": "0",
+        "avatar": null,
+        "global_name": "Raky Test"
+      },
+      "user_premium_guild_subscription_slot_id": "slot_1790691200486_1790953292752_8",
+      "ended": false,
+      "ends_at": null
+    },
+    {
+      "id": "boost_1790954013888_z2lrwa",
+      "guild_id": "1790692561769",
+      "user_id": "1790691200486",
+      "user": {
+        "id": "1790691200486",
+        "username": "rakytest",
+        "discriminator": "0",
+        "avatar": null,
+        "global_name": "Raky Test"
+      },
+      "user_premium_guild_subscription_slot_id": "slot_1790691200486_1790953292752_9",
+      "ended": false,
+      "ends_at": null
+    },
+    {
+      "id": "boost_1790954013888_ka4zwg",
+      "guild_id": "1790692561769",
+      "user_id": "1790691200486",
+      "user": {
+        "id": "1790691200486",
+        "username": "rakytest",
+        "discriminator": "0",
+        "avatar": null,
+        "global_name": "Raky Test"
+      },
+      "user_premium_guild_subscription_slot_id": "slot_1790691200486_1790953292752_10",
+      "ended": false,
+      "ends_at": null
+    },
+    {
+      "id": "boost_1790954013888_gyf8oh",
+      "guild_id": "1790692561769",
+      "user_id": "1790691200486",
+      "user": {
+        "id": "1790691200486",
+        "username": "rakytest",
+        "discriminator": "0",
+        "avatar": null,
+        "global_name": "Raky Test"
+      },
+      "user_premium_guild_subscription_slot_id": "slot_1790691200486_1790953292752_11",
+      "ended": false,
+      "ends_at": null
+    },
+    {
+      "id": "boost_1790954013888_gzrw8p",
+      "guild_id": "1790692561769",
+      "user_id": "1790691200486",
+      "user": {
+        "id": "1790691200486",
+        "username": "rakytest",
+        "discriminator": "0",
+        "avatar": null,
+        "global_name": "Raky Test"
+      },
+      "user_premium_guild_subscription_slot_id": "slot_1790691200486_1790953292752_12",
+      "ended": false,
+      "ends_at": null
+    },
+    {
+      "id": "boost_1790954013889_t2y13z",
+      "guild_id": "1790692561769",
+      "user_id": "1790691200486",
+      "user": {
+        "id": "1790691200486",
+        "username": "rakytest",
+        "discriminator": "0",
+        "avatar": null,
+        "global_name": "Raky Test"
+      },
+      "user_premium_guild_subscription_slot_id": "slot_1790691200486_1790953292752_13",
+      "ended": false,
+      "ends_at": null
+    },
+    {
+      "id": "boost_1790954013889_jei59u",
+      "guild_id": "1790692561769",
+      "user_id": "1790691200486",
+      "user": {
+        "id": "1790691200486",
+        "username": "rakytest",
+        "discriminator": "0",
+        "avatar": null,
+        "global_name": "Raky Test"
+      },
+      "user_premium_guild_subscription_slot_id": "slot_1790691200486_1790953292752_14",
+      "ended": false,
+      "ends_at": null
+    }
+  ]
 }

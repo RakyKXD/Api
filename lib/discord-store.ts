@@ -1578,8 +1578,63 @@ export async function deleteUserSubscription(userId: string, subscriptionId?: st
     database.subscriptions ??= []
     const subs = database.subscriptions as Array<Record<string, unknown>>
     database.subscriptions = subs.filter((s) => s.user_id !== userId)
+    if (database.guild_boost_slots) {
+      const slots = database.guild_boost_slots as Array<Record<string, unknown>>
+      database.guild_boost_slots = slots.filter((s) => s.user_id !== userId)
+    }
     return true
   })
+}
+
+/**
+ * Cancela de verdad la suscripción de un usuario y le quita el Nitro.
+ *
+ * El cliente no cancela con `DELETE`: el modal de "Cancelar suscripción" emite
+ * `PATCH /users/@me/billing/subscriptions/{id}` con los `items` del plan pero
+ * **sin** `status`. Ese PATCH se interpretaba como un cambio de plan, volvía a
+ * escribir `status: 1, canceled_at: null` y restituía `premium_type` (por eso
+ * "al cancelar se volvía el Nitro original"). Devolvemos la suscripción ya
+ * finalizada (status 4 / ENDED) y limpiamos el estado premium.
+ */
+export async function cancelUserSubscription(userId: string, subscriptionId?: string) {
+  const database = await readDatabase()
+  const subs = ((database.subscriptions as Array<Record<string, unknown>>) || []).filter((s) => s.user_id === userId)
+  const found = (subscriptionId ? subs.find((s) => s.id === subscriptionId) : undefined) || subs[0] || null
+
+  await deleteUserSubscription(userId, subscriptionId)
+  await updateUser(userId, { premium_type: 0, premium_since: null })
+
+  const canceledAt = new Date().toISOString()
+  const canceledPayload = found
+    ? {
+        ...found,
+        status: 4, // ENDED
+        canceled_at: canceledAt,
+        metadata: { ...((found.metadata as Record<string, unknown>) || {}), ended_at: canceledAt },
+      }
+    : { id: subscriptionId || `sub_${Date.now()}`, status: 4, canceled_at: canceledAt }
+
+  await broadcastGatewayEvent('USER_UPDATE', { id: userId, premium_type: 0, premium_since: null })
+  await broadcastGatewayEvent('USER_SUBSCRIPTIONS_UPDATE', {})
+  await broadcastGatewayEvent('BILLING_SUBSCRIPTION_UPDATE', canceledPayload)
+
+  return canceledPayload
+}
+
+/**
+ * Detecta si un `PATCH /users/@me/billing/subscriptions/{id}` es una
+ * cancelación y no un cambio de plan.
+ *
+ * - `status` explícito distinto de 1 (ACTIVE) → cancelación.
+ * - Sin `status` pero con `items` → es la llamada de cancelación del cliente
+ *   (firma `ef(sub, {items: sub.items}, {amount: 0, ...})`); los cambios de
+ *   plan/envíos/país siempre mandan `status: ACTIVE`.
+ */
+export function isSubscriptionCancelPayload(input: Record<string, unknown>): boolean {
+  if (input.status !== undefined && input.status !== null && input.status !== '') {
+    return Number(input.status) !== 1
+  }
+  return Array.isArray(input.items) && input.items.length > 0
 }
 
 export async function updateUser(userId: string, input: Record<string, unknown>) {
@@ -1868,10 +1923,10 @@ export async function getUserGuildBoostSlots(userId: string) {
 
   const user = (database.users || []).find((u) => u.id === userId)
   const isTest = (user?.email as string)?.toLowerCase() === 'test@raky.es'
-  const isNitro = Number(user?.premium_type) === 2 || isTest
+  const isNitro = Number(user?.premium_type) === 2
 
-  // If user has Nitro or is test@raky.es, ensure they have boost slots available
-  const minSlots = isTest ? 14 : isNitro ? 2 : 0
+  // If user has Nitro, ensure they have boost slots available (test@raky.es gets 14 when they have Nitro)
+  const minSlots = isNitro ? (isTest ? 14 : 2) : 0
   if (userSlots.length < minSlots) {
     await mutate((db) => {
       db.guild_boost_slots ??= []
@@ -2111,11 +2166,34 @@ export async function createGiftCode(
   const isBasic =
     skuId === '978380684370378762' ||
     subscriptionPlanId === '978380692553465866' ||
+    subscriptionPlanId === '1024422698568122368' ||
     subscriptionPlanId === '978387023482069042'
-  const planId = isBasic ? '978380692553465866' : subscriptionPlanId || '511651880837840896'
-  const targetSkuId = isBasic ? '978380684370378762' : '521847234246082599'
-  const price = isBasic ? 299 : 999
-  const planName = isBasic ? 'Nitro Basic Monthly' : 'Nitro Monthly'
+  const isClassic =
+    skuId === '521846918637420545' ||
+    subscriptionPlanId === '511651871736201216' ||
+    subscriptionPlanId === '511651876987469824'
+  const isYearly =
+    subscriptionPlanId === '1024422698568122368' ||
+    subscriptionPlanId === '511651885459963904' ||
+    subscriptionPlanId === '511651876987469824'
+
+  let targetSkuId = '521847234246082599'
+  let planId = isYearly ? '511651885459963904' : '511651880837840896'
+  let price = isYearly ? 9999 : 999
+  let planName = isYearly ? 'Nitro Yearly' : 'Nitro Monthly'
+  let interval = isYearly ? 2 : 1
+
+  if (isBasic) {
+    targetSkuId = '978380684370378762'
+    planId = isYearly ? '1024422698568122368' : '978380692553465866'
+    price = isYearly ? 2999 : 299
+    planName = isYearly ? 'Nitro Basic Yearly' : 'Nitro Basic Monthly'
+  } else if (isClassic) {
+    targetSkuId = '521846918637420545'
+    planId = isYearly ? '511651876987469824' : '511651871736201216'
+    price = isYearly ? 2999 : 499
+    planName = isYearly ? 'Nitro Classic Yearly' : 'Nitro Classic Monthly'
+  }
 
   return mutate((database) => {
     database.gift_codes ??= []
@@ -2144,7 +2222,7 @@ export async function createGiftCode(
       subscription_plan: {
         id: planId,
         name: planName,
-        interval: 1,
+        interval,
         interval_count: 1,
         tax_inclusive: true,
         sku_id: targetSkuId,

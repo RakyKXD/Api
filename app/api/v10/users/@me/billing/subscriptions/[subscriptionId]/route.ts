@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getUserIdFromAuth } from '@/lib/auth-helper'
-import { getUser, getUserSubscriptions, saveUserSubscription, deleteUserSubscription, updateUser } from '@/lib/discord-store'
+import {
+  getUser,
+  getUserSubscriptions,
+  saveUserSubscription,
+  cancelUserSubscription,
+  isSubscriptionCancelPayload,
+} from '@/lib/discord-store'
 import { broadcastGatewayEvent } from '@/lib/gateway-broadcast'
 
 type Context = { params: Promise<{ subscriptionId: string }> }
@@ -19,29 +25,9 @@ export async function GET(request: NextRequest, { params }: Context) {
 export async function DELETE(request: NextRequest, { params }: Context) {
   const { subscriptionId } = await params
   const userId = getUserIdFromAuth(request)
-  const subscriptions = await getUserSubscriptions(userId)
-  const found = subscriptions.find((s) => s.id === subscriptionId) || subscriptions[0]
 
-  // Completely delete the user's subscription from the database so they have NO active subscription
-  await deleteUserSubscription(userId, subscriptionId)
-  await updateUser(userId, { premium_type: 0, premium_since: null })
-
-  const canceledPayload = found
-    ? {
-        ...found,
-        status: 4, // ENDED
-        canceled_at: new Date().toISOString(),
-        metadata: { ended_at: new Date().toISOString() },
-      }
-    : {
-        id: subscriptionId,
-        status: 4,
-        canceled_at: new Date().toISOString(),
-      }
-
-  await broadcastGatewayEvent('USER_UPDATE', { id: userId, premium_type: 0, premium_since: null })
-  await broadcastGatewayEvent('USER_SUBSCRIPTIONS_UPDATE', {})
-  await broadcastGatewayEvent('BILLING_SUBSCRIPTION_UPDATE', canceledPayload)
+  // Cancelación real: borra la suscripción, quita el Nitro y avisa por gateway.
+  await cancelUserSubscription(userId, subscriptionId)
 
   return new NextResponse(null, { status: 204 })
 }
@@ -49,6 +35,17 @@ export async function DELETE(request: NextRequest, { params }: Context) {
 export async function PATCH(request: NextRequest, { params }: Context) {
   const { subscriptionId } = await params
   const userId = getUserIdFromAuth(request)
+
+  const body = (await request.json().catch(() => ({}))) as Record<string, unknown>
+
+  // `PATCH` con `status != 1` o con los `items` del plan pero sin `status` es
+  // cómo cancela el cliente (ver isSubscriptionCancelPayload). Hay que mirarlo
+  // ANTES del gate de email y del cambio de plan: si no, se reactiva la
+  // suscripción y el usuario "recupera" el Nitro que acaba de cancelar.
+  if (isSubscriptionCancelPayload(body)) {
+    return NextResponse.json(await cancelUserSubscription(userId, subscriptionId))
+  }
+
   const user = await getUser(userId)
   const email = (user?.email as string)?.toLowerCase()
 
@@ -59,7 +56,6 @@ export async function PATCH(request: NextRequest, { params }: Context) {
     )
   }
 
-  const body = (await request.json().catch(() => ({}))) as Record<string, unknown>
   const items = Array.isArray(body?.items) ? body.items : []
   const firstItem = items[0] as Record<string, unknown> | undefined
   const planId = (firstItem?.plan_id as string) || (body?.plan_id as string) || '511651880837840896'

@@ -593,7 +593,9 @@ export async function addLinkedAccount(
     phone_verified: true,
     email: `${rawUsername}@raky.local`,
     flags: 0,
-    premium_type: (primaryUser.email && String(primaryUser.email).toLowerCase() === 'test@raky.es') ? 2 : 0,
+    // Las cuentas vinculadas tampoco nacen con Nitro.
+    premium_type: 0,
+    premium_since: null,
     verified: true
   }
 

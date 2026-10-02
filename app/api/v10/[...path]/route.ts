@@ -460,16 +460,17 @@ const STORE_SKU_TEMPLATES: StoreSkuTemplate[] = [
     description: 'Full Nitro membership with HD streaming, bigger uploads and two Server Boosts.',
     plans: [
       { id: '511651880837840896', interval: STORE_MONTH, interval_count: 1, amount: 999, label: 'Monthly' },
-      { interval: STORE_YEAR, interval_count: 1, amount: 9999, label: 'Yearly' },
+      { id: '511651885459963904', interval: STORE_YEAR, interval_count: 1, amount: 9999, label: 'Yearly' },
       { id: '642251038925127690', interval: STORE_MONTH, interval_count: 3, amount: 2499, label: '3 Months' },
+      { id: '944037208325619722', interval: STORE_MONTH, interval_count: 6, amount: 4999, label: '6 Months' },
     ],
   },
   {
-    id: '978380684370378762', name: 'Discord Nitro Basic', slug: 'nitro-basic', summary: 'Nitro Basic monthly',
+    id: '978380684370378762', name: 'Discord Nitro Basic', slug: 'nitro-basic', summary: 'Nitro Basic monthly and yearly',
     description: 'Nitro Basic membership with bigger uploads and custom emoji everywhere.',
     plans: [
-      { interval: STORE_MONTH, interval_count: 1, amount: 299, label: 'Monthly' },
-      { interval: STORE_YEAR, interval_count: 1, amount: 2999, label: 'Yearly' },
+      { id: '978380692553465866', interval: STORE_MONTH, interval_count: 1, amount: 299, label: 'Monthly' },
+      { id: '1024422698568122368', interval: STORE_YEAR, interval_count: 1, amount: 2999, label: 'Yearly' },
     ],
   },
   {
@@ -484,8 +485,20 @@ const STORE_SKU_TEMPLATES: StoreSkuTemplate[] = [
     id: '590663762298667008', name: 'Server Boost', slug: 'server-boost', summary: 'Server Boost subscriptions',
     description: 'Boost your favourite servers with Nitro perks.',
     plans: [
-      { interval: STORE_MONTH, interval_count: 1, amount: 499, label: '1 Month' },
-      { interval: STORE_MONTH, interval_count: 3, amount: 1497, label: '3 Months' },
+      { id: '590665532894740483', interval: STORE_MONTH, interval_count: 1, amount: 499, label: '1 Month' },
+      { id: '590665538238152709', interval: STORE_YEAR, interval_count: 1, amount: 4999, label: '1 Year' },
+      { id: '944037355453415424', interval: STORE_MONTH, interval_count: 3, amount: 1497, label: '3 Months' },
+      { id: '944037391444738048', interval: STORE_MONTH, interval_count: 6, amount: 2994, label: '6 Months' },
+    ],
+  },
+  {
+    id: '628379670982688768', name: 'None', slug: 'none', summary: 'None tier',
+    description: 'None tier',
+    plans: [
+      { id: '628379151761408000', interval: STORE_MONTH, interval_count: 1, amount: 0, label: 'Monthly' },
+      { id: '628381571568631808', interval: STORE_YEAR, interval_count: 1, amount: 0, label: 'Yearly' },
+      { id: '944265614527037440', interval: STORE_MONTH, interval_count: 3, amount: 0, label: '3 Months' },
+      { id: '944265636643602432', interval: STORE_MONTH, interval_count: 6, amount: 0, label: '6 Months' },
     ],
   },
 ]
@@ -526,7 +539,7 @@ function storeSkuResource(skuId: string) {
     features: [],
     genres: [],
     available_regions: ['us', 'es', 'gb'],
-    locales: ['en-US'],
+    locales: ['en-US', 'es-ES'],
     price_tier: 0,
     created_at: STORE_PUBLISHED_AT,
     deleted_at: null,
@@ -546,22 +559,33 @@ function storeSkuResource(skuId: string) {
  * The Nitro member hub then had no plan/dates for the active subscription and
  * its render blew up with `RangeError: Invalid time value`.
  * ------------------------------------------------------------------------- */
-const STORE_PLAN_CURRENCY = 'usd'
+const STORE_PLAN_CURRENCY = 'eur'
 const STORE_PLAN_EXPONENT = 2
-const STORE_PLAN_COUNTRY_CODE = 'US'
+const STORE_PLAN_COUNTRY_CODE = 'ES'
 const STORE_MOCK_PAYMENT_SOURCE_ID = '500000000000000001'
 const STORE_PAYMENT_SOURCE_TYPES = [0, 1, 2, 3, 4, 5]
 
-function storePrice(amount: number) {
-  return { currency: STORE_PLAN_CURRENCY, amount, exponent: STORE_PLAN_EXPONENT }
+function storePrice(amount: number, currency = 'eur') {
+  return { currency, amount, exponent: STORE_PLAN_EXPONENT }
 }
 
 function storePricesFor(amount: number) {
   const prices: Record<string, unknown> = {}
   for (const type of STORE_PAYMENT_SOURCE_TYPES) {
     prices[String(type)] = {
-      country_prices: { country_code: STORE_PLAN_COUNTRY_CODE, prices: [storePrice(amount)] },
-      payment_source_prices: { [STORE_MOCK_PAYMENT_SOURCE_ID]: [storePrice(amount)] },
+      country_prices: {
+        country_code: 'ES',
+        prices: [
+          storePrice(amount, 'eur'),
+          storePrice(amount, 'usd'),
+        ],
+      },
+      payment_source_prices: {
+        [STORE_MOCK_PAYMENT_SOURCE_ID]: [
+          storePrice(amount, 'eur'),
+          storePrice(amount, 'usd'),
+        ],
+      },
     }
   }
   return prices
@@ -825,8 +849,40 @@ async function handleGet(request: NextRequest, { params }: Params) {
     }
     if (resourceId === 'published-listings' && subresource === 'skus') return json(storeListingsFor(requestedSkus))
     if (resourceId === 'published-listings') return json(storeListingsFor(requestedSkus))
-    if (resourceId === 'skus' && subId) return json(storeSkuResource(subId))
-    if (resourceId === 'skus') {
+    if (resourceId === 'skus' && subresource && subId === 'purchase') {
+      const skuId = subresource
+      const planId = query.get('subscription_plan_id') || (skuId === '978380684370378762' ? '978380692553465866' : '511651880837840896')
+      const isBasic = skuId === '978380684370378762' || planId === '978380692553465866' || planId === '1024422698568122368'
+      const isClassic = skuId === '521846918637420545' || planId === '511651871736201216' || planId === '511651876987469824'
+      const isYearly = planId === '1024422698568122368' || planId === '511651885459963904' || planId === '511651876987469824'
+      const price = isYearly ? (isBasic ? 2999 : isClassic ? 2999 : 9999) : (isBasic ? 299 : isClassic ? 499 : 999)
+      return json({
+        id: '700000000000000001',
+        invoice_items: [
+          {
+            id: '700000000000000002',
+            subscription_plan_id: planId,
+            subscription_plan_price: price,
+            amount: price,
+            quantity: 1,
+            discounts: [],
+            unit_price: { amount: price, currency: 'eur' },
+            tax: 0,
+            sku_id: skuId,
+          },
+        ],
+        total: price,
+        subtotal: price,
+        currency: 'eur',
+        tax: 0,
+        tax_inclusive: true,
+        subscription_period_start: now(),
+        subscription_period_end: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+        status: 1,
+      })
+    }
+    if (resourceId === 'skus' && subresource && !subId) return json(storeSkuResource(subresource))
+    if (resourceId === 'skus' && !subresource) {
       const ids = requestedSkus.length > 0 ? requestedSkus : STORE_SKU_TEMPLATES.map((template) => template.id)
       return json(ids.map((skuId) => storeSkuResource(skuId)))
     }

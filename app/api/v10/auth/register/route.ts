@@ -17,7 +17,10 @@ export async function POST(request: NextRequest) {
     bot: false,
     flags: 0,
     verified: true,
-    premium_type: (body.email && String(body.email).toLowerCase() === 'test@raky.es') ? 2 : 0,
+    // Nunca Nitro por defecto: la suscripción se obtiene comprándola o canjeando
+    // un regalo (GET/POST /entitlements/gift-codes), nunca al crear la cuenta.
+    premium_type: 0,
+    premium_since: null,
   })
 
   const { getUser } = await import('@/lib/discord-store')
