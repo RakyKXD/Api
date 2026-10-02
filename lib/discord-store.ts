@@ -1629,8 +1629,15 @@ export async function getUserProfile(userId: string, currentUserId = '9000000000
     })
 
   const userPremium = Number(user.premium_type) || 0
+  const userBoosts = ((database.guild_boosts as Array<Record<string, unknown>> | undefined) || []).filter(
+    (b) => b.user_id === userId && !b.ended
+  )
+  const hasBoosts = userBoosts.length > 0
+  const firstBoostDate = hasBoosts ? ((userBoosts[0]?.ends_at as string) || new Date().toISOString()) : null
+
   const badges = [
     ...(userPremium > 0 ? [{ id: 'premium', description: 'Subscriber since Jan 1, 2026', icon: '2ba85e8026a8614b640c2837bcdfe21b' }] : []),
+    ...(hasBoosts ? [{ id: 'guild_booster', description: 'Server Booster', icon: 'guild_booster' }] : []),
     ...(Number(user.flags ?? 0) & 64 ? [{ id: 'hypesquad_house_1', description: 'HypeSquad Bravery', icon: '8a88d63823d835a165edd523860cf4fe' }] : []),
     ...(Number(user.flags ?? 0) & 128 ? [{ id: 'hypesquad_house_2', description: 'HypeSquad Brilliance', icon: '011940fd013da3f7fb926e4a1cd2e618' }] : []),
   ]
@@ -1680,7 +1687,7 @@ export async function getUserProfile(userId: string, currentUserId = '9000000000
     connected_accounts: [],
     premium_since: userPremium > 0 ? ((user.premium_since as string) || '2026-01-01T00:00:00.000Z') : null,
     premium_type: userPremium,
-    premium_guild_since: null,
+    premium_guild_since: hasBoosts ? firstBoostDate : null,
     legacy_username: null,
     application: null,
   }

@@ -17,7 +17,7 @@
       ],
       "flags": 0,
       "premium_type": 2,
-      "premium_since": "2026-01-01T00:00:00.000Z",
+      "premium_since": "2026-10-02T14:53:33.231Z",
       "verified": true,
       "email": "test@raky.es",
       "phone": "+34600000000",
@@ -495,29 +495,32 @@
             "id": "900000000000000001",
             "username": "api-bot",
             "discriminator": "0",
-            "global_name": "TestUser",
+            "global_name": "TestUser (Dev)",
             "avatar": null,
             "bot": false,
-            "bio": "Hello offline world",
+            "bio": "Ingeniero de Software | Colaboraciones y Networking profesional 💼",
             "pronouns": "they/them",
             "banner": null,
             "accent_color": 5793266,
             "theme_colors": [
-              5793266,
-              2895667
+              2443673,
+              1447446
             ],
             "flags": 0,
             "premium_type": 2,
-            "premium_since": "2025-01-01T00:00:00.000Z",
+            "premium_since": "2026-01-01T00:00:00.000Z",
             "verified": true,
-            "email": "bot@discord.local"
+            "email": "test@raky.es",
+            "phone": "+34600000000",
+            "phone_verified": true
           },
           "nick": "Nick",
           "roles": [],
           "joined_at": "2026-01-01T00:00:00.000Z",
           "deaf": false,
           "mute": false,
-          "flags": 0
+          "flags": 0,
+          "premium_since": "2026-10-02T14:53:33.374Z"
         },
         {
           "user": {
@@ -1072,7 +1075,9 @@
           "id": "17908776804709706",
           "created_at": "2026-10-01T18:01:20.470Z"
         }
-      ]
+      ],
+      "premium_subscription_count": 2,
+      "premium_tier": 1
     },
     {
       "id": "1790691777407",
@@ -1201,22 +1206,24 @@
             "id": "900000000000000001",
             "username": "api-bot",
             "discriminator": "0",
-            "global_name": "TestUser",
+            "global_name": "TestUser (Dev)",
             "avatar": null,
             "bot": false,
-            "bio": "Hello offline world",
+            "bio": "Ingeniero de Software | Colaboraciones y Networking profesional 💼",
             "pronouns": "they/them",
             "banner": null,
             "accent_color": 5793266,
             "theme_colors": [
-              5793266,
-              2895667
+              2443673,
+              1447446
             ],
             "flags": 0,
             "premium_type": 2,
             "verified": true,
-            "email": "bot@discord.local",
-            "premium_since": "2025-01-01T00:00:00.000Z"
+            "email": "test@raky.es",
+            "premium_since": "2026-01-01T00:00:00.000Z",
+            "phone": "+34600000000",
+            "phone_verified": true
           },
           "roles": [],
           "joined_at": "2026-09-29T14:22:57.409Z",
@@ -1626,15 +1633,21 @@
             "banner_color": null,
             "locale": "en-US",
             "verified": true,
-            "email": "bot@discord.local",
+            "email": "test@raky.es",
             "flags": 0,
             "premium_type": 2,
             "public_flags": 0,
-            "phone": null,
+            "phone": "+34600000000",
             "nsfw_allowed": true,
             "bio": "Ingeniero de Software | Colaboraciones y Networking profesional 💼",
             "pronouns": "they/them",
-            "avatar_decoration_data": null
+            "avatar_decoration_data": null,
+            "theme_colors": [
+              2443673,
+              1447446
+            ],
+            "premium_since": "2026-01-01T00:00:00.000Z",
+            "phone_verified": true
           },
           "roles": [],
           "joined_at": "2026-10-01T19:49:48.919Z",
@@ -4441,7 +4454,7 @@
             "id": "900000000000000001",
             "username": "api-bot",
             "discriminator": "0",
-            "global_name": "TestUser",
+            "global_name": "TestUser (Dev)",
             "avatar": null,
             "bot": false,
             "system": false,
@@ -4452,15 +4465,21 @@
             "banner_color": null,
             "locale": "en-US",
             "verified": true,
-            "email": "bot@discord.local",
+            "email": "test@raky.es",
             "flags": 0,
             "premium_type": 2,
             "public_flags": 0,
-            "phone": null,
+            "phone": "+34600000000",
             "nsfw_allowed": true,
-            "bio": "Hello offline world",
+            "bio": "Ingeniero de Software | Colaboraciones y Networking profesional 💼",
             "pronouns": "they/them",
-            "avatar_decoration_data": null
+            "avatar_decoration_data": null,
+            "theme_colors": [
+              2443673,
+              1447446
+            ],
+            "premium_since": "2026-01-01T00:00:00.000Z",
+            "phone_verified": true
           },
           "roles": [],
           "joined_at": "2026-10-01T11:48:38.953Z",
@@ -4688,7 +4707,7 @@
             "id": "900000000000000001",
             "username": "api-bot",
             "discriminator": "0",
-            "global_name": "TestUser [Priv]",
+            "global_name": "TestUser (Dev)",
             "avatar": null,
             "bot": false,
             "system": false,
@@ -4699,15 +4718,21 @@
             "banner_color": null,
             "locale": "en-US",
             "verified": true,
-            "email": "bot@discord.local",
+            "email": "test@raky.es",
             "flags": 0,
             "premium_type": 2,
             "public_flags": 0,
-            "phone": null,
+            "phone": "+34600000000",
             "nsfw_allowed": true,
-            "bio": "Espacio personal y privado. Solo amigos cercanos y confianza 🔒",
+            "bio": "Ingeniero de Software | Colaboraciones y Networking profesional 💼",
             "pronouns": "they/them",
-            "avatar_decoration_data": null
+            "avatar_decoration_data": null,
+            "theme_colors": [
+              2443673,
+              1447446
+            ],
+            "premium_since": "2026-01-01T00:00:00.000Z",
+            "phone_verified": true
           },
           "roles": [],
           "joined_at": "2026-10-01T12:09:41.963Z",
@@ -4948,15 +4973,21 @@
             "banner_color": null,
             "locale": "en-US",
             "verified": true,
-            "email": "bot@discord.local",
+            "email": "test@raky.es",
             "flags": 0,
             "premium_type": 2,
             "public_flags": 0,
-            "phone": null,
+            "phone": "+34600000000",
             "nsfw_allowed": true,
             "bio": "Ingeniero de Software | Colaboraciones y Networking profesional 💼",
             "pronouns": "they/them",
-            "avatar_decoration_data": null
+            "avatar_decoration_data": null,
+            "theme_colors": [
+              2443673,
+              1447446
+            ],
+            "premium_since": "2026-01-01T00:00:00.000Z",
+            "phone_verified": true
           },
           "roles": [],
           "joined_at": "2026-10-01T13:32:32.229Z",
@@ -6500,16 +6531,16 @@
       "id": "600000000000000001",
       "type": 1,
       "status": 1,
-      "created_at": "2026-01-01T00:00:00.000Z",
+      "created_at": "2026-10-02T14:53:27.938Z",
       "canceled_at": null,
-      "current_period_start": "2026-01-01T00:00:00.000Z",
-      "current_period_end": "2027-01-01T00:00:00.000Z",
-      "plan_id": "511651880837840896",
+      "current_period_start": "2026-10-02T14:53:27.938Z",
+      "current_period_end": "2027-10-02T14:53:27.938Z",
+      "plan_id": "978380692553465866",
       "sku_id": "521847234246082599",
       "items": [
         {
           "id": "600000000000000002",
-          "plan_id": "511651880837840896",
+          "plan_id": "978380692553465866",
           "quantity": 1
         }
       ],
@@ -6543,6 +6574,30 @@
       "user_id": "1790691200486",
       "country_code": "ES",
       "currency": "eur"
+    },
+    {
+      "id": "sub_1790952813231",
+      "type": 1,
+      "status": 1,
+      "created_at": "2026-10-02T14:53:33.231Z",
+      "canceled_at": null,
+      "current_period_start": "2026-10-02T14:53:33.231Z",
+      "current_period_end": "2026-11-01T14:53:33.231Z",
+      "plan_id": "511651880837840896",
+      "sku_id": "521847234246082599",
+      "items": [
+        {
+          "id": "item_1790952813231",
+          "plan_id": "511651880837840896",
+          "quantity": 1
+        }
+      ],
+      "payment_source_id": "500000000000000001",
+      "payment_gateway": 1,
+      "flags": 0,
+      "user_id": "900000000000000001",
+      "country_code": "ES",
+      "currency": "eur"
     }
   ],
   "payment_sources": [
@@ -6566,6 +6621,152 @@
         "postal_code": "28001"
       },
       "payment_gateway": 1
+    }
+  ],
+  "gift_codes": [
+    {
+      "id": "gift_1790952808162_9tbp",
+      "code": "3l0ueMhv7DlLx5EV",
+      "sku_id": "521847234246082599",
+      "application_id": "521847234246082599",
+      "user_id": "900000000000000001",
+      "user": {
+        "id": "900000000000000001",
+        "username": "api-bot",
+        "discriminator": "0",
+        "avatar": null,
+        "global_name": "TestUser (Dev)"
+      },
+      "uses": 1,
+      "max_uses": 1,
+      "redeemed": true,
+      "expires_at": null,
+      "gift_style": 1,
+      "subscription_plan_id": "511651880837840896",
+      "subscription_plan": {
+        "id": "511651880837840896",
+        "name": "Nitro Monthly",
+        "interval": 1,
+        "interval_count": 1,
+        "tax_inclusive": true,
+        "sku_id": "521847234246082599",
+        "currency": "eur",
+        "price": 999,
+        "prices": {
+          "0": {
+            "country_prices": {
+              "country_code": "ES",
+              "prices": [
+                {
+                  "currency": "eur",
+                  "amount": 999,
+                  "exponent": 2
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "gift_1790952810659_2xqg",
+      "code": "72aaDM4Nvc9o8v7X",
+      "sku_id": "521847234246082599",
+      "application_id": "521847234246082599",
+      "user_id": "900000000000000001",
+      "user": {
+        "id": "900000000000000001",
+        "username": "api-bot",
+        "discriminator": "0",
+        "avatar": null,
+        "global_name": "TestUser (Dev)"
+      },
+      "uses": 0,
+      "max_uses": 1,
+      "redeemed": false,
+      "expires_at": null,
+      "gift_style": 0,
+      "subscription_plan_id": "511651880837840896",
+      "subscription_plan": {
+        "id": "511651880837840896",
+        "name": "Nitro Monthly",
+        "interval": 1,
+        "interval_count": 1,
+        "tax_inclusive": true,
+        "sku_id": "521847234246082599",
+        "currency": "eur",
+        "price": 999,
+        "prices": {
+          "0": {
+            "country_prices": {
+              "country_code": "ES",
+              "prices": [
+                {
+                  "currency": "eur",
+                  "amount": 999,
+                  "exponent": 2
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "guild_boost_slots": [
+    {
+      "id": "700000000000000001",
+      "user_id": "900000000000000001",
+      "subscription_id": "600000000000000001",
+      "premium_guild_subscription": {
+        "id": "boost_1790952813373_r2365x",
+        "guild_id": "100000000000000001"
+      },
+      "canceled": false,
+      "cooldown_ends_at": null
+    },
+    {
+      "id": "700000000000000002",
+      "user_id": "900000000000000001",
+      "subscription_id": "600000000000000001",
+      "premium_guild_subscription": {
+        "id": "boost_1790952813374_hwwlv1",
+        "guild_id": "100000000000000001"
+      },
+      "canceled": false,
+      "cooldown_ends_at": null
+    }
+  ],
+  "guild_boosts": [
+    {
+      "id": "boost_1790952813373_r2365x",
+      "guild_id": "100000000000000001",
+      "user_id": "900000000000000001",
+      "user": {
+        "id": "900000000000000001",
+        "username": "api-bot",
+        "discriminator": "0",
+        "avatar": null,
+        "global_name": "TestUser (Dev)"
+      },
+      "user_premium_guild_subscription_slot_id": "700000000000000001",
+      "ended": false,
+      "ends_at": null
+    },
+    {
+      "id": "boost_1790952813374_hwwlv1",
+      "guild_id": "100000000000000001",
+      "user_id": "900000000000000001",
+      "user": {
+        "id": "900000000000000001",
+        "username": "api-bot",
+        "discriminator": "0",
+        "avatar": null,
+        "global_name": "TestUser (Dev)"
+      },
+      "user_premium_guild_subscription_slot_id": "700000000000000002",
+      "ended": false,
+      "ends_at": null
     }
   ]
 }
