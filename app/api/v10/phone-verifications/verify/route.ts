@@ -1,0 +1,10 @@
+import { NextRequest, NextResponse } from 'next/server'
+
+export async function POST(request: NextRequest) {
+  const body = await request.json().catch(() => ({}))
+  return NextResponse.json({
+    phone: body.phone || '+15550000000',
+    required: false,
+    verified: true,
+  })
+}

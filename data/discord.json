@@ -1,0 +1,6571 @@
+{
+  "users": [
+    {
+      "id": "900000000000000001",
+      "username": "api-bot",
+      "discriminator": "0",
+      "global_name": "TestUser (Dev)",
+      "avatar": null,
+      "bot": false,
+      "bio": "Ingeniero de Software | Colaboraciones y Networking profesional 💼",
+      "pronouns": "they/them",
+      "banner": null,
+      "accent_color": 5793266,
+      "theme_colors": [
+        2443673,
+        1447446
+      ],
+      "flags": 0,
+      "premium_type": 2,
+      "premium_since": "2026-01-01T00:00:00.000Z",
+      "verified": true,
+      "email": "test@raky.es",
+      "phone": "+34600000000",
+      "phone_verified": true
+    },
+    {
+      "id": "900000000000000002",
+      "username": "alex",
+      "discriminator": "0",
+      "global_name": "Alex Vance",
+      "avatar": null,
+      "bot": false,
+      "bio": "Coding in TypeScript and Rust.",
+      "pronouns": "he/him",
+      "banner": null,
+      "accent_color": 3447003,
+      "theme_colors": [
+        3447003,
+        10181046
+      ],
+      "flags": 64,
+      "premium_type": 0,
+      "verified": true,
+      "email": "alex@discord.local"
+    },
+    {
+      "id": "900000000000000003",
+      "username": "samantha",
+      "discriminator": "0",
+      "global_name": "Samantha",
+      "avatar": null,
+      "bot": false,
+      "bio": "Designer & Gamemaker.",
+      "pronouns": "she/her",
+      "banner": null,
+      "accent_color": 15105570,
+      "theme_colors": [
+        15105570,
+        15844367
+      ],
+      "flags": 128,
+      "premium_type": 0,
+      "verified": true,
+      "email": "samantha@discord.local"
+    },
+    {
+      "id": "1790690706972",
+      "username": "newuser",
+      "discriminator": "0",
+      "global_name": "newuser",
+      "email": "new@example.com",
+      "avatar": null,
+      "bot": false,
+      "flags": 0,
+      "premium_type": 0
+    },
+    {
+      "id": "1790691078217",
+      "username": "testuser",
+      "discriminator": "0",
+      "global_name": "testuser",
+      "email": null,
+      "avatar": null,
+      "bot": false,
+      "flags": 0,
+      "premium_type": 0
+    },
+    {
+      "id": "1790691078268",
+      "username": "testuser",
+      "discriminator": "0",
+      "global_name": "testuser",
+      "email": null,
+      "avatar": null,
+      "bot": false,
+      "flags": 0,
+      "premium_type": 0
+    },
+    {
+      "id": "1790691200486",
+      "username": "rakytest",
+      "discriminator": "0",
+      "global_name": "Raky Test",
+      "email": "test@raky.es",
+      "avatar": null,
+      "bot": false,
+      "flags": 0,
+      "verified": true,
+      "premium_type": 2,
+      "premium_since": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "1790692321627",
+      "username": "tester_1524",
+      "discriminator": "0",
+      "global_name": "tester_1524",
+      "email": "tester@test.com",
+      "avatar": null,
+      "bot": false,
+      "flags": 0,
+      "premium_type": 0
+    },
+    {
+      "id": "1790704167602688",
+      "premium_type": 0
+    },
+    {
+      "id": "1790705642480235",
+      "premium_type": 0
+    },
+    {
+      "id": "1790708399749100",
+      "recipients": [
+        "900000000000000001"
+      ],
+      "premium_type": 0
+    },
+    {
+      "id": "1790708402107204",
+      "recipients": [
+        "900000000000000001"
+      ],
+      "premium_type": 0
+    },
+    {
+      "id": "1790708411317991",
+      "recipients": [
+        "900000000000000001",
+        "900000000000000002"
+      ],
+      "premium_type": 0
+    },
+    {
+      "id": "1790709817330713",
+      "premium_type": 0
+    },
+    {
+      "id": "1790714720285218",
+      "premium_type": 0
+    },
+    {
+      "id": "1790791642741178",
+      "premium_type": 0
+    },
+    {
+      "id": "1790794117697563",
+      "username": "testuser",
+      "premium_type": 0
+    },
+    {
+      "id": "1790794117828870",
+      "premium_type": 0
+    },
+    {
+      "id": "179079411809318",
+      "terms": true,
+      "privacy": true,
+      "premium_type": 0
+    },
+    {
+      "id": "1790794291095226",
+      "username": "testuser",
+      "premium_type": 0
+    },
+    {
+      "id": "1790794291258787",
+      "premium_type": 0
+    },
+    {
+      "id": "1790794291510295",
+      "terms": true,
+      "privacy": true,
+      "premium_type": 0
+    },
+    {
+      "id": "1790795657894143",
+      "premium_type": 0
+    },
+    {
+      "id": "1790799047483653",
+      "premium_type": 0
+    },
+    {
+      "id": "179079960992189",
+      "premium_type": 0
+    },
+    {
+      "id": "1081008645738823770",
+      "username": "clyde",
+      "discriminator": "0000",
+      "global_name": "Clyde AI",
+      "avatar": null,
+      "bot": true,
+      "system": true,
+      "bio": "¡Hola! Soy Clyde, el asistente de IA oficial de Raky.",
+      "accent_color": 5793266,
+      "flags": 1,
+      "premium_type": 0
+    },
+    {
+      "id": "1790873599652274",
+      "premium_type": 0
+    },
+    {
+      "id": "1790873610765997",
+      "premium_type": 0
+    },
+    {
+      "id": "1790877564815294",
+      "username": "raky45345",
+      "discriminator": "0",
+      "global_name": "raky23",
+      "avatar": null,
+      "bot": false,
+      "bio": "",
+      "phone": "+34600000000",
+      "phone_verified": true,
+      "email": "raky45345@raky.local",
+      "flags": 0,
+      "premium_type": 0,
+      "verified": true
+    },
+    {
+      "id": "1790877767367252",
+      "premium_type": 0
+    },
+    {
+      "id": "1790882179140908",
+      "premium_type": 0
+    },
+    {
+      "id": "1790886394516422",
+      "premium_type": 0
+    },
+    {
+      "id": "1790947772274926",
+      "premium_type": 0
+    },
+    {
+      "id": "1790947967619300",
+      "sku_id": "521847234246082599",
+      "country_code": "US",
+      "premium_type": 0
+    },
+    {
+      "id": "179095183684327"
+    }
+  ],
+  "user_settings": [
+    {
+      "user_id": "900000000000000001",
+      "locale": "en-US",
+      "theme": "dark",
+      "status": "online",
+      "custom_status": {
+        "text": "Building Discord Mock API",
+        "emoji_name": "🚀"
+      },
+      "developer_mode": true,
+      "afk_timeout": 3600,
+      "animate_emoji": true,
+      "animate_stickers": 0,
+      "convert_emoticons": false,
+      "default_guilds_restricted": false,
+      "detect_platform_accounts": false,
+      "disable_games_tab": true,
+      "enable_tts_command": false,
+      "explicit_content_filter": 0,
+      "friend_source_flags": {
+        "all": true,
+        "mutual_guilds": true,
+        "mutual_friends": true
+      },
+      "gif_auto_play": true,
+      "guild_folders": [],
+      "guild_positions": [
+        "100000000000000001"
+      ],
+      "inline_attachment_media": true,
+      "inline_embed_media": true,
+      "message_display_compact": false,
+      "render_embeds": true,
+      "render_reactions": true,
+      "restricted_guilds": [],
+      "show_current_game": true,
+      "timezone_offset": 0
+    }
+  ],
+  "relationships": [],
+  "notes": [
+    {
+      "user_id": "900000000000000002",
+      "note_user_id": "900000000000000001",
+      "note": "Alex from the core frontend team"
+    }
+  ],
+  "guilds": [
+    {
+      "id": "100000000000000001",
+      "name": "Servidor Actualizado Offline",
+      "icon": "9e8cd580e9529290d05bc5844f6e17ee",
+      "description": "Servidor oficial actualizado",
+      "owner_id": "900000000000000001",
+      "features": [
+        "COMMUNITY",
+        "NEWS",
+        "FORUM_CHANNEL_PROMPT"
+      ],
+      "roles": [
+        {
+          "id": "100000000000000001",
+          "name": "@everyone",
+          "color": 0,
+          "hoist": false,
+          "position": 0,
+          "permissions": "1071698660929",
+          "managed": false,
+          "mentionable": false
+        }
+      ],
+      "emojis": [],
+      "channels": [
+        {
+          "id": "200000000000000001",
+          "type": 4,
+          "name": "TEXT CHANNELS",
+          "position": 0
+        },
+        {
+          "id": "200000000000000002",
+          "type": 0,
+          "name": "general-actualizado",
+          "position": 1,
+          "parent_id": "200000000000000001"
+        },
+        {
+          "id": "200000000000000003",
+          "type": 2,
+          "name": "Lounge",
+          "position": 2,
+          "parent_id": null
+        },
+        {
+          "id": "1790716893393",
+          "guild_id": "100000000000000001",
+          "type": 0,
+          "name": "test-chan",
+          "position": 3,
+          "parent_id": null,
+          "topic": null,
+          "nsfw": false,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0
+        },
+        {
+          "id": "1790791147004",
+          "guild_id": "100000000000000001",
+          "type": 0,
+          "name": "canal-de-prueba",
+          "position": 4,
+          "parent_id": null,
+          "topic": null,
+          "nsfw": false,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0,
+          "bitrate": 64000,
+          "user_limit": 0,
+          "last_message_id": null
+        },
+        {
+          "id": "200000000000000015",
+          "guild_id": "100000000000000001",
+          "type": 15,
+          "name": "foro-comunidad",
+          "position": 5,
+          "parent_id": "200000000000000001",
+          "topic": "Foro oficial de la comunidad para debatir y compartir publicaciones.",
+          "nsfw": false,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0,
+          "default_thread_rate_limit_per_user": 0,
+          "default_auto_archive_duration": 4320,
+          "default_reaction_emoji": {
+            "emoji_id": null,
+            "emoji_name": "💬"
+          },
+          "default_sort_order": 0,
+          "default_forum_layout": 1,
+          "available_tags": [
+            {
+              "id": "101",
+              "name": "General",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "💡"
+            },
+            {
+              "id": "102",
+              "name": "Gaming",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "🎮"
+            },
+            {
+              "id": "103",
+              "name": "Preguntas",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "❓"
+            }
+          ]
+        },
+        {
+          "id": "1790878166131",
+          "guild_id": "100000000000000001",
+          "type": 15,
+          "name": "mi-foro",
+          "position": 6,
+          "parent_id": null,
+          "topic": null,
+          "nsfw": false,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0,
+          "bitrate": 64000,
+          "user_limit": 0,
+          "last_message_id": null
+        },
+        {
+          "id": "1790878562245",
+          "guild_id": "100000000000000001",
+          "type": 15,
+          "name": "nuevo-foro-test",
+          "position": 7,
+          "parent_id": null,
+          "topic": null,
+          "nsfw": false,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0,
+          "bitrate": 64000,
+          "user_limit": 0,
+          "last_message_id": null
+        },
+        {
+          "id": "1790878757434",
+          "guild_id": "100000000000000001",
+          "type": 15,
+          "name": "debate-general",
+          "position": 8,
+          "parent_id": null,
+          "topic": null,
+          "nsfw": false,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0,
+          "bitrate": 64000,
+          "user_limit": 0,
+          "last_message_id": null,
+          "available_tags": [
+            {
+              "id": "1",
+              "name": "Ayuda"
+            }
+          ],
+          "default_reaction_emoji": null,
+          "default_sort_order": null,
+          "default_forum_layout": 0,
+          "default_thread_rate_limit_per_user": 0,
+          "default_auto_archive_duration": 4320,
+          "flags": 0,
+          "template": ""
+        }
+      ],
+      "members": [
+        {
+          "user": {
+            "id": "900000000000000001",
+            "username": "api-bot",
+            "discriminator": "0",
+            "global_name": "TestUser",
+            "avatar": null,
+            "bot": false,
+            "bio": "Hello offline world",
+            "pronouns": "they/them",
+            "banner": null,
+            "accent_color": 5793266,
+            "theme_colors": [
+              5793266,
+              2895667
+            ],
+            "flags": 0,
+            "premium_type": 2,
+            "premium_since": "2025-01-01T00:00:00.000Z",
+            "verified": true,
+            "email": "bot@discord.local"
+          },
+          "nick": "Nick",
+          "roles": [],
+          "joined_at": "2026-01-01T00:00:00.000Z",
+          "deaf": false,
+          "mute": false,
+          "flags": 0
+        },
+        {
+          "user": {
+            "id": "900000000000000002",
+            "username": "alex",
+            "discriminator": "0",
+            "global_name": "Alex Vance",
+            "avatar": null
+          },
+          "nick": null,
+          "roles": [],
+          "joined_at": "2026-01-02T10:00:00.000Z",
+          "deaf": false,
+          "mute": false,
+          "flags": 0
+        },
+        {
+          "user": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "email": "test@raky.es",
+            "bot": false,
+            "flags": 0,
+            "verified": true,
+            "premium_type": 2,
+            "premium_since": "2026-01-01T00:00:00.000Z"
+          },
+          "roles": [],
+          "joined_at": "2026-10-01T18:35:23.276Z"
+        }
+      ],
+      "messages": [
+        {
+          "id": "300000000000000001",
+          "channel_id": "200000000000000002",
+          "author": {
+            "id": "900000000000000001",
+            "username": "api-bot",
+            "discriminator": "0",
+            "global_name": "API Bot",
+            "avatar": null
+          },
+          "content": "Welcome to the Luminara Community!",
+          "timestamp": "2026-01-01T00:00:00.000Z",
+          "type": 0,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "pinned": false,
+          "edited_timestamp": null,
+          "flags": 32,
+          "thread": {
+            "id": "300000000000000001",
+            "type": 11,
+            "name": "Comentarios",
+            "guild_id": "100000000000000001",
+            "parent_id": "200000000000000015",
+            "owner_id": "900000000000000001",
+            "last_message_id": "400000000000000001",
+            "message_count": 2,
+            "member_count": 2,
+            "rate_limit_per_user": 0,
+            "total_message_sent": 2,
+            "applied_tags": [
+              "101"
+            ],
+            "thread_metadata": {
+              "archived": false,
+              "auto_archive_duration": 4320,
+              "archive_timestamp": "2026-10-01T17:29:10.885Z",
+              "locked": false,
+              "create_timestamp": "2026-10-01T17:29:10.885Z",
+              "invitable": true
+            },
+            "member": {
+              "id": "300000000000000001",
+              "user_id": "900000000000000001",
+              "join_timestamp": "2026-10-01T17:29:10.885Z",
+              "flags": 0
+            }
+          }
+        },
+        {
+          "id": "1790708666069446",
+          "channel_id": "200000000000000002",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "http://localhost:3000/invite/q6hdk9m",
+          "timestamp": "2026-09-29T19:04:26.069Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 32,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "100000000000000001",
+          "nonce": "1554569561766887424",
+          "thread": {
+            "id": "1790708666069446",
+            "type": 11,
+            "name": "Comentarios",
+            "guild_id": "100000000000000001",
+            "parent_id": "200000000000000002",
+            "owner_id": "900000000000000001",
+            "last_message_id": "1790878757320484",
+            "message_count": 1,
+            "member_count": 1,
+            "rate_limit_per_user": 0,
+            "total_message_sent": 1,
+            "applied_tags": [],
+            "thread_metadata": {
+              "archived": false,
+              "auto_archive_duration": 4320,
+              "archive_timestamp": "2026-10-01T18:19:17.226Z",
+              "locked": false,
+              "create_timestamp": "2026-10-01T18:19:17.226Z",
+              "invitable": true
+            },
+            "member": {
+              "id": "1790708666069446",
+              "user_id": "900000000000000001",
+              "join_timestamp": "2026-10-01T18:19:17.226Z",
+              "flags": 0
+            },
+            "message_id": "1790708666069446"
+          }
+        },
+        {
+          "id": "400000000000000001",
+          "type": 0,
+          "channel_id": "300000000000000001",
+          "guild_id": "100000000000000001",
+          "content": "¡Bienvenidos a la sección de foros! Aquí puedes crear publicaciones, compartir opiniones y abrir hilos de debate.",
+          "author": {
+            "id": "900000000000000001",
+            "username": "api-bot",
+            "discriminator": "0",
+            "global_name": "TestUser (Dev)",
+            "avatar": null,
+            "bot": false
+          },
+          "attachments": [],
+          "embeds": [],
+          "mentions": [],
+          "mention_roles": [],
+          "pinned": false,
+          "mention_everyone": false,
+          "tts": false,
+          "timestamp": "2026-10-01T17:29:10.885Z",
+          "edited_timestamp": null,
+          "flags": 0,
+          "components": []
+        },
+        {
+          "id": "1790878756979",
+          "channel_id": "1790878756979",
+          "author": {
+            "id": "900000000000000001",
+            "username": "api-bot",
+            "discriminator": "0",
+            "global_name": "TestUser (Dev)",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": 5793266,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "bot@discord.local",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "Ingeniero de Software | Colaboraciones y Networking profesional 💼",
+            "pronouns": "they/them",
+            "avatar_decoration_data": null
+          },
+          "content": "Este es el primer post del hilo en el foro.",
+          "timestamp": "2026-10-01T18:19:16.982Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 32,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "100000000000000001",
+          "thread": {
+            "id": "1790878756979",
+            "type": 11,
+            "name": "Publicacion de prueba en el foro",
+            "guild_id": "100000000000000001",
+            "parent_id": "200000000000000015",
+            "owner_id": "900000000000000001",
+            "last_message_id": "1790878757079769",
+            "message_count": 2,
+            "member_count": 1,
+            "rate_limit_per_user": 0,
+            "total_message_sent": 2,
+            "applied_tags": [
+              "101",
+              "102"
+            ],
+            "thread_metadata": {
+              "archived": false,
+              "auto_archive_duration": 4320,
+              "archive_timestamp": "2026-10-01T18:19:16.979Z",
+              "locked": false,
+              "create_timestamp": "2026-10-01T18:19:16.979Z",
+              "invitable": true
+            },
+            "member": {
+              "id": "1790878756979",
+              "user_id": "900000000000000001",
+              "join_timestamp": "2026-10-01T18:19:16.979Z",
+              "flags": 0
+            },
+            "message_id": null
+          }
+        },
+        {
+          "id": "1790878757079769",
+          "channel_id": "1790878756979",
+          "author": {
+            "id": "900000000000000001",
+            "username": "api-bot",
+            "discriminator": "0",
+            "global_name": "TestUser (Dev)",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": 5793266,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "bot@discord.local",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "Ingeniero de Software | Colaboraciones y Networking profesional 💼",
+            "pronouns": "they/them",
+            "avatar_decoration_data": null
+          },
+          "content": "Respuesta al post del foro!",
+          "timestamp": "2026-10-01T18:19:17.079Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "100000000000000001"
+        },
+        {
+          "id": "1790878757320484",
+          "channel_id": "1790708666069446",
+          "author": {
+            "id": "900000000000000001",
+            "username": "api-bot",
+            "discriminator": "0",
+            "global_name": "TestUser (Dev)",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": 5793266,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "bot@discord.local",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "Ingeniero de Software | Colaboraciones y Networking profesional 💼",
+            "pronouns": "they/them",
+            "avatar_decoration_data": null
+          },
+          "content": "Un comentario en el hilo del mensaje.",
+          "timestamp": "2026-10-01T18:19:17.320Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "100000000000000001"
+        }
+      ],
+      "properties": {
+        "channels": [
+          {
+            "id": "200000000000000001",
+            "type": 4,
+            "name": "TEXT CHANNELS",
+            "position": 0
+          },
+          {
+            "id": "200000000000000002",
+            "type": 0,
+            "name": "general-actualizado",
+            "position": 1,
+            "parent_id": "200000000000000001"
+          },
+          {
+            "id": "200000000000000003",
+            "type": 2,
+            "name": "Lounge",
+            "position": 2,
+            "parent_id": null
+          },
+          {
+            "id": "1790716893393",
+            "guild_id": "100000000000000001",
+            "type": 0,
+            "name": "test-chan",
+            "position": 3,
+            "parent_id": null,
+            "topic": null,
+            "nsfw": false,
+            "permission_overwrites": [],
+            "rate_limit_per_user": 0
+          },
+          {
+            "id": "1790791147004",
+            "guild_id": "100000000000000001",
+            "type": 0,
+            "name": "canal-de-prueba",
+            "position": 4,
+            "parent_id": null,
+            "topic": null,
+            "nsfw": false,
+            "permission_overwrites": [],
+            "rate_limit_per_user": 0,
+            "bitrate": 64000,
+            "user_limit": 0,
+            "last_message_id": null
+          },
+          {
+            "id": "200000000000000015",
+            "guild_id": "100000000000000001",
+            "type": 15,
+            "name": "foro-comunidad",
+            "position": 5,
+            "parent_id": "200000000000000001",
+            "topic": "Foro oficial de la comunidad para debatir y compartir publicaciones.",
+            "nsfw": false,
+            "permission_overwrites": [],
+            "rate_limit_per_user": 0,
+            "default_thread_rate_limit_per_user": 0,
+            "default_auto_archive_duration": 4320,
+            "default_reaction_emoji": {
+              "emoji_id": null,
+              "emoji_name": "💬"
+            },
+            "default_sort_order": 0,
+            "default_forum_layout": 1,
+            "available_tags": [
+              {
+                "id": "101",
+                "name": "General",
+                "moderated": false,
+                "emoji_id": null,
+                "emoji_name": "💡"
+              },
+              {
+                "id": "102",
+                "name": "Gaming",
+                "moderated": false,
+                "emoji_id": null,
+                "emoji_name": "🎮"
+              },
+              {
+                "id": "103",
+                "name": "Preguntas",
+                "moderated": false,
+                "emoji_id": null,
+                "emoji_name": "❓"
+              }
+            ]
+          },
+          {
+            "id": "1790878166131",
+            "guild_id": "100000000000000001",
+            "type": 15,
+            "name": "mi-foro",
+            "position": 6,
+            "parent_id": null,
+            "topic": null,
+            "nsfw": false,
+            "permission_overwrites": [],
+            "rate_limit_per_user": 0,
+            "bitrate": 64000,
+            "user_limit": 0,
+            "last_message_id": null
+          },
+          {
+            "id": "1790878562245",
+            "guild_id": "100000000000000001",
+            "type": 15,
+            "name": "nuevo-foro-test",
+            "position": 7,
+            "parent_id": null,
+            "topic": null,
+            "nsfw": false,
+            "permission_overwrites": [],
+            "rate_limit_per_user": 0,
+            "bitrate": 64000,
+            "user_limit": 0,
+            "last_message_id": null
+          },
+          {
+            "id": "1790878757434",
+            "guild_id": "100000000000000001",
+            "type": 15,
+            "name": "debate-general",
+            "position": 8,
+            "parent_id": null,
+            "topic": null,
+            "nsfw": false,
+            "permission_overwrites": [],
+            "rate_limit_per_user": 0,
+            "bitrate": 64000,
+            "user_limit": 0,
+            "last_message_id": null,
+            "available_tags": [
+              {
+                "id": "1",
+                "name": "Ayuda"
+              }
+            ],
+            "default_reaction_emoji": null,
+            "default_sort_order": null,
+            "default_forum_layout": 0,
+            "default_thread_rate_limit_per_user": 0,
+            "default_auto_archive_duration": 4320,
+            "flags": 0,
+            "template": ""
+          }
+        ],
+        "id": "100000000000000001",
+        "description": "Servidor oficial actualizado",
+        "name": "Servidor Actualizado Offline",
+        "roles": [
+          {
+            "id": "100000000000000001",
+            "name": "@everyone",
+            "color": 0,
+            "hoist": false,
+            "position": 0,
+            "permissions": "1071698660929",
+            "managed": false,
+            "mentionable": false
+          },
+          {
+            "id": "1790792323302",
+            "name": "Super Admin",
+            "color": 65280,
+            "hoist": false,
+            "position": 1,
+            "permissions": "0",
+            "managed": false,
+            "mentionable": false
+          }
+        ],
+        "icon": "9e8cd580e9529290d05bc5844f6e17ee",
+        "migrate-command-scope": [
+          {
+            "id": "17907947553212146",
+            "created_at": "2026-09-30T18:59:15.321Z"
+          },
+          {
+            "id": "17908776804709706",
+            "created_at": "2026-10-01T18:01:20.470Z"
+          }
+        ]
+      },
+      "member_count": 2,
+      "approximate_member_count": 2,
+      "approximate_presence_count": 2,
+      "migrate-command-scope": [
+        {
+          "id": "17907947553212146",
+          "created_at": "2026-09-30T18:59:15.321Z"
+        },
+        {
+          "id": "17908776804709706",
+          "created_at": "2026-10-01T18:01:20.470Z"
+        }
+      ]
+    },
+    {
+      "id": "1790691777407",
+      "name": "Mi Servidor de Prueba",
+      "icon": null,
+      "splash": null,
+      "discovery_splash": null,
+      "owner_id": "900000000000000001",
+      "region": "us-central",
+      "afk_channel_id": null,
+      "afk_timeout": 300,
+      "widget_enabled": false,
+      "widget_channel_id": null,
+      "verification_level": 0,
+      "default_message_notifications": 0,
+      "explicit_content_filter": 0,
+      "roles": [
+        {
+          "id": "1790691777407",
+          "name": "@everyone",
+          "color": 0,
+          "hoist": false,
+          "position": 0,
+          "permissions": "1071698660929",
+          "managed": false,
+          "mentionable": false
+        }
+      ],
+      "emojis": [],
+      "features": [
+        "COMMUNITY",
+        "NEWS",
+        "FORUM_CHANNEL_PROMPT"
+      ],
+      "mfa_level": 0,
+      "application_id": null,
+      "system_channel_id": "1790691777410",
+      "system_channel_flags": 0,
+      "rules_channel_id": null,
+      "max_presences": null,
+      "max_members": 250000,
+      "vanity_url_code": null,
+      "description": null,
+      "banner": null,
+      "premium_tier": 0,
+      "preferred_locale": "en-US",
+      "public_updates_channel_id": null,
+      "max_video_channel_users": 25,
+      "max_stage_video_channel_users": 50,
+      "nsfw_level": 0,
+      "stickers": [],
+      "premium_progress_bar_enabled": false,
+      "safety_alerts_channel_id": null,
+      "incidents_data": null,
+      "channels": [
+        {
+          "id": "1790691777410",
+          "guild_id": "1790691777407",
+          "type": 0,
+          "name": "general",
+          "position": 0,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0,
+          "topic": null,
+          "nsfw": false,
+          "parent_id": null
+        },
+        {
+          "id": "1790691777411",
+          "guild_id": "1790691777407",
+          "type": 2,
+          "name": "General",
+          "position": 1,
+          "permission_overwrites": [],
+          "bitrate": 64000,
+          "user_limit": 0,
+          "parent_id": null
+        },
+        {
+          "id": "179069177740715",
+          "guild_id": "1790691777407",
+          "type": 15,
+          "name": "foro-comunidad",
+          "position": 2,
+          "parent_id": null,
+          "topic": "Foro de la comunidad para debatir y compartir publicaciones",
+          "nsfw": false,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0,
+          "default_thread_rate_limit_per_user": 0,
+          "default_auto_archive_duration": 4320,
+          "default_reaction_emoji": {
+            "emoji_id": null,
+            "emoji_name": "💬"
+          },
+          "default_sort_order": 0,
+          "default_forum_layout": 1,
+          "available_tags": [
+            {
+              "id": "101",
+              "name": "General",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "💡"
+            },
+            {
+              "id": "102",
+              "name": "Preguntas",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "❓"
+            },
+            {
+              "id": "103",
+              "name": "Ideas",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "🚀"
+            }
+          ]
+        }
+      ],
+      "members": [
+        {
+          "user": {
+            "id": "900000000000000001",
+            "username": "api-bot",
+            "discriminator": "0",
+            "global_name": "TestUser",
+            "avatar": null,
+            "bot": false,
+            "bio": "Hello offline world",
+            "pronouns": "they/them",
+            "banner": null,
+            "accent_color": 5793266,
+            "theme_colors": [
+              5793266,
+              2895667
+            ],
+            "flags": 0,
+            "premium_type": 2,
+            "verified": true,
+            "email": "bot@discord.local",
+            "premium_since": "2025-01-01T00:00:00.000Z"
+          },
+          "roles": [],
+          "joined_at": "2026-09-29T14:22:57.409Z",
+          "deaf": false,
+          "mute": false
+        },
+        {
+          "user": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "email": "test@raky.es",
+            "bot": false,
+            "flags": 0,
+            "verified": true,
+            "premium_type": 2,
+            "premium_since": "2026-01-01T00:00:00.000Z"
+          },
+          "roles": [],
+          "joined_at": "2026-10-01T18:35:23.277Z"
+        }
+      ],
+      "messages": []
+    },
+    {
+      "id": "1790692321952",
+      "name": "Comunidad de Prueba",
+      "icon": null,
+      "splash": null,
+      "discovery_splash": null,
+      "owner_id": "1790692321627",
+      "region": "us-central",
+      "afk_channel_id": null,
+      "afk_timeout": 300,
+      "widget_enabled": false,
+      "widget_channel_id": null,
+      "verification_level": 0,
+      "default_message_notifications": 0,
+      "explicit_content_filter": 0,
+      "roles": [
+        {
+          "id": "1790692321952",
+          "name": "@everyone",
+          "color": 0,
+          "hoist": false,
+          "position": 0,
+          "permissions": "1071698660929",
+          "managed": false,
+          "mentionable": false
+        }
+      ],
+      "emojis": [],
+      "features": [
+        "COMMUNITY",
+        "NEWS",
+        "FORUM_CHANNEL_PROMPT"
+      ],
+      "mfa_level": 0,
+      "application_id": null,
+      "system_channel_id": "1790692321957",
+      "system_channel_flags": 0,
+      "rules_channel_id": null,
+      "max_presences": null,
+      "max_members": 250000,
+      "vanity_url_code": null,
+      "description": null,
+      "banner": null,
+      "premium_tier": 0,
+      "preferred_locale": "en-US",
+      "public_updates_channel_id": null,
+      "max_video_channel_users": 25,
+      "max_stage_video_channel_users": 50,
+      "nsfw_level": 0,
+      "stickers": [],
+      "premium_progress_bar_enabled": false,
+      "safety_alerts_channel_id": null,
+      "incidents_data": null,
+      "channels": [
+        {
+          "id": "1790692321957",
+          "guild_id": "1790692321952",
+          "type": 0,
+          "name": "general",
+          "position": 0,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0,
+          "topic": null,
+          "nsfw": false,
+          "parent_id": null
+        },
+        {
+          "id": "1790692321958",
+          "guild_id": "1790692321952",
+          "type": 2,
+          "name": "General",
+          "position": 1,
+          "permission_overwrites": [],
+          "bitrate": 64000,
+          "user_limit": 0,
+          "parent_id": null
+        },
+        {
+          "id": "179069232195215",
+          "guild_id": "1790692321952",
+          "type": 15,
+          "name": "foro-comunidad",
+          "position": 2,
+          "parent_id": null,
+          "topic": "Foro de la comunidad para debatir y compartir publicaciones",
+          "nsfw": false,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0,
+          "default_thread_rate_limit_per_user": 0,
+          "default_auto_archive_duration": 4320,
+          "default_reaction_emoji": {
+            "emoji_id": null,
+            "emoji_name": "💬"
+          },
+          "default_sort_order": 0,
+          "default_forum_layout": 1,
+          "available_tags": [
+            {
+              "id": "101",
+              "name": "General",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "💡"
+            },
+            {
+              "id": "102",
+              "name": "Preguntas",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "❓"
+            },
+            {
+              "id": "103",
+              "name": "Ideas",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "🚀"
+            }
+          ]
+        }
+      ],
+      "members": [
+        {
+          "user": {
+            "id": "1790692321627",
+            "username": "tester_1524",
+            "discriminator": "0",
+            "global_name": "tester_1524",
+            "email": "tester@test.com",
+            "avatar": null,
+            "bot": false,
+            "flags": 0
+          },
+          "roles": [],
+          "joined_at": "2026-09-29T14:32:01.956Z",
+          "deaf": false,
+          "mute": false
+        },
+        {
+          "user": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "email": "test@raky.es",
+            "bot": false,
+            "flags": 0,
+            "verified": true,
+            "premium_type": 2,
+            "premium_since": "2026-01-01T00:00:00.000Z"
+          },
+          "roles": [],
+          "joined_at": "2026-10-01T18:35:23.277Z"
+        }
+      ],
+      "joined_at": "2026-09-29T14:32:01.956Z",
+      "large": false,
+      "unavailable": false,
+      "member_count": 1,
+      "threads": [],
+      "presences": [],
+      "voice_states": [],
+      "stage_instances": [],
+      "guild_scheduled_events": [],
+      "messages": [
+        {
+          "id": "1790692353263",
+          "channel_id": "1790692321957",
+          "author": {
+            "id": "900000000000000001",
+            "username": "api-bot",
+            "discriminator": "0",
+            "global_name": "API Bot",
+            "avatar": null,
+            "bot": false,
+            "bio": "Official Test User Account for Discord Mock API",
+            "pronouns": "they/them",
+            "banner": null,
+            "accent_color": 5793266,
+            "theme_colors": [
+              5793266,
+              2895667
+            ],
+            "flags": 0,
+            "premium_type": 2,
+            "verified": true,
+            "email": "bot@discord.local"
+          },
+          "content": "¡Hola servidor recién creado!",
+          "timestamp": "2026-09-29T14:32:33.263Z",
+          "type": 0,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "pinned": false,
+          "edited_timestamp": null,
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "id": "1790692561769",
+      "name": "test",
+      "icon": null,
+      "splash": null,
+      "discovery_splash": null,
+      "owner_id": "1790691200486",
+      "region": "us-central",
+      "afk_channel_id": null,
+      "afk_timeout": 300,
+      "widget_enabled": false,
+      "widget_channel_id": null,
+      "verification_level": 1,
+      "default_message_notifications": 1,
+      "explicit_content_filter": 2,
+      "roles": [
+        {
+          "id": "1790692561769",
+          "name": "@everyone",
+          "color": 0,
+          "hoist": false,
+          "position": 0,
+          "permissions": "1071698529857",
+          "managed": false,
+          "mentionable": false
+        },
+        {
+          "id": "1790800133270",
+          "name": "nuevo rol",
+          "color": 0,
+          "hoist": false,
+          "position": 1,
+          "permissions": "1024",
+          "managed": false,
+          "mentionable": false
+        }
+      ],
+      "emojis": [],
+      "features": [
+        "NEWS",
+        "COMMUNITY",
+        "FORUM_CHANNEL_PROMPT"
+      ],
+      "mfa_level": 0,
+      "application_id": null,
+      "system_channel_id": "17906930442871",
+      "system_channel_flags": 0,
+      "rules_channel_id": "1",
+      "max_presences": null,
+      "max_members": 250000,
+      "vanity_url_code": null,
+      "description": null,
+      "banner": null,
+      "premium_tier": 0,
+      "preferred_locale": "es-ES",
+      "public_updates_channel_id": "1",
+      "max_video_channel_users": 25,
+      "max_stage_video_channel_users": 50,
+      "nsfw_level": 0,
+      "stickers": [],
+      "premium_progress_bar_enabled": true,
+      "safety_alerts_channel_id": null,
+      "incidents_data": null,
+      "channels": [
+        {
+          "id": "17906930442871",
+          "guild_id": "1790692561769",
+          "type": 0,
+          "name": "general",
+          "position": 0,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 5,
+          "topic": "",
+          "bitrate": 64000,
+          "user_limit": 0,
+          "nsfw": false,
+          "flags": 0
+        },
+        {
+          "id": "17906930442872",
+          "guild_id": "1790692561769",
+          "type": 2,
+          "name": "General",
+          "position": 1,
+          "permission_overwrites": [],
+          "bitrate": 64000,
+          "user_limit": 0
+        },
+        {
+          "id": "1790708978394",
+          "guild_id": "1790692561769",
+          "type": 0,
+          "name": "canal-de-prueba",
+          "position": 2,
+          "parent_id": null,
+          "topic": null,
+          "nsfw": false,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0
+        },
+        {
+          "id": "179069256176915",
+          "guild_id": "1790692561769",
+          "type": 15,
+          "name": "foro-comunidad",
+          "position": 3,
+          "parent_id": null,
+          "topic": "Foro de la comunidad para debatir y compartir publicaciones",
+          "nsfw": false,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0,
+          "default_thread_rate_limit_per_user": 0,
+          "default_auto_archive_duration": 4320,
+          "default_reaction_emoji": {
+            "emoji_id": null,
+            "emoji_name": "💬"
+          },
+          "default_sort_order": 0,
+          "default_forum_layout": 1,
+          "available_tags": [
+            {
+              "id": "101",
+              "name": "General",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "💡"
+            },
+            {
+              "id": "102",
+              "name": "Preguntas",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "❓"
+            },
+            {
+              "id": "103",
+              "name": "Ideas",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "🚀"
+            }
+          ]
+        }
+      ],
+      "members": [
+        {
+          "user": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "email": "test@raky.es",
+            "avatar": null,
+            "bot": false,
+            "flags": 0,
+            "verified": true,
+            "premium_type": 2,
+            "premium_since": "2026-01-01T00:00:00.000Z"
+          },
+          "roles": [],
+          "joined_at": "2026-09-29T14:36:01.771Z",
+          "deaf": false,
+          "mute": false
+        },
+        {
+          "id": "1790884188921",
+          "user": {
+            "id": "900000000000000001",
+            "username": "api-bot",
+            "discriminator": "0",
+            "global_name": "TestUser (Dev)",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": 5793266,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "bot@discord.local",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "Ingeniero de Software | Colaboraciones y Networking profesional 💼",
+            "pronouns": "they/them",
+            "avatar_decoration_data": null
+          },
+          "roles": [],
+          "joined_at": "2026-10-01T19:49:48.919Z",
+          "deaf": false,
+          "mute": false
+        }
+      ],
+      "joined_at": "2026-09-29T14:36:01.771Z",
+      "large": false,
+      "unavailable": false,
+      "member_count": 2,
+      "threads": [],
+      "presences": [],
+      "voice_states": [],
+      "stage_instances": [],
+      "guild_scheduled_events": [],
+      "messages": [
+        {
+          "id": "1790876559755603",
+          "channel_id": "17906930442871",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "hola",
+          "timestamp": "2026-10-01T17:42:39.755Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 32,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555273758040653824",
+          "thread": {
+            "id": "1790876566143",
+            "type": 11,
+            "name": "Comentarios",
+            "guild_id": "1790692561769",
+            "parent_id": "17906930442871",
+            "owner_id": "900000000000000001",
+            "message_count": 0,
+            "member_count": 1,
+            "rate_limit_per_user": 0,
+            "thread_metadata": {
+              "archived": false,
+              "auto_archive_duration": 4320,
+              "archive_timestamp": "2026-10-01T17:42:46.143Z",
+              "locked": false,
+              "invitable": true
+            },
+            "message_id": "1790876559755603"
+          }
+        },
+        {
+          "id": "1790879523928935",
+          "channel_id": "1790876559755603",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "sdf",
+          "timestamp": "2026-10-01T18:32:03.928Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555286191366995968"
+        },
+        {
+          "id": "1790879532409788",
+          "channel_id": "1790876559755603",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "fgyh",
+          "timestamp": "2026-10-01T18:32:12.409Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555286224619438080"
+        },
+        {
+          "id": "1790880008241",
+          "channel_id": "1790880008241",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "sdf",
+          "timestamp": "2026-10-01T18:40:08.243Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 32,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "thread": {
+            "id": "1790880008241",
+            "type": 11,
+            "name": "dsf",
+            "guild_id": "1790692561769",
+            "parent_id": "179069256176915",
+            "owner_id": "1790691200486",
+            "last_message_id": "1790880011574670",
+            "message_count": 2,
+            "member_count": 1,
+            "rate_limit_per_user": 0,
+            "total_message_sent": 2,
+            "applied_tags": [],
+            "thread_metadata": {
+              "archived": false,
+              "auto_archive_duration": 4320,
+              "archive_timestamp": "2026-10-01T18:40:08.241Z",
+              "locked": false,
+              "create_timestamp": "2026-10-01T18:40:08.241Z",
+              "invitable": true
+            },
+            "member": {
+              "id": "1790880008241",
+              "user_id": "1790691200486",
+              "join_timestamp": "2026-10-01T18:40:08.241Z",
+              "flags": 0
+            },
+            "message_id": null
+          }
+        },
+        {
+          "id": "1790880011574670",
+          "channel_id": "1790880008241",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "hjk",
+          "timestamp": "2026-10-01T18:40:11.574Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555288236891308032"
+        },
+        {
+          "id": "1790880282837177",
+          "channel_id": "17906930442871",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "dfg",
+          "timestamp": "2026-10-01T18:44:42.837Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 32,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555289374667571200",
+          "thread": {
+            "id": "1790880282837177",
+            "type": 11,
+            "name": "Comentarios",
+            "guild_id": "1790692561769",
+            "parent_id": "17906930442871",
+            "owner_id": "1790691200486",
+            "last_message_id": "1790880282837177",
+            "message_count": 0,
+            "member_count": 1,
+            "rate_limit_per_user": 0,
+            "total_message_sent": 0,
+            "applied_tags": [],
+            "thread_metadata": {
+              "archived": false,
+              "auto_archive_duration": 4320,
+              "archive_timestamp": "2026-10-01T18:44:45.954Z",
+              "locked": false,
+              "create_timestamp": "2026-10-01T18:44:45.954Z",
+              "invitable": true
+            },
+            "member": {
+              "id": "1790880282837177",
+              "user_id": "1790691200486",
+              "join_timestamp": "2026-10-01T18:44:45.954Z",
+              "flags": 0
+            },
+            "message_id": "1790880282837177"
+          }
+        },
+        {
+          "id": "1790880286214563",
+          "channel_id": "1790880282837177",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "ftuykhj",
+          "timestamp": "2026-10-01T18:44:46.214Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555289388676546560"
+        },
+        {
+          "id": "1790881394952",
+          "channel_id": "1790881394952",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "r",
+          "timestamp": "2026-10-01T19:03:14.956Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [
+            {
+              "count": 1,
+              "me": true,
+              "emoji": {
+                "id": null,
+                "name": "💬"
+              },
+              "users": [
+                "900000000000000001"
+              ]
+            }
+          ],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769"
+        },
+        {
+          "id": "1790881703184259",
+          "channel_id": "17906930442871",
+          "author": {
+            "id": "900000000000000001",
+            "username": "api-bot",
+            "discriminator": "0",
+            "global_name": "TestUser (Dev)",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": 5793266,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "bot@discord.local",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "Ingeniero de Software | Colaboraciones y Networking profesional 💼",
+            "pronouns": "they/them",
+            "avatar_decoration_data": null
+          },
+          "content": "Mensaje para probar comentarios 1790881703087",
+          "timestamp": "2026-10-01T19:08:23.184Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 32,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "thread": {
+            "id": "1790881703184259",
+            "type": 11,
+            "name": "Comentarios",
+            "guild_id": "1790692561769",
+            "parent_id": "17906930442871",
+            "owner_id": "900000000000000001",
+            "last_message_id": "1790881703184259",
+            "message_count": 0,
+            "member_count": 1,
+            "rate_limit_per_user": 0,
+            "total_message_sent": 0,
+            "applied_tags": [],
+            "thread_metadata": {
+              "archived": false,
+              "auto_archive_duration": 1440,
+              "archive_timestamp": "2026-10-01T19:08:23.276Z",
+              "locked": false,
+              "create_timestamp": "2026-10-01T19:08:23.276Z",
+              "invitable": true
+            },
+            "member": {
+              "id": "1790881703184259",
+              "user_id": "900000000000000001",
+              "join_timestamp": "2026-10-01T19:08:23.276Z",
+              "flags": 0
+            },
+            "message_id": "1790881703184259"
+          }
+        },
+        {
+          "id": "1790881703339902",
+          "channel_id": "1790881703184259",
+          "author": {
+            "id": "900000000000000001",
+            "username": "api-bot",
+            "discriminator": "0",
+            "global_name": "TestUser (Dev)",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": 5793266,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "bot@discord.local",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "Ingeniero de Software | Colaboraciones y Networking profesional 💼",
+            "pronouns": "they/them",
+            "avatar_decoration_data": null
+          },
+          "content": "Este es el primer comentario en el mensaje!",
+          "timestamp": "2026-10-01T19:08:23.339Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769"
+        },
+        {
+          "id": "1790883524463878",
+          "channel_id": "17906930442871",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "a",
+          "timestamp": "2026-10-01T19:38:44.463Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555302970873085952"
+        },
+        {
+          "id": "1790883532749866",
+          "channel_id": "17906930442871",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "test",
+          "timestamp": "2026-10-01T19:38:52.749Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555303004670787584"
+        },
+        {
+          "id": "1790883544641148",
+          "channel_id": "17906930442871",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "http://localhost:3000/invite/b0j7nxe",
+          "timestamp": "2026-10-01T19:39:04.641Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 32,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555303055577055232",
+          "thread": {
+            "id": "1790883544641148",
+            "type": 11,
+            "name": "http://localhost:3000/invite/b0j7nxe",
+            "guild_id": "1790692561769",
+            "parent_id": "17906930442871",
+            "owner_id": "1790691200486",
+            "last_message_id": "1790883544641148",
+            "message_count": 0,
+            "member_count": 1,
+            "rate_limit_per_user": 0,
+            "total_message_sent": 0,
+            "applied_tags": [],
+            "thread_metadata": {
+              "archived": false,
+              "auto_archive_duration": 4320,
+              "archive_timestamp": "2026-10-01T20:01:33.287Z",
+              "locked": false,
+              "create_timestamp": "2026-10-01T20:01:33.287Z",
+              "invitable": true
+            },
+            "member": {
+              "id": "1790883544641148",
+              "user_id": "1790691200486",
+              "join_timestamp": "2026-10-01T20:01:33.287Z",
+              "flags": 0
+            },
+            "message_id": "1790883544641148"
+          }
+        },
+        {
+          "id": "1790884893820793",
+          "channel_id": "1790883544641148",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "a",
+          "timestamp": "2026-10-01T20:01:33.820Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555308713349218304"
+        },
+        {
+          "id": "1790885104263999",
+          "channel_id": "1790883544641148",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "as",
+          "timestamp": "2026-10-01T20:05:04.263Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555309597193928704"
+        },
+        {
+          "id": "1790886144781527",
+          "channel_id": "1790883544641148",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "a",
+          "timestamp": "2026-10-01T20:22:24.781Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555313961434349568"
+        },
+        {
+          "id": "1790886145099493",
+          "channel_id": "1790883544641148",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "aa",
+          "timestamp": "2026-10-01T20:22:25.099Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555313962805886976"
+        },
+        {
+          "id": "1790886145439844",
+          "channel_id": "1790883544641148",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "a",
+          "timestamp": "2026-10-01T20:22:25.439Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555313964240338944"
+        },
+        {
+          "id": "179088614565160",
+          "channel_id": "1790883544641148",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "a",
+          "timestamp": "2026-10-01T20:22:25.651Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555313964991119360"
+        },
+        {
+          "id": "1790886145802841",
+          "channel_id": "1790883544641148",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "a",
+          "timestamp": "2026-10-01T20:22:25.802Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555313965733511168"
+        },
+        {
+          "id": "1790886146171803",
+          "channel_id": "1790883544641148",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "a",
+          "timestamp": "2026-10-01T20:22:26.171Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555313967289597952"
+        },
+        {
+          "id": "1790886146356220",
+          "channel_id": "1790883544641148",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "a",
+          "timestamp": "2026-10-01T20:22:26.356Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555313968099098624"
+        },
+        {
+          "id": "1790886146568130",
+          "channel_id": "1790883544641148",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "a",
+          "timestamp": "2026-10-01T20:22:26.568Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555313968883433472"
+        },
+        {
+          "id": "1790886146735383",
+          "channel_id": "1790883544641148",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "a",
+          "timestamp": "2026-10-01T20:22:26.735Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555313969625825280"
+        },
+        {
+          "id": "1790886152310566",
+          "channel_id": "1790883544641148",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "asd",
+          "timestamp": "2026-10-01T20:22:32.310Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555313993000681472"
+        },
+        {
+          "id": "1790886155608584",
+          "channel_id": "1790883544641148",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "h",
+          "timestamp": "2026-10-01T20:22:35.608Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555314006879633408"
+        },
+        {
+          "id": "1790886156797995",
+          "channel_id": "1790883544641148",
+          "author": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null
+          },
+          "content": "h",
+          "timestamp": "2026-10-01T20:22:36.797Z",
+          "edited_timestamp": null,
+          "tts": false,
+          "mention_everyone": false,
+          "mentions": [],
+          "mention_roles": [],
+          "attachments": [],
+          "embeds": [],
+          "reactions": [],
+          "pinned": false,
+          "type": 0,
+          "flags": 0,
+          "components": [],
+          "sticker_items": [],
+          "guild_id": "1790692561769",
+          "nonce": "1555314011845689344"
+        }
+      ],
+      "guild_template_code": "2TffvPucqHkN",
+      "migrate-command-scope": [
+        {
+          "id": "17907035427697319",
+          "created_at": "2026-09-29T17:39:02.769Z"
+        },
+        {
+          "id": "17907046697582820",
+          "created_at": "2026-09-29T17:57:49.758Z"
+        },
+        {
+          "id": "17907046801158586",
+          "created_at": "2026-09-29T17:58:00.115Z"
+        },
+        {
+          "id": "17907047480708882",
+          "created_at": "2026-09-29T17:59:08.070Z"
+        },
+        {
+          "id": "17907047588898216",
+          "created_at": "2026-09-29T17:59:18.889Z"
+        },
+        {
+          "id": "17907049005463485",
+          "created_at": "2026-09-29T18:01:40.546Z"
+        },
+        {
+          "id": "17907049050737288",
+          "created_at": "2026-09-29T18:01:45.073Z"
+        },
+        {
+          "id": "17907049100146895",
+          "created_at": "2026-09-29T18:01:50.014Z"
+        },
+        {
+          "id": "17907049143309154",
+          "created_at": "2026-09-29T18:01:54.330Z"
+        },
+        {
+          "id": "17907049340955267",
+          "created_at": "2026-09-29T18:02:14.095Z"
+        },
+        {
+          "id": "17907052013389571",
+          "created_at": "2026-09-29T18:06:41.338Z"
+        },
+        {
+          "id": "17907054871768570",
+          "created_at": "2026-09-29T18:11:27.176Z"
+        },
+        {
+          "id": "17907063801578181",
+          "created_at": "2026-09-29T18:26:20.157Z"
+        },
+        {
+          "id": "17907066752942562",
+          "created_at": "2026-09-29T18:31:15.294Z"
+        },
+        {
+          "id": "17907067823299511",
+          "created_at": "2026-09-29T18:33:02.329Z"
+        },
+        {
+          "id": "17907075166386410",
+          "created_at": "2026-09-29T18:45:16.638Z"
+        },
+        {
+          "id": "17907079540574163",
+          "created_at": "2026-09-29T18:52:34.057Z"
+        },
+        {
+          "id": "17907084886448399",
+          "created_at": "2026-09-29T19:01:28.644Z"
+        },
+        {
+          "id": "17907086423048330",
+          "created_at": "2026-09-29T19:04:02.304Z"
+        },
+        {
+          "id": "17907992030701610",
+          "created_at": "2026-09-30T20:13:23.070Z"
+        },
+        {
+          "id": "17907992232825215",
+          "created_at": "2026-09-30T20:13:43.282Z"
+        },
+        {
+          "id": "17908736907504227",
+          "created_at": "2026-10-01T16:54:50.750Z"
+        },
+        {
+          "id": "17908739493045091",
+          "created_at": "2026-10-01T16:59:09.304Z"
+        },
+        {
+          "id": "17908748478639920",
+          "created_at": "2026-10-01T17:14:07.863Z"
+        },
+        {
+          "id": "17908761622226435",
+          "created_at": "2026-10-01T17:36:02.222Z"
+        },
+        {
+          "id": "17908765528704020",
+          "created_at": "2026-10-01T17:42:32.870Z"
+        },
+        {
+          "id": "17908774964716282",
+          "created_at": "2026-10-01T17:58:16.471Z"
+        },
+        {
+          "id": "17908780447545160",
+          "created_at": "2026-10-01T18:07:24.754Z"
+        },
+        {
+          "id": "17908795194011932",
+          "created_at": "2026-10-01T18:31:59.402Z"
+        },
+        {
+          "id": "17908798661673389",
+          "created_at": "2026-10-01T18:37:46.167Z"
+        },
+        {
+          "id": "17908803386143485",
+          "created_at": "2026-10-01T18:45:38.614Z"
+        },
+        {
+          "id": "17908817379455877",
+          "created_at": "2026-10-01T19:08:57.945Z"
+        },
+        {
+          "id": "17908817674062928",
+          "created_at": "2026-10-01T19:09:27.406Z"
+        },
+        {
+          "id": "17908818786435761",
+          "created_at": "2026-10-01T19:11:18.643Z"
+        },
+        {
+          "id": "17908822966803121",
+          "created_at": "2026-10-01T19:18:16.680Z"
+        },
+        {
+          "id": "17908834004414370",
+          "created_at": "2026-10-01T19:36:40.441Z"
+        },
+        {
+          "id": "1790884500798776",
+          "created_at": "2026-10-01T19:55:00.798Z"
+        },
+        {
+          "id": "17908848332149754",
+          "created_at": "2026-10-01T20:00:33.214Z"
+        },
+        {
+          "id": "17908850739022945",
+          "created_at": "2026-10-01T20:04:33.902Z"
+        },
+        {
+          "id": "17908855719005989",
+          "created_at": "2026-10-01T20:12:51.900Z"
+        },
+        {
+          "id": "17908859214732258",
+          "created_at": "2026-10-01T20:18:41.473Z"
+        },
+        {
+          "id": "17908860489458267",
+          "created_at": "2026-10-01T20:20:48.945Z"
+        },
+        {
+          "id": "17908860938111344",
+          "created_at": "2026-10-01T20:21:33.811Z"
+        },
+        {
+          "id": "1790888889965178",
+          "created_at": "2026-10-01T21:08:09.965Z"
+        },
+        {
+          "id": "17908899436301095",
+          "created_at": "2026-10-01T21:25:43.630Z"
+        },
+        {
+          "id": "17909475044796670",
+          "created_at": "2026-10-02T13:25:04.479Z"
+        },
+        {
+          "id": "1790948888969338",
+          "created_at": "2026-10-02T13:48:08.969Z"
+        },
+        {
+          "id": "17909491526327975",
+          "created_at": "2026-10-02T13:52:32.632Z"
+        }
+      ],
+      "members-search": [
+        {
+          "id": "17907049155217075",
+          "or_query": {},
+          "and_query": {},
+          "limit": 250,
+          "created_at": "2026-09-29T18:01:55.521Z"
+        },
+        {
+          "id": "17907067934855557",
+          "or_query": {},
+          "and_query": {},
+          "limit": 250,
+          "created_at": "2026-09-29T18:33:13.485Z"
+        },
+        {
+          "id": "1790707593197230",
+          "or_query": {},
+          "and_query": {},
+          "limit": 250,
+          "created_at": "2026-09-29T18:46:33.197Z"
+        },
+        {
+          "id": "17907079579905560",
+          "or_query": {},
+          "and_query": {},
+          "limit": 250,
+          "created_at": "2026-09-29T18:52:37.990Z"
+        },
+        {
+          "id": "1790708645025629",
+          "or_query": {},
+          "and_query": {},
+          "limit": 250,
+          "created_at": "2026-09-29T19:04:05.025Z"
+        }
+      ],
+      "properties": {
+        "migrate-command-scope": [
+          {
+            "id": "17907035427697319",
+            "created_at": "2026-09-29T17:39:02.769Z"
+          },
+          {
+            "id": "17907046697582820",
+            "created_at": "2026-09-29T17:57:49.758Z"
+          },
+          {
+            "id": "17907046801158586",
+            "created_at": "2026-09-29T17:58:00.115Z"
+          },
+          {
+            "id": "17907047480708882",
+            "created_at": "2026-09-29T17:59:08.070Z"
+          },
+          {
+            "id": "17907047588898216",
+            "created_at": "2026-09-29T17:59:18.889Z"
+          },
+          {
+            "id": "17907049005463485",
+            "created_at": "2026-09-29T18:01:40.546Z"
+          },
+          {
+            "id": "17907049050737288",
+            "created_at": "2026-09-29T18:01:45.073Z"
+          },
+          {
+            "id": "17907049100146895",
+            "created_at": "2026-09-29T18:01:50.014Z"
+          },
+          {
+            "id": "17907049143309154",
+            "created_at": "2026-09-29T18:01:54.330Z"
+          },
+          {
+            "id": "17907049340955267",
+            "created_at": "2026-09-29T18:02:14.095Z"
+          },
+          {
+            "id": "17907052013389571",
+            "created_at": "2026-09-29T18:06:41.338Z"
+          },
+          {
+            "id": "17907054871768570",
+            "created_at": "2026-09-29T18:11:27.176Z"
+          },
+          {
+            "id": "17907063801578181",
+            "created_at": "2026-09-29T18:26:20.157Z"
+          },
+          {
+            "id": "17907066752942562",
+            "created_at": "2026-09-29T18:31:15.294Z"
+          },
+          {
+            "id": "17907067823299511",
+            "created_at": "2026-09-29T18:33:02.329Z"
+          },
+          {
+            "id": "17907075166386410",
+            "created_at": "2026-09-29T18:45:16.638Z"
+          },
+          {
+            "id": "17907079540574163",
+            "created_at": "2026-09-29T18:52:34.057Z"
+          },
+          {
+            "id": "17907084886448399",
+            "created_at": "2026-09-29T19:01:28.644Z"
+          },
+          {
+            "id": "17907086423048330",
+            "created_at": "2026-09-29T19:04:02.304Z"
+          },
+          {
+            "id": "17907992030701610",
+            "created_at": "2026-09-30T20:13:23.070Z"
+          },
+          {
+            "id": "17907992232825215",
+            "created_at": "2026-09-30T20:13:43.282Z"
+          },
+          {
+            "id": "17908736907504227",
+            "created_at": "2026-10-01T16:54:50.750Z"
+          },
+          {
+            "id": "17908739493045091",
+            "created_at": "2026-10-01T16:59:09.304Z"
+          },
+          {
+            "id": "17908748478639920",
+            "created_at": "2026-10-01T17:14:07.863Z"
+          },
+          {
+            "id": "17908761622226435",
+            "created_at": "2026-10-01T17:36:02.222Z"
+          },
+          {
+            "id": "17908765528704020",
+            "created_at": "2026-10-01T17:42:32.870Z"
+          },
+          {
+            "id": "17908774964716282",
+            "created_at": "2026-10-01T17:58:16.471Z"
+          },
+          {
+            "id": "17908780447545160",
+            "created_at": "2026-10-01T18:07:24.754Z"
+          },
+          {
+            "id": "17908795194011932",
+            "created_at": "2026-10-01T18:31:59.402Z"
+          },
+          {
+            "id": "17908798661673389",
+            "created_at": "2026-10-01T18:37:46.167Z"
+          },
+          {
+            "id": "17908803386143485",
+            "created_at": "2026-10-01T18:45:38.614Z"
+          },
+          {
+            "id": "17908817379455877",
+            "created_at": "2026-10-01T19:08:57.945Z"
+          },
+          {
+            "id": "17908817674062928",
+            "created_at": "2026-10-01T19:09:27.406Z"
+          },
+          {
+            "id": "17908818786435761",
+            "created_at": "2026-10-01T19:11:18.643Z"
+          },
+          {
+            "id": "17908822966803121",
+            "created_at": "2026-10-01T19:18:16.680Z"
+          },
+          {
+            "id": "17908834004414370",
+            "created_at": "2026-10-01T19:36:40.441Z"
+          },
+          {
+            "id": "1790884500798776",
+            "created_at": "2026-10-01T19:55:00.798Z"
+          },
+          {
+            "id": "17908848332149754",
+            "created_at": "2026-10-01T20:00:33.214Z"
+          },
+          {
+            "id": "17908850739022945",
+            "created_at": "2026-10-01T20:04:33.902Z"
+          },
+          {
+            "id": "17908855719005989",
+            "created_at": "2026-10-01T20:12:51.900Z"
+          },
+          {
+            "id": "17908859214732258",
+            "created_at": "2026-10-01T20:18:41.473Z"
+          },
+          {
+            "id": "17908860489458267",
+            "created_at": "2026-10-01T20:20:48.945Z"
+          },
+          {
+            "id": "17908860938111344",
+            "created_at": "2026-10-01T20:21:33.811Z"
+          },
+          {
+            "id": "1790888889965178",
+            "created_at": "2026-10-01T21:08:09.965Z"
+          },
+          {
+            "id": "17908899436301095",
+            "created_at": "2026-10-01T21:25:43.630Z"
+          },
+          {
+            "id": "17909475044796670",
+            "created_at": "2026-10-02T13:25:04.479Z"
+          },
+          {
+            "id": "1790948888969338",
+            "created_at": "2026-10-02T13:48:08.969Z"
+          },
+          {
+            "id": "17909491526327975",
+            "created_at": "2026-10-02T13:52:32.632Z"
+          }
+        ],
+        "id": "1790692561769",
+        "welcome_screen": {
+          "description": "",
+          "welcome_channels": []
+        },
+        "description": null,
+        "features": [
+          "NEWS",
+          "COMMUNITY"
+        ],
+        "preferred_locale": "es-ES",
+        "rules_channel_id": "1",
+        "public_updates_channel_id": "1",
+        "safety_alerts_channel_id": null,
+        "roles": [
+          {
+            "id": "1790692561769",
+            "name": "@everyone",
+            "color": 0,
+            "hoist": false,
+            "position": 0,
+            "permissions": "1071698529857",
+            "managed": false,
+            "mentionable": false
+          },
+          {
+            "id": "1790800133270",
+            "name": "nuevo rol",
+            "color": 0,
+            "hoist": false,
+            "position": 1,
+            "permissions": "1024",
+            "managed": false,
+            "mentionable": false
+          }
+        ],
+        "splash": null,
+        "banner": null,
+        "premium_progress_bar_enabled": true,
+        "verification_level": 1,
+        "default_message_notifications": 1,
+        "explicit_content_filter": 2,
+        "messages": [
+          {
+            "id": "1790876559755603",
+            "channel_id": "17906930442871",
+            "author": {
+              "id": "1790691200486",
+              "username": "rakytest",
+              "discriminator": "0",
+              "global_name": "Raky Test",
+              "avatar": null,
+              "bot": false,
+              "system": false,
+              "mfa_enabled": false,
+              "authenticator_types": [],
+              "banner": null,
+              "accent_color": null,
+              "banner_color": null,
+              "locale": "en-US",
+              "verified": true,
+              "email": "test@raky.es",
+              "flags": 0,
+              "premium_type": 2,
+              "public_flags": 0,
+              "phone": null,
+              "nsfw_allowed": true,
+              "bio": "",
+              "pronouns": "",
+              "avatar_decoration_data": null
+            },
+            "content": "hola",
+            "timestamp": "2026-10-01T17:42:39.755Z",
+            "edited_timestamp": null,
+            "tts": false,
+            "mention_everyone": false,
+            "mentions": [],
+            "mention_roles": [],
+            "attachments": [],
+            "embeds": [],
+            "reactions": [],
+            "pinned": false,
+            "type": 0,
+            "flags": 0,
+            "components": [],
+            "sticker_items": [],
+            "guild_id": "1790692561769",
+            "nonce": "1555273758040653824"
+          },
+          {
+            "id": "1790878781368836",
+            "tabs": {
+              "messages": {
+                "author_id": [
+                  "1790691200486"
+                ],
+                "limit": 1,
+                "cursor": null
+              },
+              "links": {
+                "author_id": [
+                  "1790691200486"
+                ],
+                "has": [
+                  "link"
+                ],
+                "limit": 1,
+                "cursor": null
+              },
+              "media": {
+                "author_id": [
+                  "1790691200486"
+                ],
+                "attachment_extension": [
+                  "png",
+                  "jpg",
+                  "webp",
+                  "mov",
+                  "mp4",
+                  "qt",
+                  "gif",
+                  "mp3",
+                  "wav",
+                  "flac",
+                  "ogg",
+                  "opus"
+                ],
+                "limit": 1,
+                "cursor": null
+              }
+            },
+            "track_exact_total_hits": true,
+            "include_nsfw": true,
+            "created_at": "2026-10-01T18:19:41.369Z"
+          }
+        ],
+        "channels": [
+          {
+            "id": "17906930442871",
+            "guild_id": "1790692561769",
+            "type": 0,
+            "name": "general",
+            "position": 0,
+            "permission_overwrites": [],
+            "rate_limit_per_user": 5,
+            "topic": "",
+            "bitrate": 64000,
+            "user_limit": 0,
+            "nsfw": false,
+            "flags": 0
+          },
+          {
+            "id": "17906930442872",
+            "guild_id": "1790692561769",
+            "type": 2,
+            "name": "General",
+            "position": 1,
+            "permission_overwrites": [],
+            "bitrate": 64000,
+            "user_limit": 0
+          },
+          {
+            "id": "1790708978394",
+            "guild_id": "1790692561769",
+            "type": 0,
+            "name": "canal-de-prueba",
+            "position": 2,
+            "parent_id": null,
+            "topic": null,
+            "nsfw": false,
+            "permission_overwrites": [],
+            "rate_limit_per_user": 0
+          },
+          {
+            "id": "179069256176915",
+            "guild_id": "1790692561769",
+            "type": 15,
+            "name": "foro-comunidad",
+            "position": 3,
+            "parent_id": null,
+            "topic": "Foro de la comunidad para debatir y compartir publicaciones",
+            "nsfw": false,
+            "permission_overwrites": [],
+            "rate_limit_per_user": 0,
+            "default_thread_rate_limit_per_user": 0,
+            "default_auto_archive_duration": 4320,
+            "default_reaction_emoji": {
+              "emoji_id": null,
+              "emoji_name": "💬"
+            },
+            "default_sort_order": 0,
+            "default_forum_layout": 1,
+            "available_tags": [
+              {
+                "id": "101",
+                "name": "General",
+                "moderated": false,
+                "emoji_id": null,
+                "emoji_name": "💡"
+              },
+              {
+                "id": "102",
+                "name": "Preguntas",
+                "moderated": false,
+                "emoji_id": null,
+                "emoji_name": "❓"
+              },
+              {
+                "id": "103",
+                "name": "Ideas",
+                "moderated": false,
+                "emoji_id": null,
+                "emoji_name": "🚀"
+              }
+            ]
+          }
+        ]
+      },
+      "approximate_member_count": 2,
+      "approximate_presence_count": 2,
+      "welcome_screen": {
+        "description": "",
+        "welcome_channels": []
+      }
+    },
+    {
+      "id": "1790692812959",
+      "name": "Testing Channels Bug",
+      "icon": null,
+      "splash": null,
+      "discovery_splash": null,
+      "owner_id": "1790691200486",
+      "region": "us-central",
+      "afk_channel_id": null,
+      "afk_timeout": 300,
+      "widget_enabled": false,
+      "widget_channel_id": null,
+      "verification_level": 0,
+      "default_message_notifications": 0,
+      "explicit_content_filter": 0,
+      "roles": [
+        {
+          "id": "1790692812959",
+          "name": "@everyone",
+          "color": 0,
+          "hoist": false,
+          "position": 0,
+          "permissions": "1071698660929",
+          "managed": false,
+          "mentionable": false
+        }
+      ],
+      "emojis": [],
+      "features": [
+        "NEWS",
+        "COMMUNITY",
+        "FORUM_CHANNEL_PROMPT"
+      ],
+      "mfa_level": 0,
+      "application_id": null,
+      "system_channel_id": "17906930442871",
+      "system_channel_flags": 0,
+      "rules_channel_id": null,
+      "max_presences": null,
+      "max_members": 250000,
+      "vanity_url_code": null,
+      "description": null,
+      "banner": null,
+      "premium_tier": 0,
+      "preferred_locale": "en-US",
+      "public_updates_channel_id": null,
+      "max_video_channel_users": 25,
+      "max_stage_video_channel_users": 50,
+      "nsfw_level": 0,
+      "stickers": [],
+      "premium_progress_bar_enabled": false,
+      "safety_alerts_channel_id": null,
+      "incidents_data": null,
+      "channels": [
+        {
+          "id": "17906928129591",
+          "guild_id": "1790692812959",
+          "type": 0,
+          "name": "general",
+          "position": 0,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0
+        },
+        {
+          "id": "17906928129592",
+          "guild_id": "1790692812959",
+          "type": 2,
+          "name": "General",
+          "position": 1,
+          "permission_overwrites": [],
+          "bitrate": 64000,
+          "user_limit": 0
+        },
+        {
+          "id": "179069281295915",
+          "guild_id": "1790692812959",
+          "type": 15,
+          "name": "foro-comunidad",
+          "position": 2,
+          "parent_id": null,
+          "topic": "Foro de la comunidad para debatir y compartir publicaciones",
+          "nsfw": false,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0,
+          "default_thread_rate_limit_per_user": 0,
+          "default_auto_archive_duration": 4320,
+          "default_reaction_emoji": {
+            "emoji_id": null,
+            "emoji_name": "💬"
+          },
+          "default_sort_order": 0,
+          "default_forum_layout": 1,
+          "available_tags": [
+            {
+              "id": "101",
+              "name": "General",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "💡"
+            },
+            {
+              "id": "102",
+              "name": "Preguntas",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "❓"
+            },
+            {
+              "id": "103",
+              "name": "Ideas",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "🚀"
+            }
+          ]
+        }
+      ],
+      "members": [
+        {
+          "user": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "email": "test@raky.es",
+            "avatar": null,
+            "bot": false,
+            "flags": 0,
+            "verified": true,
+            "premium_type": 2,
+            "premium_since": "2026-01-01T00:00:00.000Z"
+          },
+          "roles": [],
+          "joined_at": "2026-09-29T14:40:12.961Z",
+          "deaf": false,
+          "mute": false
+        }
+      ],
+      "joined_at": "2026-09-29T14:40:12.961Z",
+      "large": false,
+      "unavailable": false,
+      "member_count": 1,
+      "threads": [],
+      "presences": [],
+      "voice_states": [],
+      "stage_instances": [],
+      "guild_scheduled_events": [],
+      "messages": [],
+      "migrate-command-scope": [
+        {
+          "id": "17907051930672376",
+          "created_at": "2026-09-29T18:06:33.067Z"
+        },
+        {
+          "id": "17907052330543819",
+          "created_at": "2026-09-29T18:07:13.054Z"
+        },
+        {
+          "id": "17907053404445944",
+          "created_at": "2026-09-29T18:09:00.444Z"
+        },
+        {
+          "id": "17907063815196009",
+          "created_at": "2026-09-29T18:26:21.519Z"
+        },
+        {
+          "id": "17907084861317185",
+          "created_at": "2026-09-29T19:01:26.131Z"
+        },
+        {
+          "id": "17907914494558325",
+          "created_at": "2026-09-30T18:04:09.455Z"
+        },
+        {
+          "id": "17907926365661061",
+          "created_at": "2026-09-30T18:23:56.566Z"
+        },
+        {
+          "id": "17907926622088866",
+          "created_at": "2026-09-30T18:24:22.208Z"
+        },
+        {
+          "id": "179079930242642",
+          "created_at": "2026-09-30T20:15:02.426Z"
+        },
+        {
+          "id": "17908027384135190",
+          "created_at": "2026-09-30T21:12:18.413Z"
+        },
+        {
+          "id": "17908027744907920",
+          "created_at": "2026-09-30T21:12:54.490Z"
+        },
+        {
+          "id": "17908733308026563",
+          "created_at": "2026-10-01T16:48:50.802Z"
+        },
+        {
+          "id": "17908762260905543",
+          "created_at": "2026-10-01T17:37:06.090Z"
+        },
+        {
+          "id": "17908763626967706",
+          "created_at": "2026-10-01T17:39:22.696Z"
+        },
+        {
+          "id": "17908775061278497",
+          "created_at": "2026-10-01T17:58:26.127Z"
+        },
+        {
+          "id": "17908787877017784",
+          "created_at": "2026-10-01T18:19:47.701Z"
+        },
+        {
+          "id": "17908823347815843",
+          "created_at": "2026-10-01T19:18:54.781Z"
+        }
+      ],
+      "properties": {
+        "migrate-command-scope": [
+          {
+            "id": "17907051930672376",
+            "created_at": "2026-09-29T18:06:33.067Z"
+          },
+          {
+            "id": "17907052330543819",
+            "created_at": "2026-09-29T18:07:13.054Z"
+          },
+          {
+            "id": "17907053404445944",
+            "created_at": "2026-09-29T18:09:00.444Z"
+          },
+          {
+            "id": "17907063815196009",
+            "created_at": "2026-09-29T18:26:21.519Z"
+          },
+          {
+            "id": "17907084861317185",
+            "created_at": "2026-09-29T19:01:26.131Z"
+          },
+          {
+            "id": "17907914494558325",
+            "created_at": "2026-09-30T18:04:09.455Z"
+          },
+          {
+            "id": "17907926365661061",
+            "created_at": "2026-09-30T18:23:56.566Z"
+          },
+          {
+            "id": "17907926622088866",
+            "created_at": "2026-09-30T18:24:22.208Z"
+          },
+          {
+            "id": "179079930242642",
+            "created_at": "2026-09-30T20:15:02.426Z"
+          },
+          {
+            "id": "17908027384135190",
+            "created_at": "2026-09-30T21:12:18.413Z"
+          },
+          {
+            "id": "17908027744907920",
+            "created_at": "2026-09-30T21:12:54.490Z"
+          },
+          {
+            "id": "17908733308026563",
+            "created_at": "2026-10-01T16:48:50.802Z"
+          },
+          {
+            "id": "17908762260905543",
+            "created_at": "2026-10-01T17:37:06.090Z"
+          },
+          {
+            "id": "17908763626967706",
+            "created_at": "2026-10-01T17:39:22.696Z"
+          },
+          {
+            "id": "17908775061278497",
+            "created_at": "2026-10-01T17:58:26.127Z"
+          },
+          {
+            "id": "17908787877017784",
+            "created_at": "2026-10-01T18:19:47.701Z"
+          },
+          {
+            "id": "17908823347815843",
+            "created_at": "2026-10-01T19:18:54.781Z"
+          }
+        ],
+        "id": "1790692812959",
+        "features": [
+          "NEWS"
+        ],
+        "rules_channel_id": null,
+        "public_updates_channel_id": null
+      },
+      "approximate_member_count": 1,
+      "approximate_presence_count": 1
+    },
+    {
+      "name": "Servidor Nuevo de Verificacion",
+      "channels": [
+        {
+          "id": "1790693068790",
+          "guild_id": "1790693068784",
+          "type": 0,
+          "name": "general",
+          "position": 0,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0,
+          "topic": null,
+          "nsfw": false,
+          "parent_id": null
+        },
+        {
+          "id": "1790693068791",
+          "guild_id": "1790693068784",
+          "type": 2,
+          "name": "General",
+          "position": 1,
+          "permission_overwrites": [],
+          "bitrate": 64000,
+          "user_limit": 0,
+          "parent_id": null
+        },
+        {
+          "id": "179069306878415",
+          "guild_id": "1790693068784",
+          "type": 15,
+          "name": "foro-comunidad",
+          "position": 2,
+          "parent_id": null,
+          "topic": "Foro de la comunidad para debatir y compartir publicaciones",
+          "nsfw": false,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0,
+          "default_thread_rate_limit_per_user": 0,
+          "default_auto_archive_duration": 4320,
+          "default_reaction_emoji": {
+            "emoji_id": null,
+            "emoji_name": "💬"
+          },
+          "default_sort_order": 0,
+          "default_forum_layout": 1,
+          "available_tags": [
+            {
+              "id": "101",
+              "name": "General",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "💡"
+            },
+            {
+              "id": "102",
+              "name": "Preguntas",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "❓"
+            },
+            {
+              "id": "103",
+              "name": "Ideas",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "🚀"
+            }
+          ]
+        }
+      ],
+      "system_channel_id": "1790693068790",
+      "id": "1790693068784",
+      "icon": null,
+      "splash": null,
+      "discovery_splash": null,
+      "owner_id": "1790691200486",
+      "region": "us-central",
+      "afk_channel_id": null,
+      "afk_timeout": 300,
+      "widget_enabled": false,
+      "widget_channel_id": null,
+      "verification_level": 0,
+      "default_message_notifications": 0,
+      "explicit_content_filter": 0,
+      "roles": [
+        {
+          "id": "1790693068784",
+          "name": "@everyone",
+          "color": 0,
+          "hoist": false,
+          "position": 0,
+          "permissions": "1071698660929",
+          "managed": false,
+          "mentionable": false
+        }
+      ],
+      "emojis": [],
+      "features": [
+        "COMMUNITY",
+        "NEWS",
+        "FORUM_CHANNEL_PROMPT"
+      ],
+      "mfa_level": 0,
+      "application_id": null,
+      "system_channel_flags": 0,
+      "rules_channel_id": null,
+      "max_presences": null,
+      "max_members": 250000,
+      "vanity_url_code": null,
+      "description": null,
+      "banner": null,
+      "premium_tier": 0,
+      "preferred_locale": "en-US",
+      "public_updates_channel_id": null,
+      "max_video_channel_users": 25,
+      "max_stage_video_channel_users": 50,
+      "nsfw_level": 0,
+      "stickers": [],
+      "premium_progress_bar_enabled": false,
+      "safety_alerts_channel_id": null,
+      "incidents_data": null,
+      "members": [
+        {
+          "user": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "banner": null,
+            "accent_color": null,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "test@raky.es",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "",
+            "pronouns": "",
+            "avatar_decoration_data": null,
+            "premium_since": "2026-01-01T00:00:00.000Z"
+          },
+          "roles": [],
+          "joined_at": "2026-09-29T14:44:28.789Z",
+          "deaf": false,
+          "mute": false
+        }
+      ],
+      "joined_at": "2026-09-29T14:44:28.790Z",
+      "large": false,
+      "unavailable": false,
+      "member_count": 1,
+      "threads": [],
+      "presences": [],
+      "voice_states": [],
+      "stage_instances": [],
+      "guild_scheduled_events": [],
+      "messages": [],
+      "migrate-command-scope": [
+        {
+          "id": "17907054856798694",
+          "created_at": "2026-09-29T18:11:25.679Z"
+        },
+        {
+          "id": "17907063843925112",
+          "created_at": "2026-09-29T18:26:24.392Z"
+        },
+        {
+          "id": "17907084853974308",
+          "created_at": "2026-09-29T19:01:25.397Z"
+        },
+        {
+          "id": "17907912610454375",
+          "created_at": "2026-09-30T18:01:01.045Z"
+        },
+        {
+          "id": "17907919478939942",
+          "created_at": "2026-09-30T18:12:27.893Z"
+        },
+        {
+          "id": "17908016120126696",
+          "created_at": "2026-09-30T20:53:32.012Z"
+        },
+        {
+          "id": "17908032124701240",
+          "created_at": "2026-09-30T21:20:12.470Z"
+        },
+        {
+          "id": "17908736889565974",
+          "created_at": "2026-10-01T16:54:48.956Z"
+        },
+        {
+          "id": "17908747791607286",
+          "created_at": "2026-10-01T17:12:59.160Z"
+        },
+        {
+          "id": "17908762274014984",
+          "created_at": "2026-10-01T17:37:07.401Z"
+        },
+        {
+          "id": "17908775073965973",
+          "created_at": "2026-10-01T17:58:27.396Z"
+        },
+        {
+          "id": "17908787886571890",
+          "created_at": "2026-10-01T18:19:48.657Z"
+        }
+      ],
+      "properties": {
+        "migrate-command-scope": [
+          {
+            "id": "17907054856798694",
+            "created_at": "2026-09-29T18:11:25.679Z"
+          },
+          {
+            "id": "17907063843925112",
+            "created_at": "2026-09-29T18:26:24.392Z"
+          },
+          {
+            "id": "17907084853974308",
+            "created_at": "2026-09-29T19:01:25.397Z"
+          },
+          {
+            "id": "17907912610454375",
+            "created_at": "2026-09-30T18:01:01.045Z"
+          },
+          {
+            "id": "17907919478939942",
+            "created_at": "2026-09-30T18:12:27.893Z"
+          },
+          {
+            "id": "17908016120126696",
+            "created_at": "2026-09-30T20:53:32.012Z"
+          },
+          {
+            "id": "17908032124701240",
+            "created_at": "2026-09-30T21:20:12.470Z"
+          },
+          {
+            "id": "17908736889565974",
+            "created_at": "2026-10-01T16:54:48.956Z"
+          },
+          {
+            "id": "17908747791607286",
+            "created_at": "2026-10-01T17:12:59.160Z"
+          },
+          {
+            "id": "17908762274014984",
+            "created_at": "2026-10-01T17:37:07.401Z"
+          },
+          {
+            "id": "17908775073965973",
+            "created_at": "2026-10-01T17:58:27.396Z"
+          },
+          {
+            "id": "17908787886571890",
+            "created_at": "2026-10-01T18:19:48.657Z"
+          }
+        ],
+        "id": "1790693068784"
+      },
+      "approximate_member_count": 1,
+      "approximate_presence_count": 1
+    },
+    {
+      "name": "Raky E2EE Secret Hub",
+      "is_encrypted": true,
+      "features": [
+        "COMMUNITY",
+        "NEWS",
+        "FORUM_CHANNEL_PROMPT"
+      ],
+      "id": "1790855318952",
+      "icon": null,
+      "description": null,
+      "splash": null,
+      "discovery_splash": null,
+      "banner": null,
+      "owner_id": "900000000000000001",
+      "application_id": null,
+      "region": "us-central",
+      "afk_channel_id": null,
+      "afk_timeout": 300,
+      "system_channel_id": "1790855318954",
+      "system_channel_flags": 0,
+      "widget_enabled": false,
+      "widget_channel_id": null,
+      "verification_level": 0,
+      "default_message_notifications": 0,
+      "mfa_level": 0,
+      "explicit_content_filter": 0,
+      "max_presences": null,
+      "max_members": 250000,
+      "vanity_url_code": null,
+      "premium_tier": 0,
+      "premium_subscription_count": 0,
+      "preferred_locale": "en-US",
+      "rules_channel_id": null,
+      "safety_alerts_channel_id": null,
+      "public_updates_channel_id": null,
+      "premium_progress_bar_enabled": false,
+      "nsfw": false,
+      "nsfw_level": 0,
+      "max_video_channel_users": 25,
+      "max_stage_video_channel_users": 50,
+      "clyde_settings": {
+        "enabled": true,
+        "name": "Clyde AI",
+        "avatar": null,
+        "personality": "Eres Clyde, el asistente inteligente de Raky en este servidor.",
+        "description": "Asistente IA para este servidor"
+      },
+      "properties": {
+        "id": "1790855318952",
+        "name": "Raky E2EE Secret Hub",
+        "icon": null,
+        "description": null,
+        "splash": null,
+        "discovery_splash": null,
+        "features": [
+          "COMMUNITY",
+          "NEWS"
+        ],
+        "banner": null,
+        "owner_id": "900000000000000001",
+        "application_id": null,
+        "region": "us-central",
+        "afk_channel_id": null,
+        "afk_timeout": 300,
+        "system_channel_id": "1790855318954",
+        "system_channel_flags": 0,
+        "widget_enabled": false,
+        "widget_channel_id": null,
+        "verification_level": 0,
+        "default_message_notifications": 0,
+        "mfa_level": 0,
+        "explicit_content_filter": 0,
+        "max_presences": null,
+        "max_members": 250000,
+        "vanity_url_code": null,
+        "premium_tier": 0,
+        "premium_subscription_count": 0,
+        "preferred_locale": "en-US",
+        "rules_channel_id": null,
+        "safety_alerts_channel_id": null,
+        "public_updates_channel_id": null,
+        "premium_progress_bar_enabled": false,
+        "nsfw": false,
+        "nsfw_level": 0,
+        "max_video_channel_users": 25,
+        "max_stage_video_channel_users": 50,
+        "is_encrypted": true,
+        "clyde_settings": {
+          "enabled": true,
+          "name": "Clyde AI",
+          "avatar": null,
+          "personality": "Eres Clyde, el asistente inteligente de Raky en este servidor.",
+          "description": "Asistente IA para este servidor"
+        }
+      },
+      "roles": [
+        {
+          "id": "1790855318952",
+          "name": "@everyone",
+          "color": 0,
+          "hoist": false,
+          "position": 0,
+          "permissions": "1071698660929",
+          "managed": false,
+          "mentionable": false
+        }
+      ],
+      "channels": [
+        {
+          "id": "1790855318954",
+          "guild_id": "1790855318952",
+          "type": 0,
+          "name": "general",
+          "position": 0,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0,
+          "topic": null,
+          "nsfw": false,
+          "parent_id": null
+        },
+        {
+          "id": "1790855318955",
+          "guild_id": "1790855318952",
+          "type": 2,
+          "name": "General",
+          "position": 1,
+          "permission_overwrites": [],
+          "bitrate": 64000,
+          "user_limit": 0,
+          "parent_id": null
+        },
+        {
+          "id": "179085531895215",
+          "guild_id": "1790855318952",
+          "type": 15,
+          "name": "foro-comunidad",
+          "position": 2,
+          "parent_id": null,
+          "topic": "Foro de la comunidad para debatir y compartir publicaciones",
+          "nsfw": false,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0,
+          "default_thread_rate_limit_per_user": 0,
+          "default_auto_archive_duration": 4320,
+          "default_reaction_emoji": {
+            "emoji_id": null,
+            "emoji_name": "💬"
+          },
+          "default_sort_order": 0,
+          "default_forum_layout": 1,
+          "available_tags": [
+            {
+              "id": "101",
+              "name": "General",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "💡"
+            },
+            {
+              "id": "102",
+              "name": "Preguntas",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "❓"
+            },
+            {
+              "id": "103",
+              "name": "Ideas",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "🚀"
+            }
+          ]
+        }
+      ],
+      "members": [
+        {
+          "user": {
+            "id": "900000000000000001",
+            "username": "api-bot",
+            "discriminator": "0",
+            "global_name": "TestUser",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": 5793266,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "bot@discord.local",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "Hello offline world",
+            "pronouns": "they/them",
+            "avatar_decoration_data": null
+          },
+          "roles": [],
+          "joined_at": "2026-10-01T11:48:38.953Z",
+          "deaf": false,
+          "mute": false
+        },
+        {
+          "user": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "email": "test@raky.es",
+            "bot": false,
+            "flags": 0,
+            "verified": true,
+            "premium_type": 2,
+            "premium_since": "2026-01-01T00:00:00.000Z"
+          },
+          "roles": [],
+          "joined_at": "2026-10-01T18:35:23.277Z"
+        }
+      ],
+      "joined_at": "2026-10-01T11:48:38.953Z",
+      "large": false,
+      "unavailable": false,
+      "member_count": 1,
+      "approximate_member_count": 1,
+      "approximate_presence_count": 1,
+      "threads": [],
+      "presences": [],
+      "voice_states": [],
+      "stage_instances": [],
+      "guild_scheduled_events": [],
+      "messages": [],
+      "emojis": [],
+      "stickers": [],
+      "data_mode": "full"
+    },
+    {
+      "id": "1790856581961",
+      "name": "Comunidad Raky",
+      "icon": null,
+      "description": null,
+      "splash": null,
+      "discovery_splash": null,
+      "features": [
+        "COMMUNITY",
+        "NEWS",
+        "FORUM_CHANNEL_PROMPT"
+      ],
+      "banner": null,
+      "owner_id": "900000000000000001",
+      "application_id": null,
+      "region": "us-central",
+      "afk_channel_id": null,
+      "afk_timeout": 300,
+      "system_channel_id": "1790856581964",
+      "system_channel_flags": 0,
+      "widget_enabled": false,
+      "widget_channel_id": null,
+      "verification_level": 3,
+      "default_message_notifications": 0,
+      "mfa_level": 0,
+      "explicit_content_filter": 0,
+      "max_presences": null,
+      "max_members": 1000,
+      "vanity_url_code": null,
+      "premium_tier": 0,
+      "premium_subscription_count": 0,
+      "preferred_locale": "es-ES",
+      "rules_channel_id": null,
+      "safety_alerts_channel_id": null,
+      "public_updates_channel_id": null,
+      "premium_progress_bar_enabled": false,
+      "nsfw": false,
+      "nsfw_level": 2,
+      "max_video_channel_users": 25,
+      "max_stage_video_channel_users": 50,
+      "is_encrypted": true,
+      "clyde_settings": {
+        "enabled": true,
+        "name": "Clyde AI",
+        "avatar": null,
+        "personality": "Eres Clyde, el asistente inteligente de Raky en este servidor.",
+        "description": "Asistente IA para este servidor"
+      },
+      "properties": {
+        "id": "1790856581961",
+        "name": "Comunidad Raky",
+        "icon": null,
+        "description": null,
+        "splash": null,
+        "discovery_splash": null,
+        "features": [
+          "ENCRYPTED_E2EE"
+        ],
+        "banner": null,
+        "owner_id": "900000000000000001",
+        "application_id": null,
+        "region": "us-central",
+        "afk_channel_id": null,
+        "afk_timeout": 300,
+        "system_channel_id": "1790856581964",
+        "system_channel_flags": 0,
+        "widget_enabled": false,
+        "widget_channel_id": null,
+        "verification_level": 3,
+        "default_message_notifications": 0,
+        "mfa_level": 0,
+        "explicit_content_filter": 0,
+        "max_presences": null,
+        "max_members": 1000,
+        "vanity_url_code": null,
+        "premium_tier": 0,
+        "premium_subscription_count": 0,
+        "preferred_locale": "es-ES",
+        "rules_channel_id": null,
+        "safety_alerts_channel_id": null,
+        "public_updates_channel_id": null,
+        "premium_progress_bar_enabled": false,
+        "nsfw": false,
+        "nsfw_level": 2,
+        "max_video_channel_users": 25,
+        "max_stage_video_channel_users": 50,
+        "is_encrypted": true,
+        "clyde_settings": {
+          "enabled": true,
+          "name": "Clyde AI",
+          "avatar": null,
+          "personality": "Eres Clyde, el asistente inteligente de Raky en este servidor.",
+          "description": "Asistente IA para este servidor"
+        },
+        "migrate-command-scope": [
+          {
+            "id": "17908565825705478",
+            "created_at": "2026-10-01T12:09:42.570Z"
+          }
+        ]
+      },
+      "roles": [
+        {
+          "id": "1790856581961",
+          "name": "@everyone",
+          "color": 0,
+          "hoist": false,
+          "position": 0,
+          "permissions": "1071698660929",
+          "managed": false,
+          "mentionable": false
+        }
+      ],
+      "channels": [
+        {
+          "id": "1790856581964",
+          "guild_id": "1790856581961",
+          "type": 0,
+          "name": "general",
+          "position": 0,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0,
+          "topic": null,
+          "nsfw": false,
+          "parent_id": null
+        },
+        {
+          "id": "1790856581965",
+          "guild_id": "1790856581961",
+          "type": 2,
+          "name": "General",
+          "position": 1,
+          "permission_overwrites": [],
+          "bitrate": 64000,
+          "user_limit": 0,
+          "parent_id": null
+        },
+        {
+          "id": "179085658196115",
+          "guild_id": "1790856581961",
+          "type": 15,
+          "name": "foro-comunidad",
+          "position": 2,
+          "parent_id": null,
+          "topic": "Foro de la comunidad para debatir y compartir publicaciones",
+          "nsfw": false,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0,
+          "default_thread_rate_limit_per_user": 0,
+          "default_auto_archive_duration": 4320,
+          "default_reaction_emoji": {
+            "emoji_id": null,
+            "emoji_name": "💬"
+          },
+          "default_sort_order": 0,
+          "default_forum_layout": 1,
+          "available_tags": [
+            {
+              "id": "101",
+              "name": "General",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "💡"
+            },
+            {
+              "id": "102",
+              "name": "Preguntas",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "❓"
+            },
+            {
+              "id": "103",
+              "name": "Ideas",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "🚀"
+            }
+          ]
+        }
+      ],
+      "members": [
+        {
+          "user": {
+            "id": "900000000000000001",
+            "username": "api-bot",
+            "discriminator": "0",
+            "global_name": "TestUser [Priv]",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": 5793266,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "bot@discord.local",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "Espacio personal y privado. Solo amigos cercanos y confianza 🔒",
+            "pronouns": "they/them",
+            "avatar_decoration_data": null
+          },
+          "roles": [],
+          "joined_at": "2026-10-01T12:09:41.963Z",
+          "deaf": false,
+          "mute": false
+        },
+        {
+          "user": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "email": "test@raky.es",
+            "bot": false,
+            "flags": 0,
+            "verified": true,
+            "premium_type": 2,
+            "premium_since": "2026-01-01T00:00:00.000Z"
+          },
+          "roles": [],
+          "joined_at": "2026-10-01T18:35:23.277Z"
+        }
+      ],
+      "joined_at": "2026-10-01T12:09:41.963Z",
+      "large": false,
+      "unavailable": false,
+      "member_count": 1,
+      "approximate_member_count": 1,
+      "approximate_presence_count": 1,
+      "threads": [],
+      "presences": [],
+      "voice_states": [],
+      "stage_instances": [],
+      "guild_scheduled_events": [],
+      "messages": [],
+      "emojis": [],
+      "stickers": [],
+      "data_mode": "full",
+      "migrate-command-scope": [
+        {
+          "id": "17908565825705478",
+          "created_at": "2026-10-01T12:09:42.570Z"
+        }
+      ]
+    },
+    {
+      "id": "1790861552224",
+      "name": "Liquid Glass High-Capacity E2EE",
+      "icon": null,
+      "description": null,
+      "splash": null,
+      "discovery_splash": null,
+      "features": [
+        "COMMUNITY",
+        "NEWS",
+        "FORUM_CHANNEL_PROMPT"
+      ],
+      "banner": null,
+      "owner_id": "900000000000000001",
+      "application_id": null,
+      "region": "us-central",
+      "afk_channel_id": null,
+      "afk_timeout": 300,
+      "system_channel_id": "1790861552230",
+      "system_channel_flags": 0,
+      "widget_enabled": false,
+      "widget_channel_id": null,
+      "verification_level": 3,
+      "default_message_notifications": 0,
+      "mfa_level": 0,
+      "explicit_content_filter": 0,
+      "max_presences": null,
+      "max_members": 500000,
+      "vanity_url_code": null,
+      "premium_tier": 0,
+      "premium_subscription_count": 0,
+      "preferred_locale": "es-ES",
+      "rules_channel_id": null,
+      "safety_alerts_channel_id": null,
+      "public_updates_channel_id": null,
+      "premium_progress_bar_enabled": false,
+      "nsfw": false,
+      "nsfw_level": 2,
+      "max_video_channel_users": 25,
+      "max_stage_video_channel_users": 50,
+      "is_encrypted": true,
+      "high_capacity_e2ee": true,
+      "clyde_settings": {
+        "enabled": true,
+        "name": "Clyde Guardián",
+        "avatar": null,
+        "personality": "Eres Clyde en servidor Liquid Glass",
+        "description": "Asistente IA para este servidor"
+      },
+      "properties": {
+        "id": "1790861552224",
+        "name": "Liquid Glass High-Capacity E2EE",
+        "icon": null,
+        "description": null,
+        "splash": null,
+        "discovery_splash": null,
+        "features": [
+          "ENCRYPTED_E2EE"
+        ],
+        "banner": null,
+        "owner_id": "900000000000000001",
+        "application_id": null,
+        "region": "us-central",
+        "afk_channel_id": null,
+        "afk_timeout": 300,
+        "system_channel_id": "1790861552230",
+        "system_channel_flags": 0,
+        "widget_enabled": false,
+        "widget_channel_id": null,
+        "verification_level": 3,
+        "default_message_notifications": 0,
+        "mfa_level": 0,
+        "explicit_content_filter": 0,
+        "max_presences": null,
+        "max_members": 500000,
+        "vanity_url_code": null,
+        "premium_tier": 0,
+        "premium_subscription_count": 0,
+        "preferred_locale": "es-ES",
+        "rules_channel_id": null,
+        "safety_alerts_channel_id": null,
+        "public_updates_channel_id": null,
+        "premium_progress_bar_enabled": false,
+        "nsfw": false,
+        "nsfw_level": 2,
+        "max_video_channel_users": 25,
+        "max_stage_video_channel_users": 50,
+        "is_encrypted": true,
+        "high_capacity_e2ee": true,
+        "clyde_settings": {
+          "enabled": true,
+          "name": "Clyde AI",
+          "avatar": null,
+          "personality": "Eres Clyde, el asistente inteligente de Raky en este servidor.",
+          "description": "Asistente IA para este servidor"
+        }
+      },
+      "roles": [
+        {
+          "id": "1790861552224",
+          "name": "@everyone",
+          "color": 0,
+          "hoist": false,
+          "position": 0,
+          "permissions": "1071698660929",
+          "managed": false,
+          "mentionable": false
+        }
+      ],
+      "channels": [
+        {
+          "id": "1790861552230",
+          "guild_id": "1790861552224",
+          "type": 0,
+          "name": "general",
+          "position": 0,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0,
+          "topic": null,
+          "nsfw": false,
+          "parent_id": null
+        },
+        {
+          "id": "1790861552231",
+          "guild_id": "1790861552224",
+          "type": 2,
+          "name": "General",
+          "position": 1,
+          "permission_overwrites": [],
+          "bitrate": 64000,
+          "user_limit": 0,
+          "parent_id": null
+        },
+        {
+          "id": "179086155222415",
+          "guild_id": "1790861552224",
+          "type": 15,
+          "name": "foro-comunidad",
+          "position": 2,
+          "parent_id": null,
+          "topic": "Foro de la comunidad para debatir y compartir publicaciones",
+          "nsfw": false,
+          "permission_overwrites": [],
+          "rate_limit_per_user": 0,
+          "default_thread_rate_limit_per_user": 0,
+          "default_auto_archive_duration": 4320,
+          "default_reaction_emoji": {
+            "emoji_id": null,
+            "emoji_name": "💬"
+          },
+          "default_sort_order": 0,
+          "default_forum_layout": 1,
+          "available_tags": [
+            {
+              "id": "101",
+              "name": "General",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "💡"
+            },
+            {
+              "id": "102",
+              "name": "Preguntas",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "❓"
+            },
+            {
+              "id": "103",
+              "name": "Ideas",
+              "moderated": false,
+              "emoji_id": null,
+              "emoji_name": "🚀"
+            }
+          ]
+        }
+      ],
+      "members": [
+        {
+          "user": {
+            "id": "900000000000000001",
+            "username": "api-bot",
+            "discriminator": "0",
+            "global_name": "TestUser (Dev)",
+            "avatar": null,
+            "bot": false,
+            "system": false,
+            "mfa_enabled": false,
+            "authenticator_types": [],
+            "banner": null,
+            "accent_color": 5793266,
+            "banner_color": null,
+            "locale": "en-US",
+            "verified": true,
+            "email": "bot@discord.local",
+            "flags": 0,
+            "premium_type": 2,
+            "public_flags": 0,
+            "phone": null,
+            "nsfw_allowed": true,
+            "bio": "Ingeniero de Software | Colaboraciones y Networking profesional 💼",
+            "pronouns": "they/them",
+            "avatar_decoration_data": null
+          },
+          "roles": [],
+          "joined_at": "2026-10-01T13:32:32.229Z",
+          "deaf": false,
+          "mute": false
+        },
+        {
+          "user": {
+            "id": "1790691200486",
+            "username": "rakytest",
+            "discriminator": "0",
+            "global_name": "Raky Test",
+            "avatar": null,
+            "email": "test@raky.es",
+            "bot": false,
+            "flags": 0,
+            "verified": true,
+            "premium_type": 2,
+            "premium_since": "2026-01-01T00:00:00.000Z"
+          },
+          "roles": [],
+          "joined_at": "2026-10-01T18:35:23.277Z"
+        }
+      ],
+      "joined_at": "2026-10-01T13:32:32.229Z",
+      "large": false,
+      "unavailable": false,
+      "member_count": 1,
+      "approximate_member_count": 1,
+      "approximate_presence_count": 1,
+      "threads": [],
+      "presences": [],
+      "voice_states": [],
+      "stage_instances": [],
+      "guild_scheduled_events": [],
+      "messages": [],
+      "emojis": [],
+      "stickers": [],
+      "data_mode": "full"
+    }
+  ],
+  "dm_channels": [
+    {
+      "id": "800000000000000001",
+      "type": 1,
+      "last_message_id": null,
+      "flags": 0,
+      "recipients": [
+        {
+          "id": "900000000000000002",
+          "username": "alex",
+          "discriminator": "0",
+          "global_name": "Alex Vance",
+          "avatar": null,
+          "bot": false
+        }
+      ],
+      "messages": []
+    }
+  ],
+  "rate_limits": [
+    {
+      "key": "/api/v10/auth/conditional/start:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "count": 1,
+      "reset_at": 1790703377540
+    },
+    {
+      "key": "/api/v10/unique-username/username-suggestions-unauthed:2f183a4e64493af3f377f745eda502363cd3e7ef6e4d266d444758de0a85fcc8",
+      "count": 1,
+      "reset_at": 1790691181925
+    },
+    {
+      "key": "/api/v10/unique-username/username-attempt-unauthed:2f183a4e64493af3f377f745eda502363cd3e7ef6e4d266d444758de0a85fcc8",
+      "count": 1,
+      "reset_at": 1790691186439
+    },
+    {
+      "key": "/api/v10/users/@me/referrals/eligibility:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703459684
+    },
+    {
+      "key": "/api/v10/quests/decision:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703866268
+    },
+    {
+      "key": "/api/v10/metrics/v2:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703869348
+    },
+    {
+      "key": "/api/v10/users/@me/virtual-currency/balance:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790694464061
+    },
+    {
+      "key": "/api/v10/quests/@me:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703871694
+    },
+    {
+      "key": "/api/v10/quests/get-decisions:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703871877
+    },
+    {
+      "key": "/api/v10/users/@me/settings:7bdefc7c52de001c8cab05650264a57c2e01c32db0466b0625e28835c30d7ba5",
+      "count": 1,
+      "reset_at": 1790691637082
+    },
+    {
+      "key": "/api/v10/users/@me/guilds:7bdefc7c52de001c8cab05650264a57c2e01c32db0466b0625e28835c30d7ba5",
+      "count": 1,
+      "reset_at": 1790691637351
+    },
+    {
+      "key": "/api/v10/users/@me/channels:7bdefc7c52de001c8cab05650264a57c2e01c32db0466b0625e28835c30d7ba5",
+      "count": 1,
+      "reset_at": 1790691637402
+    },
+    {
+      "key": "/api/v10/users/@me/relationships:7bdefc7c52de001c8cab05650264a57c2e01c32db0466b0625e28835c30d7ba5",
+      "count": 1,
+      "reset_at": 1790694679409
+    },
+    {
+      "key": "/api/v10/users/@me/billing/subscriptions:7bdefc7c52de001c8cab05650264a57c2e01c32db0466b0625e28835c30d7ba5",
+      "count": 1,
+      "reset_at": 1790691637175
+    },
+    {
+      "key": "/api/v10/users/@me/billing/payment-sources:7bdefc7c52de001c8cab05650264a57c2e01c32db0466b0625e28835c30d7ba5",
+      "count": 1,
+      "reset_at": 1790691637251
+    },
+    {
+      "key": "/api/v10/users/@me/billing/country-code:7bdefc7c52de001c8cab05650264a57c2e01c32db0466b0625e28835c30d7ba5",
+      "count": 1,
+      "reset_at": 1790691637305
+    },
+    {
+      "key": "/api/v10/users/@me/affinities/guilds:7bdefc7c52de001c8cab05650264a57c2e01c32db0466b0625e28835c30d7ba5",
+      "count": 1,
+      "reset_at": 1790691637519
+    },
+    {
+      "key": "/api/v10/users/@me/affinities/users:7bdefc7c52de001c8cab05650264a57c2e01c32db0466b0625e28835c30d7ba5",
+      "count": 1,
+      "reset_at": 1790691637605
+    },
+    {
+      "key": "/api/v10/users/@me/harvest:7bdefc7c52de001c8cab05650264a57c2e01c32db0466b0625e28835c30d7ba5",
+      "count": 1,
+      "reset_at": 1790691637727
+    },
+    {
+      "key": "/api/v10/users/@me/burst-credits:7bdefc7c52de001c8cab05650264a57c2e01c32db0466b0625e28835c30d7ba5",
+      "count": 1,
+      "reset_at": 1790691637775
+    },
+    {
+      "key": "/api/v10/users/@me/entitlements:7bdefc7c52de001c8cab05650264a57c2e01c32db0466b0625e28835c30d7ba5",
+      "count": 1,
+      "reset_at": 1790691637827
+    },
+    {
+      "key": "/api/v10/users/@me/library:7bdefc7c52de001c8cab05650264a57c2e01c32db0466b0625e28835c30d7ba5",
+      "count": 1,
+      "reset_at": 1790691637911
+    },
+    {
+      "key": "/api/v10/users/@me/country-codes:7bdefc7c52de001c8cab05650264a57c2e01c32db0466b0625e28835c30d7ba5",
+      "count": 1,
+      "reset_at": 1790691637966
+    },
+    {
+      "key": "/api/v10/users/@me/settings:d2446e282fb4c4cbcb0c0edfea58249c18af74b498581dfcf95f5c4e25469adb",
+      "count": 1,
+      "reset_at": 1790691644215
+    },
+    {
+      "key": "/api/v10/users/@me/settings:1209456212fca62b97f33c769bfbfc1f3fd00c136fdb9be85bd75780129eb98b",
+      "count": 1,
+      "reset_at": 1790692322803
+    },
+    {
+      "key": "/api/v10/users/@me/guilds:1209456212fca62b97f33c769bfbfc1f3fd00c136fdb9be85bd75780129eb98b",
+      "count": 1,
+      "reset_at": 1790692344461
+    },
+    {
+      "key": "/api/v9/users/@me/relationships:7bdefc7c52de001c8cab05650264a57c2e01c32db0466b0625e28835c30d7ba5",
+      "count": 1,
+      "reset_at": 1790692691884
+    },
+    {
+      "key": "/api/v9/users/@me/settings-proto/1:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790692745023
+    },
+    {
+      "key": "/api/v9/users/@me/settings-proto/2:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790692745075
+    },
+    {
+      "key": "/api/v10/users/@me/relationships:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790696306536
+    },
+    {
+      "key": "/api/v9/users/@me/relationships:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790693069576
+    },
+    {
+      "key": "/api/v10/users/@me/settings-proto/1:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703864644
+    },
+    {
+      "key": "/api/v10/users/@me/settings-proto/2:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703872402
+    },
+    {
+      "key": "/api/v10/games/autocomplete:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790694892012
+    },
+    {
+      "key": "/api/v10/users/@me/survey:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703420355
+    },
+    {
+      "key": "/api/v10/users/@me/affinities/guilds:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703459978
+    },
+    {
+      "key": "/api/v10/users/@me/entitlements:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703867003
+    },
+    {
+      "key": "/api/v10/users/@me/affinities/v2/users:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703422146
+    },
+    {
+      "key": "/api/v10/science:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790704050101
+    },
+    {
+      "key": "/api/v10/users/@me/collectibles-marketing:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703552889
+    },
+    {
+      "key": "/api/v10/games/detectable/exclusions:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703583331
+    },
+    {
+      "key": "/api/v10/users/@me/applications/521842831262875670/entitlements:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703650217
+    },
+    {
+      "key": "/api/v9/users/@me/billing/subscriptions:2f183a4e64493af3f377f745eda502363cd3e7ef6e4d266d444758de0a85fcc8",
+      "count": 1,
+      "reset_at": 1790695304694
+    },
+    {
+      "key": "/api/v10/users/@me/billing/subscriptions:2f183a4e64493af3f377f745eda502363cd3e7ef6e4d266d444758de0a85fcc8",
+      "count": 1,
+      "reset_at": 1790695153422
+    },
+    {
+      "key": "/api/v10/users/@me/entitlements:2f183a4e64493af3f377f745eda502363cd3e7ef6e4d266d444758de0a85fcc8",
+      "count": 1,
+      "reset_at": 1790695270074
+    },
+    {
+      "key": "/api/v9/users/@me/entitlements:2f183a4e64493af3f377f745eda502363cd3e7ef6e4d266d444758de0a85fcc8",
+      "count": 1,
+      "reset_at": 1790695304782
+    },
+    {
+      "key": "/api/v9/users/@me/billing/payment-sources:2f183a4e64493af3f377f745eda502363cd3e7ef6e4d266d444758de0a85fcc8",
+      "count": 1,
+      "reset_at": 1790695304736
+    },
+    {
+      "key": "/api/v9/users/@me/affinities/users:2f183a4e64493af3f377f745eda502363cd3e7ef6e4d266d444758de0a85fcc8",
+      "count": 1,
+      "reset_at": 1790695304823
+    },
+    {
+      "key": "/api/v10/users/@me/meaningfully-online:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790695314582
+    },
+    {
+      "key": "/api/v10/partner-sdk/storefront-config:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703553081
+    },
+    {
+      "key": "/api/v10/users/@me/applications/521842831262875670/entitlements:217f772c9aeece9cdd1a4c52bd005f302e1bb9062427423c59b0b0f98494836f",
+      "count": 1,
+      "reset_at": 1790695718248
+    },
+    {
+      "key": "/api/v10/content-inventory/users/@me:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790704059827
+    },
+    {
+      "key": "/api/v10/users/@me/billing/payment-sources:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703552801
+    },
+    {
+      "key": "/api/v10/guilds/1790693068784/migrate-command-scope:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790696301471
+    },
+    {
+      "key": "/api/v10/guilds/1790692812959/migrate-command-scope:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790696302492
+    },
+    {
+      "key": "/api/v10/guilds/1790692561769/powerups:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703562596
+    },
+    {
+      "key": "/api/v10/guilds/100000000000000001/powerups:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703524981
+    },
+    {
+      "key": "/api/v10/users/@me/notes/900000000000000002:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790696309198
+    },
+    {
+      "key": "/api/v10/apex/experiments:2f183a4e64493af3f377f745eda502363cd3e7ef6e4d266d444758de0a85fcc8",
+      "count": 1,
+      "reset_at": 1790703384331
+    },
+    {
+      "key": "/api/v10/auth/location-metadata:2f183a4e64493af3f377f745eda502363cd3e7ef6e4d266d444758de0a85fcc8",
+      "count": 1,
+      "reset_at": 1790703377406
+    },
+    {
+      "key": "/api/v10/store/published-listings/skus/521847234246082599/subscription-plans:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703435904
+    },
+    {
+      "key": "/api/v10/store/published-listings/skus/978380684370378762/subscription-plans:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703464947
+    },
+    {
+      "key": "/api/v10/store/published-listings/skus/521846918637420545/subscription-plans:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703436222
+    },
+    {
+      "key": "/api/v10/users/@me/mfa/webauthn/credentials:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703868454
+    },
+    {
+      "key": "/api/v10/store/published-listings/skus/590663762298667008/subscription-plans:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703465247
+    },
+    {
+      "key": "/api/v10/storefront/promotions:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703465528
+    },
+    {
+      "key": "/api/v10/widget-configs/featured:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703868408
+    },
+    {
+      "key": "/api/v10/users/@me/notes/900000000000000001:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703531978
+    },
+    {
+      "key": "/api/v10/users/1790691200486/application-identities:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703535818
+    },
+    {
+      "key": "/api/v10/users/@me/notes/1790691200486:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703536049
+    },
+    {
+      "key": "/api/v10/guilds/1790692561769/migrate-command-scope:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703866792
+    },
+    {
+      "key": "/api/v10/users/@me/billing/subscriptions:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703544989
+    },
+    {
+      "key": "/api/v10/guilds/1790692561769/onboarding:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703661277
+    },
+    {
+      "key": "/api/v10/guilds/1790692561769/top-games:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703558372
+    },
+    {
+      "key": "/api/v10/guilds/1790692561769/config-gates:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703570858
+    },
+    {
+      "key": "/api/v10/guilds/1790692561769/new-member-welcome:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703655067
+    },
+    {
+      "key": "/api/v10/discovery/1790692561769:8278179b5fcba594e5dad0568e7bd2af48236b456612a4d058bded8c02210ef3",
+      "count": 1,
+      "reset_at": 1790703668629
+    }
+  ],
+  "user_settings_proto": [
+    {
+      "id": "1790703863741460",
+      "user_id": "1790691200486",
+      "version": "1",
+      "encoding": "base64",
+      "data": "Yg0SCwiI//////////8B"
+    },
+    {
+      "id": "1790708906193225",
+      "user_id": "1790691200486",
+      "version": "2",
+      "encoding": "base64",
+      "data": "Yi4KLAkBAFDswisaCxIhCAMSEtjh8ZSPNKqNoJePNP2St8iPNBj///////////8B"
+    },
+    {
+      "id": "1790794302933998",
+      "user_id": "900000000000000001",
+      "version": "1",
+      "encoding": "base64",
+      "data": "IgUKAwAAAQ=="
+    },
+    {
+      "id": "1790794308004324",
+      "user_id": "900000000000000001",
+      "version": "2",
+      "encoding": "base64",
+      "data": "e30="
+    }
+  ],
+  "invites": [
+    {
+      "code": "syt3f52",
+      "type": 0,
+      "channel": {
+        "id": "17906930442871",
+        "name": "general",
+        "type": 0
+      },
+      "guild": {
+        "id": "1790692561769",
+        "name": "test",
+        "icon": null,
+        "features": [
+          "COMMUNITY",
+          "NEWS"
+        ]
+      },
+      "inviter": {
+        "id": "900000000000000001",
+        "username": "api-bot",
+        "discriminator": "0",
+        "avatar": null
+      },
+      "uses": 0,
+      "max_uses": 0,
+      "max_age": 604800,
+      "temporary": false,
+      "created_at": "2026-09-29T18:07:37.842Z"
+    },
+    {
+      "code": "q6hdk9m",
+      "type": 0,
+      "channel": {
+        "id": "1790706703337",
+        "name": "general",
+        "type": 0
+      },
+      "guild": {
+        "id": "1790706703334",
+        "name": "1",
+        "icon": null,
+        "features": [
+          "COMMUNITY",
+          "NEWS"
+        ]
+      },
+      "inviter": {
+        "id": "900000000000000001",
+        "username": "api-bot",
+        "discriminator": "0",
+        "avatar": null
+      },
+      "uses": 0,
+      "max_uses": 0,
+      "max_age": 604800,
+      "temporary": false,
+      "created_at": "2026-09-29T19:04:13.922Z"
+    },
+    {
+      "code": "dki7zut",
+      "type": 0,
+      "channel": {
+        "id": "1790693068790",
+        "name": "general",
+        "type": 0
+      },
+      "guild": {
+        "id": "1790693068784",
+        "name": "Servidor Nuevo de Verificacion",
+        "icon": null,
+        "features": [
+          "COMMUNITY",
+          "NEWS"
+        ]
+      },
+      "inviter": {
+        "id": "900000000000000001",
+        "username": "api-bot",
+        "discriminator": "0",
+        "avatar": null
+      },
+      "uses": 0,
+      "max_uses": 0,
+      "max_age": 604800,
+      "temporary": false,
+      "created_at": "2026-09-30T18:01:26.303Z"
+    },
+    {
+      "code": "ce5tml5",
+      "type": 0,
+      "channel": {
+        "id": "1790693068790",
+        "name": "general",
+        "type": 0
+      },
+      "guild": {
+        "id": "1790693068784",
+        "name": "Servidor Nuevo de Verificacion",
+        "icon": null,
+        "features": [
+          "COMMUNITY",
+          "NEWS"
+        ]
+      },
+      "inviter": {
+        "id": "900000000000000001",
+        "username": "api-bot",
+        "discriminator": "0",
+        "avatar": null
+      },
+      "uses": 0,
+      "max_uses": 0,
+      "max_age": 604800,
+      "temporary": false,
+      "created_at": "2026-09-30T18:01:27.113Z"
+    },
+    {
+      "code": "b0j7nxe",
+      "type": 0,
+      "channel": {
+        "id": "17906930442871",
+        "name": "general",
+        "type": 0
+      },
+      "guild": {
+        "id": "1790692561769",
+        "name": "test",
+        "icon": null,
+        "features": [
+          "NEWS",
+          "COMMUNITY",
+          "FORUM_CHANNEL_PROMPT"
+        ]
+      },
+      "inviter": {
+        "id": "900000000000000001",
+        "username": "api-bot",
+        "discriminator": "0",
+        "avatar": null
+      },
+      "uses": 0,
+      "max_uses": 0,
+      "max_age": 604800,
+      "temporary": false,
+      "created_at": "2026-10-01T19:39:01.760Z"
+    }
+  ],
+  "webhooks": [
+    {
+      "id": "1790707562934474",
+      "name": "Captain Hook",
+      "avatar": null,
+      "channel_id": "17906930442871",
+      "guild_id": "1790692561769",
+      "type": 1,
+      "token": "5r9jxaowt7k5sxwzr4vp7",
+      "user": {
+        "id": "900000000000000001",
+        "username": "api-bot",
+        "discriminator": "0",
+        "avatar": null
+      }
+    },
+    {
+      "id": "1790707564020819",
+      "name": "Captain Hook",
+      "avatar": null,
+      "channel_id": "17906930442871",
+      "guild_id": "1790692561769",
+      "type": 1,
+      "token": "vw7yjkcmpbnko89hw9x09",
+      "user": {
+        "id": "900000000000000001",
+        "username": "api-bot",
+        "discriminator": "0",
+        "avatar": null
+      }
+    }
+  ],
+  "threads": [
+    {
+      "id": "1790714430654",
+      "type": 11,
+      "name": "h",
+      "guild_id": "1790706703334",
+      "parent_id": "1790714425632",
+      "owner_id": "900000000000000001",
+      "message_count": 0,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-09-29T20:40:30.654Z",
+        "locked": false,
+        "invitable": true
+      },
+      "message_id": null
+    },
+    {
+      "id": "1790874940888",
+      "type": 11,
+      "name": "Comentarios",
+      "guild_id": "1790692561769",
+      "parent_id": "17906930442871",
+      "owner_id": "900000000000000001",
+      "message_count": 0,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-10-01T17:15:40.888Z",
+        "locked": false,
+        "invitable": true
+      },
+      "message_id": "1790800028066934"
+    },
+    {
+      "id": "300000000000000001",
+      "type": 11,
+      "name": "Bienvenidos al Foro",
+      "guild_id": "100000000000000001",
+      "parent_id": "200000000000000015",
+      "owner_id": "900000000000000001",
+      "last_message_id": "400000000000000001",
+      "message_count": 2,
+      "member_count": 2,
+      "rate_limit_per_user": 0,
+      "total_message_sent": 2,
+      "applied_tags": [
+        "101"
+      ],
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-10-01T17:29:10.885Z",
+        "locked": false,
+        "create_timestamp": "2026-10-01T17:29:10.885Z",
+        "invitable": true
+      },
+      "member": {
+        "id": "300000000000000001",
+        "user_id": "900000000000000001",
+        "join_timestamp": "2026-10-01T17:29:10.885Z",
+        "flags": 0
+      }
+    },
+    {
+      "id": "1790876205496",
+      "type": 11,
+      "name": "Comentarios",
+      "guild_id": "1790692561769",
+      "parent_id": "17906930442871",
+      "owner_id": "900000000000000001",
+      "message_count": 0,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-10-01T17:36:45.496Z",
+        "locked": false,
+        "invitable": true
+      },
+      "message_id": "1790800028066934"
+    },
+    {
+      "id": "1790876220284",
+      "type": 11,
+      "name": "Comentarios",
+      "guild_id": "1790692561769",
+      "parent_id": "17906930442871",
+      "owner_id": "900000000000000001",
+      "message_count": 0,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-10-01T17:37:00.284Z",
+        "locked": false,
+        "invitable": true
+      },
+      "message_id": "1790800028066934"
+    },
+    {
+      "id": "1790876566143",
+      "type": 11,
+      "name": "Comentarios",
+      "guild_id": "1790692561769",
+      "parent_id": "17906930442871",
+      "owner_id": "900000000000000001",
+      "message_count": 0,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-10-01T17:42:46.143Z",
+        "locked": false,
+        "invitable": true
+      },
+      "message_id": "1790876559755603"
+    },
+    {
+      "id": "1790876616221",
+      "type": 11,
+      "name": "Comentarios",
+      "guild_id": "1790692561769",
+      "parent_id": "17906930442871",
+      "owner_id": "900000000000000001",
+      "message_count": 0,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-10-01T17:43:36.221Z",
+        "locked": false,
+        "invitable": true
+      },
+      "message_id": "1790876559755603"
+    },
+    {
+      "id": "1790877498038",
+      "type": 11,
+      "name": "Comentarios",
+      "guild_id": "1790692561769",
+      "parent_id": "17906930442871",
+      "owner_id": "900000000000000001",
+      "message_count": 0,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-10-01T17:58:18.038Z",
+        "locked": false,
+        "invitable": true
+      },
+      "message_id": "1790876559755603"
+    },
+    {
+      "id": "1790877517573",
+      "type": 11,
+      "name": "jo",
+      "guild_id": "100000000000000001",
+      "parent_id": "200000000000000015",
+      "owner_id": "900000000000000001",
+      "message_count": 0,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-10-01T17:58:37.573Z",
+        "locked": false,
+        "invitable": true
+      },
+      "message_id": null
+    },
+    {
+      "id": "1790878024177",
+      "type": 11,
+      "name": "ewr",
+      "guild_id": "100000000000000001",
+      "parent_id": "200000000000000015",
+      "owner_id": "900000000000000001",
+      "message_count": 0,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-10-01T18:07:04.177Z",
+        "locked": false,
+        "invitable": true
+      },
+      "message_id": null
+    },
+    {
+      "id": "1790878032882",
+      "type": 11,
+      "name": "Comentarios",
+      "guild_id": "100000000000000001",
+      "parent_id": "200000000000000002",
+      "owner_id": "900000000000000001",
+      "message_count": 0,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-10-01T18:07:12.882Z",
+        "locked": false,
+        "invitable": true
+      },
+      "message_id": "300000000000000001"
+    },
+    {
+      "id": "1790878272960",
+      "type": 11,
+      "name": "Mi primer post de prueba",
+      "guild_id": "100000000000000001",
+      "parent_id": "200000000000000015",
+      "owner_id": "900000000000000001",
+      "message_count": 0,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-10-01T18:11:12.960Z",
+        "locked": false,
+        "invitable": true
+      },
+      "message_id": null
+    },
+    {
+      "id": "1790878278557",
+      "type": 11,
+      "name": "Test Post 2",
+      "guild_id": "100000000000000001",
+      "parent_id": "200000000000000015",
+      "owner_id": "900000000000000001",
+      "message_count": 0,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-10-01T18:11:18.557Z",
+        "locked": false,
+        "invitable": true
+      },
+      "message_id": null
+    },
+    {
+      "id": "1790878543170",
+      "type": 11,
+      "name": "Test Forum Post",
+      "guild_id": "100000000000000001",
+      "parent_id": "200000000000000015",
+      "owner_id": "900000000000000001",
+      "message_count": 0,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 1440,
+        "archive_timestamp": "2026-10-01T18:15:43.170Z",
+        "locked": false,
+        "invitable": true
+      },
+      "message_id": null
+    },
+    {
+      "id": "1790878555790",
+      "type": 11,
+      "name": "Comentarios",
+      "guild_id": "100000000000000001",
+      "parent_id": "200000000000000002",
+      "owner_id": "900000000000000001",
+      "message_count": 0,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 1440,
+        "archive_timestamp": "2026-10-01T18:15:55.790Z",
+        "locked": false,
+        "invitable": true
+      },
+      "message_id": "300000000000000001"
+    },
+    {
+      "id": "1790878756979",
+      "type": 11,
+      "name": "Publicacion de prueba en el foro",
+      "guild_id": "100000000000000001",
+      "parent_id": "200000000000000015",
+      "owner_id": "900000000000000001",
+      "last_message_id": "1790878757079769",
+      "message_count": 2,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "total_message_sent": 2,
+      "applied_tags": [
+        "101",
+        "102"
+      ],
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-10-01T18:19:16.979Z",
+        "locked": false,
+        "create_timestamp": "2026-10-01T18:19:16.979Z",
+        "invitable": true
+      },
+      "member": {
+        "id": "1790878756979",
+        "user_id": "900000000000000001",
+        "join_timestamp": "2026-10-01T18:19:16.979Z",
+        "flags": 0
+      },
+      "message_id": null
+    },
+    {
+      "id": "1790708666069446",
+      "type": 11,
+      "name": "Comentarios",
+      "guild_id": "100000000000000001",
+      "parent_id": "200000000000000002",
+      "owner_id": "900000000000000001",
+      "last_message_id": "1790878757320484",
+      "message_count": 1,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "total_message_sent": 1,
+      "applied_tags": [],
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-10-01T18:19:17.226Z",
+        "locked": false,
+        "create_timestamp": "2026-10-01T18:19:17.226Z",
+        "invitable": true
+      },
+      "member": {
+        "id": "1790708666069446",
+        "user_id": "900000000000000001",
+        "join_timestamp": "2026-10-01T18:19:17.226Z",
+        "flags": 0
+      },
+      "message_id": "1790708666069446"
+    },
+    {
+      "id": "1790876559755603",
+      "type": 11,
+      "name": "Comentarios",
+      "guild_id": "1790692561769",
+      "parent_id": "17906930442871",
+      "owner_id": "1790691200486",
+      "last_message_id": "1790876559755603",
+      "message_count": 0,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "total_message_sent": 0,
+      "applied_tags": [],
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-10-01T18:41:21.034Z",
+        "locked": false,
+        "create_timestamp": "2026-10-01T18:41:21.034Z",
+        "invitable": true
+      },
+      "member": {
+        "id": "1790876559755603",
+        "user_id": "1790691200486",
+        "join_timestamp": "2026-10-01T18:41:21.034Z",
+        "flags": 0
+      },
+      "message_id": "1790876559755603"
+    },
+    {
+      "id": "1790880008241",
+      "type": 11,
+      "name": "dsf",
+      "guild_id": "1790692561769",
+      "parent_id": "179069256176915",
+      "owner_id": "1790691200486",
+      "last_message_id": "1790880011574670",
+      "message_count": 2,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "total_message_sent": 2,
+      "applied_tags": [],
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-10-01T18:40:08.241Z",
+        "locked": false,
+        "create_timestamp": "2026-10-01T18:40:08.241Z",
+        "invitable": true
+      },
+      "member": {
+        "id": "1790880008241",
+        "user_id": "1790691200486",
+        "join_timestamp": "2026-10-01T18:40:08.241Z",
+        "flags": 0
+      },
+      "message_id": null
+    },
+    {
+      "id": "1790880282837177",
+      "type": 11,
+      "name": "Comentarios",
+      "guild_id": "1790692561769",
+      "parent_id": "17906930442871",
+      "owner_id": "1790691200486",
+      "last_message_id": "1790880286214563",
+      "message_count": 1,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "total_message_sent": 1,
+      "applied_tags": [],
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-10-01T18:44:45.954Z",
+        "locked": false,
+        "create_timestamp": "2026-10-01T18:44:45.954Z",
+        "invitable": true
+      },
+      "member": {
+        "id": "1790880282837177",
+        "user_id": "1790691200486",
+        "join_timestamp": "2026-10-01T18:44:45.954Z",
+        "flags": 0
+      },
+      "message_id": "1790880282837177"
+    },
+    {
+      "id": "1790881394952",
+      "type": 11,
+      "name": "r",
+      "guild_id": "1790692561769",
+      "parent_id": "179069256176915",
+      "owner_id": "1790691200486",
+      "last_message_id": "1790881394952",
+      "message_count": 1,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "total_message_sent": 1,
+      "applied_tags": [],
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-10-01T19:03:14.952Z",
+        "locked": false,
+        "create_timestamp": "2026-10-01T19:03:14.952Z",
+        "invitable": true
+      },
+      "member": {
+        "id": "1790881394952",
+        "user_id": "1790691200486",
+        "join_timestamp": "2026-10-01T19:03:14.952Z",
+        "flags": 0
+      },
+      "message_id": null
+    },
+    {
+      "id": "1790881703184259",
+      "type": 11,
+      "name": "Comentarios",
+      "guild_id": "1790692561769",
+      "parent_id": "17906930442871",
+      "owner_id": "900000000000000001",
+      "last_message_id": "1790881703339902",
+      "message_count": 1,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "total_message_sent": 1,
+      "applied_tags": [],
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 1440,
+        "archive_timestamp": "2026-10-01T19:08:23.276Z",
+        "locked": false,
+        "create_timestamp": "2026-10-01T19:08:23.276Z",
+        "invitable": true
+      },
+      "member": {
+        "id": "1790881703184259",
+        "user_id": "900000000000000001",
+        "join_timestamp": "2026-10-01T19:08:23.276Z",
+        "flags": 0
+      },
+      "message_id": "1790881703184259"
+    },
+    {
+      "id": "1790883544641148",
+      "type": 11,
+      "name": "http://localhost:3000/invite/b0j7nxe",
+      "guild_id": "1790692561769",
+      "parent_id": "17906930442871",
+      "owner_id": "1790691200486",
+      "last_message_id": "1790886156797995",
+      "message_count": 14,
+      "member_count": 1,
+      "rate_limit_per_user": 0,
+      "total_message_sent": 14,
+      "applied_tags": [],
+      "thread_metadata": {
+        "archived": false,
+        "auto_archive_duration": 4320,
+        "archive_timestamp": "2026-10-01T20:01:33.287Z",
+        "locked": false,
+        "create_timestamp": "2026-10-01T20:01:33.287Z",
+        "invitable": true
+      },
+      "member": {
+        "id": "1790883544641148",
+        "user_id": "1790691200486",
+        "join_timestamp": "2026-10-01T20:01:33.287Z",
+        "flags": 0
+      },
+      "message_id": "1790883544641148"
+    }
+  ],
+  "thread_members": [
+    {
+      "id": "1790714430654",
+      "user_id": "900000000000000001",
+      "join_timestamp": "2026-09-29T20:40:30.656Z",
+      "flags": 0
+    },
+    {
+      "id": "1790874940888",
+      "user_id": "900000000000000001",
+      "join_timestamp": "2026-10-01T17:15:40.894Z",
+      "flags": 0
+    },
+    {
+      "id": "300000000000000001",
+      "user_id": "900000000000000001",
+      "join_timestamp": "2026-10-01T17:29:10.885Z",
+      "flags": 0
+    },
+    {
+      "id": "1790876205496",
+      "user_id": "900000000000000001",
+      "join_timestamp": "2026-10-01T17:36:45.498Z",
+      "flags": 0
+    },
+    {
+      "id": "1790876220284",
+      "user_id": "900000000000000001",
+      "join_timestamp": "2026-10-01T17:37:00.286Z",
+      "flags": 0
+    },
+    {
+      "id": "1790876566143",
+      "user_id": "900000000000000001",
+      "join_timestamp": "2026-10-01T17:42:46.145Z",
+      "flags": 0
+    },
+    {
+      "id": "1790876616221",
+      "user_id": "900000000000000001",
+      "join_timestamp": "2026-10-01T17:43:36.266Z",
+      "flags": 0
+    },
+    {
+      "id": "1790877498038",
+      "user_id": "900000000000000001",
+      "join_timestamp": "2026-10-01T17:58:18.040Z",
+      "flags": 0
+    },
+    {
+      "id": "1790877517573",
+      "user_id": "900000000000000001",
+      "join_timestamp": "2026-10-01T17:58:37.577Z",
+      "flags": 0
+    },
+    {
+      "id": "1790878024177",
+      "user_id": "900000000000000001",
+      "join_timestamp": "2026-10-01T18:07:04.180Z",
+      "flags": 0
+    },
+    {
+      "id": "1790878032882",
+      "user_id": "900000000000000001",
+      "join_timestamp": "2026-10-01T18:07:12.884Z",
+      "flags": 0
+    },
+    {
+      "id": "1790878272960",
+      "user_id": "900000000000000001",
+      "join_timestamp": "2026-10-01T18:11:12.962Z",
+      "flags": 0
+    },
+    {
+      "id": "1790878278557",
+      "user_id": "900000000000000001",
+      "join_timestamp": "2026-10-01T18:11:18.560Z",
+      "flags": 0
+    },
+    {
+      "id": "1790878543170",
+      "user_id": "900000000000000001",
+      "join_timestamp": "2026-10-01T18:15:43.172Z",
+      "flags": 0
+    },
+    {
+      "id": "1790878555790",
+      "user_id": "900000000000000001",
+      "join_timestamp": "2026-10-01T18:15:55.792Z",
+      "flags": 0
+    },
+    {
+      "id": "1790878756979",
+      "user_id": "900000000000000001",
+      "join_timestamp": "2026-10-01T18:19:16.979Z",
+      "flags": 0
+    },
+    {
+      "id": "1790708666069446",
+      "user_id": "900000000000000001",
+      "join_timestamp": "2026-10-01T18:19:17.226Z",
+      "flags": 0
+    },
+    {
+      "id": "1790876559755603",
+      "user_id": "1790691200486",
+      "join_timestamp": "2026-10-01T18:41:21.034Z",
+      "flags": 0
+    },
+    {
+      "id": "1790880008241",
+      "user_id": "1790691200486",
+      "join_timestamp": "2026-10-01T18:40:08.241Z",
+      "flags": 0
+    },
+    {
+      "id": "1790880282837177",
+      "user_id": "1790691200486",
+      "join_timestamp": "2026-10-01T18:44:45.954Z",
+      "flags": 0
+    },
+    {
+      "id": "1790881394952",
+      "user_id": "1790691200486",
+      "join_timestamp": "2026-10-01T19:03:14.952Z",
+      "flags": 0
+    },
+    {
+      "id": "1790881703184259",
+      "user_id": "900000000000000001",
+      "join_timestamp": "2026-10-01T19:08:23.276Z",
+      "flags": 0
+    },
+    {
+      "id": "1790883544641148",
+      "user_id": "1790691200486",
+      "join_timestamp": "2026-10-01T20:01:33.287Z",
+      "flags": 0
+    }
+  ],
+  "user_consents": [
+    {
+      "id": "1790794117925680",
+      "user_id": "900000000000000001"
+    }
+  ],
+  "automod_rules": [
+    {
+      "id": "1790800022526737",
+      "guild_id": "1790692561769",
+      "name": "1",
+      "creator_id": "900000000000000001",
+      "event_type": 1,
+      "trigger_type": 1,
+      "trigger_metadata": {
+        "keyword_filter": [
+          "uwu"
+        ],
+        "regex_patterns": [],
+        "allow_list": []
+      },
+      "actions": [
+        {
+          "type": 1,
+          "metadata": {}
+        }
+      ],
+      "enabled": true,
+      "exempt_roles": [],
+      "exempt_channels": []
+    },
+    {
+      "id": "1790800024880171",
+      "guild_id": "1790692561769",
+      "name": "1",
+      "creator_id": "900000000000000001",
+      "event_type": 1,
+      "trigger_type": 1,
+      "trigger_metadata": {
+        "keyword_filter": [
+          "uwu"
+        ],
+        "regex_patterns": [],
+        "allow_list": []
+      },
+      "actions": [
+        {
+          "type": 1,
+          "metadata": {}
+        }
+      ],
+      "enabled": true,
+      "exempt_roles": [],
+      "exempt_channels": []
+    }
+  ],
+  "email_settings": [
+    {
+      "id": "1790801443757926",
+      "initialized": true,
+      "categories": {},
+      "settings": {
+        "categories": {
+          "social": true
+        }
+      },
+      "user_id": "1790691200486"
+    }
+  ],
+  "bot_verifications": [
+    {
+      "application_id": "123456789",
+      "repo_url": "https://github.com/raky/verified-bot",
+      "dni_verified": true,
+      "audit_passed": true,
+      "audit_summary": "Auditoría IA de código completada: Sin vulnerabilidades críticas, gestión segura de tokens y cumplimiento de privacidad Raky.",
+      "verified_at": "2026-10-01T12:07:54.458Z"
+    }
+  ],
+  "applications": [],
+  "forum_karma": [
+    {
+      "message_id": "1790855496625637",
+      "channel_id": "1790855495442",
+      "upvotes": [],
+      "downvotes": [
+        "900000000000000001"
+      ],
+      "score": -1
+    },
+    {
+      "message_id": "1790855566635930",
+      "channel_id": "1790855566399",
+      "upvotes": [],
+      "downvotes": [
+        "900000000000000001"
+      ],
+      "score": -1
+    },
+    {
+      "message_id": "1790855675676739",
+      "channel_id": "1790855675489",
+      "upvotes": [],
+      "downvotes": [
+        "900000000000000001"
+      ],
+      "score": -1
+    },
+    {
+      "message_id": "1790856474261752",
+      "channel_id": "1790856474013",
+      "upvotes": [],
+      "downvotes": [
+        "900000000000000001"
+      ],
+      "score": -1
+    },
+    {
+      "message_id": "17906930442871-1790800028066934",
+      "channel_id": "17906930442871",
+      "upvotes": [],
+      "downvotes": [],
+      "score": 0
+    },
+    {
+      "message_id": "test_msg_1",
+      "channel_id": "test_forum_ch",
+      "upvotes": [
+        "900000000000000001"
+      ],
+      "downvotes": [],
+      "score": 1
+    }
+  ],
+  "user_personas": [
+    {
+      "user_id": "900000000000000001",
+      "active_persona": "professional",
+      "personas": {
+        "gaming": {
+          "id": "gaming",
+          "name": "Gaming",
+          "global_name": "TestUser",
+          "bio": "Hello offline world",
+          "avatar": null,
+          "banner": null,
+          "theme_colors": [
+            5793266,
+            2895667
+          ]
+        },
+        "professional": {
+          "id": "professional",
+          "name": "Profesional",
+          "global_name": "TestUser (Dev)",
+          "bio": "Ingeniero de Software | Colaboraciones y Networking profesional 💼",
+          "avatar": null,
+          "banner": null,
+          "theme_colors": [
+            2443673,
+            1447446
+          ]
+        },
+        "intimate": {
+          "id": "intimate",
+          "name": "Íntimo / Privado",
+          "global_name": "TestUser [Priv]",
+          "bio": "Espacio personal y privado. Solo amigos cercanos y confianza 🔒",
+          "avatar": null,
+          "banner": null,
+          "theme_colors": [
+            10038562,
+            5767248
+          ]
+        }
+      }
+    }
+  ],
+  "multi_accounts": [
+    {
+      "user_id": "900000000000000001",
+      "active_account_id": "900000000000000001",
+      "accounts": [
+        {
+          "id": "900000000000000001",
+          "label": "Principal",
+          "username": "api-bot",
+          "global_name": "TestUser (Dev)",
+          "avatar": null,
+          "bio": "Ingeniero de Software | Colaboraciones y Networking profesional 💼",
+          "token": "mfa.mock_discord_token_OTAwMDAwMDAwMDAwMDAwMDAx",
+          "phone": "+34600000000",
+          "created_at": "2026-10-01T17:29:10.883Z"
+        },
+        {
+          "id": "1790877564815294",
+          "label": "1",
+          "username": "raky45345",
+          "global_name": "raky23",
+          "avatar": null,
+          "bio": "",
+          "token": "mfa.mock_discord_token_MTc5MDg3NzU2NDgxNTI5NA==",
+          "phone": "+34600000000",
+          "created_at": "2026-10-01T17:59:24.815Z"
+        }
+      ]
+    }
+  ],
+  "subscriptions": [
+    {
+      "id": "600000000000000001",
+      "type": 1,
+      "status": 1,
+      "created_at": "2026-01-01T00:00:00.000Z",
+      "canceled_at": null,
+      "current_period_start": "2026-01-01T00:00:00.000Z",
+      "current_period_end": "2027-01-01T00:00:00.000Z",
+      "plan_id": "511651880837840896",
+      "sku_id": "521847234246082599",
+      "items": [
+        {
+          "id": "600000000000000002",
+          "plan_id": "511651880837840896",
+          "quantity": 1
+        }
+      ],
+      "payment_source_id": "500000000000000001",
+      "payment_gateway": 1,
+      "flags": 0,
+      "user_id": "900000000000000001",
+      "country_code": "ES",
+      "currency": "eur"
+    },
+    {
+      "id": "600000000000000001",
+      "type": 1,
+      "status": 1,
+      "created_at": "2026-10-02T14:30:22.289Z",
+      "canceled_at": null,
+      "current_period_start": "2026-10-02T14:30:22.289Z",
+      "current_period_end": "2027-10-02T14:30:22.289Z",
+      "plan_id": "511651880837840896",
+      "sku_id": "521847234246082599",
+      "items": [
+        {
+          "id": "600000000000000002",
+          "plan_id": "511651880837840896",
+          "quantity": 1
+        }
+      ],
+      "payment_source_id": "500000000000000001",
+      "payment_gateway": 1,
+      "flags": 0,
+      "user_id": "1790691200486",
+      "country_code": "ES",
+      "currency": "eur"
+    }
+  ],
+  "payment_sources": [
+    {
+      "id": "500000000000000001",
+      "type": 1,
+      "invalid": false,
+      "flags": 0,
+      "default": true,
+      "brand": "visa",
+      "last_4": "4242",
+      "expires_month": 12,
+      "expires_year": 2028,
+      "billing_address": {
+        "name": "Raky Test",
+        "line_1": "Calle Gran Vía 1",
+        "line_2": null,
+        "city": "Madrid",
+        "state": "MD",
+        "country": "ES",
+        "postal_code": "28001"
+      },
+      "payment_gateway": 1
+    }
+  ]
+}

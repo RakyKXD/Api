@@ -1,0 +1,2 @@
+"use strict";(this.webpackChunkdiscord_app=this.webpackChunkdiscord_app||[]).push([["831525"],{912324(a,c,n){n.d(c,{t:()=>r});var s=n(382591),e=n(931320),r=({variant:a="neutral",children:c,className:n,ariaLive:r="polite"})=>(0,s.v)("div",{role:"status","aria-live":r,class:(0,e.n)("IncodeSnackbar",`IncodeSnackbar--${a}`,n),children:(0,s.v)("span",{class:"IncodeSnackbarContent",children:c})})}}]);
+//# sourceMappingURL=bf687370ec1ef0d6.js.map

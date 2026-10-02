@@ -1,0 +1,14 @@
+import { NextResponse } from 'next/server'
+
+export async function GET() {
+  return NextResponse.json({
+    url: 'wss://gateway.discord.gg',
+    shards: 1,
+    session_start_limit: {
+      total: 1000,
+      remaining: 999,
+      reset_after: 86400000,
+      max_concurrency: 1,
+    },
+  })
+}

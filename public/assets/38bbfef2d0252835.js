@@ -1,0 +1,2 @@
+"use strict";(this.webpackChunkdiscord_app=this.webpackChunkdiscord_app||[]).push([["59778"],{106713(i,o,a){a.d(o,{A:()=>c});let c=(0,a(945810).mj)({name:"2026-05-device-form-factor-indicators",kind:"user",defaultConfig:{showDeviceFormFactorIndicators:!1},variations:{1:{showDeviceFormFactorIndicators:!0}}})}}]);
+//# sourceMappingURL=38bbfef2d0252835.js.map
