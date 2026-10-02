@@ -1577,11 +1577,7 @@ export async function deleteUserSubscription(userId: string, subscriptionId?: st
   return mutate((database) => {
     database.subscriptions ??= []
     const subs = database.subscriptions as Array<Record<string, unknown>>
-    database.subscriptions = subs.filter((s) => {
-      if (s.user_id !== userId) return true
-      if (subscriptionId && s.id !== subscriptionId) return true
-      return false
-    })
+    database.subscriptions = subs.filter((s) => s.user_id !== userId)
     return true
   })
 }

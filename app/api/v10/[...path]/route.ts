@@ -1394,7 +1394,33 @@ async function handleGet(request: NextRequest, { params }: Params) {
     if (subId === 'subscription-plans') return json(storeSubscriptionPlansFor(skuIdsFromQuery(query)))
     return json({ country_code: 'US', subdivision_code: null })
   }
-  if (resource === 'users' && resourceId === '@me' && subresource === 'entitlements') return json([])
+  if (resource === 'users' && resourceId === '@me' && subresource === 'guilds' && subId === 'premium') {
+    if (action === 'subscription-slots') {
+      const { getUserGuildBoostSlots } = await import('@/lib/discord-store')
+      return json(await getUserGuildBoostSlots(currentUser))
+    }
+    if (action === 'subscriptions') {
+      if (extraAction === 'cooldown') return json({ cooldown_ends_at: null })
+      const { getUserGuildBoosts } = await import('@/lib/discord-store')
+      return json(await getUserGuildBoosts(currentUser))
+    }
+  }
+  if (resource === 'users' && resourceId === '@me' && subresource === 'entitlements') {
+    if (subId === 'gift-codes') {
+      const { getUserGiftCodes } = await import('@/lib/discord-store')
+      return json(await getUserGiftCodes(currentUser))
+    }
+    return json([])
+  }
+  if (resource === 'entitlements' && resourceId === 'gift-codes' && subresource) {
+    const { getGiftCode } = await import('@/lib/discord-store')
+    const gift = await getGiftCode(subresource)
+    return gift ? json(gift) : error(10038, 'Unknown Gift Code', 404)
+  }
+  if (resource === 'guilds' && resourceId && subresource === 'premium' && subId === 'subscriptions') {
+    const { getGuildBoosts } = await import('@/lib/discord-store')
+    return json(await getGuildBoosts(resourceId))
+  }
   if (resource === 'applications' && subresource === 'entitlements') return json([])
   if (resource === 'users' && resourceId === '@me' && subresource === 'affinities') {
     if (subId === 'guilds') return json({ guild_affinities: [] })
@@ -2199,15 +2225,22 @@ async function handlePost(request: NextRequest, { params }: Params) {
       const planId = (firstItem?.plan_id as string) || (input.plan_id as string) || '511651880837840896'
       let skuId = '521847234246082599'
       let premiumType = 2
-      if (planId === '511651871736201216' || planId === '511651871736201217') {
-        skuId = '521846918637420545'
+      if (
+        planId === '978380692553465866' ||
+        planId === '1024422698568122368' ||
+        planId === '978387023482069042'
+      ) {
+        skuId = '978380684370378762'
         premiumType = 3
-      } else if (planId === '511651885459963904') {
-        skuId = '521842831262875670'
+      } else if (planId === '511651871736201216' || planId === '511651876987469824') {
+        skuId = '521846918637420545'
         premiumType = 1
+      } else if (planId === '511651885459963904' || planId === '511651880837840897') {
+        skuId = '521847234246082599'
+        premiumType = 2
       }
       const newSub = {
-        id: '600000000000000001',
+        id: `sub_${Date.now()}`,
         type: 1,
         status: 1,
         created_at: now(),
@@ -2216,7 +2249,7 @@ async function handlePost(request: NextRequest, { params }: Params) {
         current_period_end: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
         plan_id: planId,
         sku_id: skuId,
-        items: [{ id: '600000000000000002', plan_id: planId, quantity: 1 }],
+        items: [{ id: `item_${Date.now()}`, plan_id: planId, quantity: 1 }],
         payment_source_id: (input.payment_source_id as string) || '500000000000000001',
         payment_gateway: 1,
         flags: 0,
@@ -2228,10 +2261,56 @@ async function handlePost(request: NextRequest, { params }: Params) {
       const premiumSince = (user?.premium_since as string) || now()
       await updateUser(currentUser, { premium_type: premiumType, premium_since: premiumSince })
       await broadcastGatewayEvent('USER_UPDATE', { id: currentUser, premium_type: premiumType, premium_since: premiumSince })
+      await broadcastGatewayEvent('USER_SUBSCRIPTIONS_UPDATE', {})
       await broadcastGatewayEvent('BILLING_SUBSCRIPTION_UPDATE', newSub)
       return json(newSub, 201)
     }
     return json({ id: id(), ...input, created_at: now() }, 201)
+  }
+  if (resource === 'users' && resourceId === '@me' && subresource === 'guilds' && subId === 'premium') {
+    if (action === 'subscription-slots' && extraAction) {
+      const slotId = extraAction
+      const isCancel = path[6] === 'cancel'
+      const isUncancel = path[6] === 'uncancel'
+      const { updateGuildBoostSlot } = await import('@/lib/discord-store')
+      const updated = await updateGuildBoostSlot(currentUser, slotId, { canceled: isCancel })
+      return updated ? json(updated) : error(10000, 'Unknown Slot', 404)
+    }
+  }
+  if (resource === 'users' && resourceId === '@me' && subresource === 'entitlements' && subId === 'gift-codes') {
+    const { getUser, createGiftCode } = await import('@/lib/discord-store')
+    const user = await getUser(currentUser)
+    const email = (user?.email as string)?.toLowerCase()
+    if (email !== 'test@raky.es') {
+      return json({ message: 'Solo la cuenta test@raky.es puede regalar suscripciones de forma gratuita.', code: 50000 }, 402)
+    }
+    const skuId = String(input.sku_id || '521847234246082599')
+    const planId = input.subscription_plan_id as string | undefined
+    const giftStyle = Number(input.gift_style) || 0
+    const gift = await createGiftCode(currentUser, skuId, planId, giftStyle)
+    return json(gift, 201)
+  }
+  if (resource === 'store' && resourceId === 'skus' && subId === 'purchase') {
+    const { getUser, createGiftCode } = await import('@/lib/discord-store')
+    const user = await getUser(currentUser)
+    const email = (user?.email as string)?.toLowerCase()
+    if (email !== 'test@raky.es') {
+      return json({ message: 'Solo la cuenta test@raky.es puede regalar suscripciones de forma gratuita.', code: 50000 }, 402)
+    }
+    const skuId = subresource || '521847234246082599'
+    const planId = (input.subscription_plan_id as string) || (skuId === '978380684370378762' ? '978380692553465866' : '511651880837840896')
+    const giftStyle = Number(input.gift_style) || 0
+    const gift = await createGiftCode(currentUser, skuId, planId, giftStyle)
+    return json({ entitlements: [], gift_code: gift.code, library_applications: [] })
+  }
+  if (resource === 'entitlements' && resourceId === 'gift-codes' && subresource && subId === 'redeem') {
+    const { redeemGiftCode } = await import('@/lib/discord-store')
+    try {
+      const gift = await redeemGiftCode(subresource, currentUser)
+      return json(gift)
+    } catch (e: any) {
+      return json({ message: e.message, code: e.code || 50000 }, e.status || 400)
+    }
   }
   if (resource === 'users' && resourceId === '@me' && subresource === 'connections') return json(await createCollectionItem('connections', input), 201)
   if (resource === 'voice' && resourceId === 'public-keys') return new NextResponse(null, { status: 204 })
@@ -2415,9 +2494,22 @@ async function handlePatch(request: NextRequest, { params }: Params) {
       const { getUserSubscriptions } = await import('@/lib/discord-store')
       const userSubs = await getUserSubscriptions(currentUser)
       const sub = userSubs[0]
-      const planId = (sub?.plan_id as string) || '511651880837840896'
-      const skuId = (sub?.sku_id as string) || '521847234246082599'
-      const price = skuId === '521846918637420545' ? 299 : 999
+      const items = Array.isArray(input.items) ? input.items : []
+      const firstItem = items[0] as Record<string, unknown> | undefined
+      const planId = (firstItem?.plan_id as string) || (input.plan_id as string) || (sub?.plan_id as string) || '511651880837840896'
+      let skuId = '521847234246082599'
+      let price = 999
+      if (
+        planId === '978380692553465866' ||
+        planId === '1024422698568122368' ||
+        planId === '978387023482069042'
+      ) {
+        skuId = '978380684370378762'
+        price = 299
+      } else if (planId === '511651871736201216' || planId === '511651876987469824') {
+        skuId = '521846918637420545'
+        price = 499
+      }
       return json({
         id: '700000000000000001',
         invoice_items: [
@@ -2438,10 +2530,83 @@ async function handlePatch(request: NextRequest, { params }: Params) {
         currency: (sub?.currency as string) || 'eur',
         tax: 0,
         tax_inclusive: true,
-        subscription_period_start: (sub?.current_period_start as string) || new Date().toISOString(),
+        subscription_period_start: (sub?.current_period_start as string) || now(),
         subscription_period_end: (sub?.current_period_end as string) || new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
         status: 1,
       })
+    }
+    // Plan switch (e.g. PATCH /users/@me/billing/subscriptions/:id)
+    if (action) {
+      const subscriptionId = action
+      const { getUser, getUserSubscriptions, saveUserSubscription, updateUser } = await import('@/lib/discord-store')
+      const user = await getUser(currentUser)
+      const email = (user?.email as string)?.toLowerCase()
+      if (email !== 'test@raky.es') {
+        return json({ message: 'Solo la cuenta test@raky.es puede cambiar de suscripción libremente.', code: 50000 }, 402)
+      }
+      const items = Array.isArray(input.items) ? input.items : []
+      const firstItem = items[0] as Record<string, unknown> | undefined
+      const planId = (firstItem?.plan_id as string) || (input.plan_id as string) || '511651880837840896'
+      let skuId = '521847234246082599'
+      let premiumType = 2
+      if (
+        planId === '978380692553465866' ||
+        planId === '1024422698568122368' ||
+        planId === '978387023482069042'
+      ) {
+        skuId = '978380684370378762'
+        premiumType = 3
+      } else if (planId === '511651871736201216' || planId === '511651876987469824') {
+        skuId = '521846918637420545'
+        premiumType = 1
+      } else if (planId === '511651885459963904' || planId === '511651880837840897') {
+        skuId = '521847234246082599'
+        premiumType = 2
+      }
+      const userSubs = await getUserSubscriptions(currentUser)
+      const existingSub = userSubs.find((s) => s.id === subscriptionId) || userSubs[0] || {
+        id: subscriptionId,
+        type: 1,
+        status: 1,
+        created_at: now(),
+        payment_gateway: 1,
+        currency: 'eur',
+      }
+      const updatedSub = {
+        ...existingSub,
+        plan_id: planId,
+        sku_id: skuId,
+        status: 1,
+        canceled_at: null,
+        items: [
+          {
+            id: (firstItem?.id as string) || `item_${Date.now()}`,
+            plan_id: planId,
+            quantity: Number(firstItem?.quantity) || 1,
+          },
+        ],
+      }
+      await saveUserSubscription(currentUser, updatedSub)
+      await updateUser(currentUser, { premium_type: premiumType })
+      await broadcastGatewayEvent('USER_UPDATE', { id: currentUser, premium_type: premiumType })
+      await broadcastGatewayEvent('USER_SUBSCRIPTIONS_UPDATE', {})
+      await broadcastGatewayEvent('BILLING_SUBSCRIPTION_UPDATE', updatedSub)
+      return json(updatedSub)
+    }
+  }
+
+  // Guild boost apply (PUT /guilds/:guildId/premium/subscriptions)
+  if (resource === 'guilds' && resourceId && subresource === 'premium' && subId === 'subscriptions') {
+    const { applyGuildBoostSlots } = await import('@/lib/discord-store')
+    const slotIds = Array.isArray(input.user_premium_guild_subscription_slot_ids)
+      ? (input.user_premium_guild_subscription_slot_ids as string[])
+      : []
+    if (slotIds.length === 0) return validationError('user_premium_guild_subscription_slot_ids is required')
+    try {
+      const applied = await applyGuildBoostSlots(currentUser, resourceId, slotIds)
+      return json(applied)
+    } catch (e: any) {
+      return error(50000, e.message, 400)
     }
   }
 
@@ -2678,6 +2843,40 @@ async function handleDelete(request: NextRequest, { params }: Params) {
   if (resource === 'billing' && resourceId && ['payment-sources', 'subscriptions', 'invoices', 'billing-events'].includes(resourceId) && subresource) {
     const names = { 'payment-sources': 'payment_sources', subscriptions: 'subscriptions', invoices: 'invoices', 'billing-events': 'billing_events' } as const
     return (await deleteCollectionItem(names[resourceId as keyof typeof names], subresource)) ? new NextResponse(null, { status: 204 }) : error(10013, `Unknown ${resourceId}`, 404)
+  }
+  if (resource === 'users' && resourceId === '@me' && subresource === 'billing' && subId === 'subscriptions') {
+    const subscriptionId = action
+    const { getUserSubscriptions, deleteUserSubscription, updateUser } = await import('@/lib/discord-store')
+    const userSubs = await getUserSubscriptions(currentUser)
+    const found = userSubs.find((s) => s.id === subscriptionId) || userSubs[0]
+
+    await deleteUserSubscription(currentUser, subscriptionId)
+    await updateUser(currentUser, { premium_type: 0, premium_since: null })
+
+    const canceledPayload = found
+      ? {
+          ...found,
+          status: 4, // ENDED
+          canceled_at: now(),
+          metadata: { ended_at: now() },
+        }
+      : { id: subscriptionId, status: 4, canceled_at: now() }
+
+    await broadcastGatewayEvent('USER_UPDATE', { id: currentUser, premium_type: 0, premium_since: null })
+    await broadcastGatewayEvent('USER_SUBSCRIPTIONS_UPDATE', {})
+    await broadcastGatewayEvent('BILLING_SUBSCRIPTION_UPDATE', canceledPayload)
+
+    return new NextResponse(null, { status: 204 })
+  }
+  if (resource === 'guilds' && resourceId && subresource === 'premium' && subId === 'subscriptions' && action) {
+    const { unapplyGuildBoost } = await import('@/lib/discord-store')
+    await unapplyGuildBoost(currentUser, resourceId, action)
+    return new NextResponse(null, { status: 204 })
+  }
+  if (resource === 'users' && resourceId === '@me' && subresource === 'entitlements' && subId === 'gift-codes' && action) {
+    const { revokeGiftCode } = await import('@/lib/discord-store')
+    await revokeGiftCode(currentUser, action)
+    return new NextResponse(null, { status: 204 })
   }
   if (resource === 'users' && resourceId === '@me' && subresource === 'connections') {
     if (subId && action) {
