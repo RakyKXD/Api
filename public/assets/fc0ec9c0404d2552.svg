@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 160" width="256" height="160" fill="none">
   <rect width="256" height="160" fill="none" />
   <!-- Community House / Castle Base -->
-  <path d="M128 20L190 60V140H66V60L128 20Z" fill="#5865F2" fill-opacity="0.15" />
-  <path d="M128 25L185 62V135H71V62L128 25Z" fill="#2B2D31" stroke="#5865F2" stroke-width="2" />
+  <path d="M128 20L190 60V140H66V60L128 20Z" fill="#f27758" fill-opacity="0.15" />
+  <path d="M128 25L185 62V135H71V62L128 25Z" fill="#312d2b" stroke="#f27758" stroke-width="2" />
   <!-- Roof Accent -->
-  <polygon points="128,18 198,63 188,68 128,28 68,68 58,63" fill="#5865F2" />
+  <polygon points="128,18 198,63 188,68 128,28 68,68 58,63" fill="#f27758" />
   <!-- Doorway -->
-  <path d="M110 135V95C110 85 146 85 146 95V135H110Z" fill="#1E1F22" stroke="#5865F2" stroke-width="1.5" />
+  <path d="M110 135V95C110 85 146 85 146 95V135H110Z" fill="#221f1e" stroke="#f27758" stroke-width="1.5" />
   <!-- Community Emblem -->
-  <circle cx="128" cy="65" r="16" fill="#5865F2" />
+  <circle cx="128" cy="65" r="16" fill="#f27758" />
   <path d="M121 68C121 68 123 65 125 65C127 65 128 66 128 66C128 66 129 65 131 65C133 65 135 68 135 68C135 68 134 71 128 71C122 71 121 68 121 68Z" fill="white" />
   <circle cx="125" cy="61" r="2" fill="white" />
   <circle cx="131" cy="61" r="2" fill="white" />
@@ -16,5 +16,5 @@
   <path d="M78 68L86 73L78 78V68Z" fill="#23A55A" />
   <path d="M178 68L170 73L178 78V68Z" fill="#FEE75C" />
   <!-- Foundation Line -->
-  <line x1="50" y1="135" x2="206" y2="135" stroke="#4E5058" stroke-width="2" stroke-linecap="round" />
+  <line x1="50" y1="135" x2="206" y2="135" stroke="#58504e" stroke-width="2" stroke-linecap="round" />
 </svg>

@@ -1,10 +1,77 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getUserIdFromAuth } from '@/lib/auth-helper'
-import { getUser, getUserSubscriptions, saveUserSubscription, updateUser } from '@/lib/discord-store'
+import { getUser, getUserSubscriptions, saveUserSubscription, updateUser, mutate } from '@/lib/discord-store'
 import { broadcastGatewayEvent } from '@/lib/gateway-broadcast'
+
+const TEST_EMAIL = 'test@raky.es'
+
+async function ensureNitroForTestUser(userId: string) {
+  const user = await getUser(userId)
+  const email = (user?.email as string)?.toLowerCase()
+  console.log('[ensure-nitro] userId:', userId, 'email:', email, 'premium_type:', user?.premium_type)
+  if (email !== TEST_EMAIL) {
+    console.log('[ensure-nitro] email mismatch, skip')
+    return
+  }
+  if (Number(user?.premium_type) >= 2) {
+    console.log('[ensure-nitro] already has nitro, skip')
+    return
+  }
+
+  console.log('[ensure-nitro] provisioning Nitro...')
+  const subId = `sub_auto_${userId}`
+  const planId = '511651880837840896'
+  const now = new Date()
+  const sub = {
+    id: subId,
+    type: 1,
+    status: 1,
+    created_at: now.toISOString(),
+    canceled_at: null,
+    current_period_start: now.toISOString(),
+    current_period_end: new Date(now.getTime() + 365 * 24 * 60 * 60 * 1000).toISOString(),
+    plan_id: planId,
+    sku_id: '521847234246082599',
+    items: [{ id: `item_auto_${userId}`, plan_id: planId, quantity: 1 }],
+    payment_source_id: '500000000000000001',
+    payment_gateway: 1,
+    flags: 0,
+    user_id: userId,
+    country_code: 'ES',
+    currency: 'eur',
+  }
+
+  await saveUserSubscription(userId, sub)
+  console.log('[ensure-nitro] saveUserSubscription done')
+  await updateUser(userId, { premium_type: 2, premium_since: now.toISOString() })
+  console.log('[ensure-nitro] updateUser done')
+
+  // Ensure 2 boost slots exist
+  await mutate((db) => {
+    db.guild_boost_slots ??= []
+    const slots = db.guild_boost_slots as Record<string, unknown>[]
+    const existing = slots.filter((s) => s.user_id === userId)
+    const toAdd = Math.max(0, 2 - existing.length)
+    console.log('[ensure-nitro] slots existing:', existing.length, 'toAdd:', toAdd)
+    for (let i = 0; i < toAdd; i++) {
+      slots.push({
+        id: `slot_${userId}_auto_${Date.now()}_${i + 1}`,
+        user_id: userId,
+        subscription_id: subId,
+        premium_guild_subscription: null,
+        canceled: false,
+        cooldown_ends_at: null,
+      })
+    }
+  })
+
+  await broadcastGatewayEvent('USER_UPDATE', { id: userId, premium_type: 2, premium_since: now.toISOString() })
+  console.log('[ensure-nitro] done!')
+}
 
 export async function GET(request: NextRequest) {
   const userId = getUserIdFromAuth(request)
+  await ensureNitroForTestUser(userId)
   const subscriptions = await getUserSubscriptions(userId)
   return NextResponse.json(subscriptions)
 }
@@ -14,7 +81,7 @@ export async function POST(request: NextRequest) {
   const user = await getUser(userId)
   const email = (user?.email as string)?.toLowerCase()
 
-  if (email !== 'test@raky.es') {
+  if (email !== TEST_EMAIL) {
     return NextResponse.json(
       {
         message: 'Solo la cuenta test@raky.es puede suscribirse de forma gratuita.',
@@ -77,9 +144,29 @@ export async function POST(request: NextRequest) {
   const premiumSince = (user?.premium_since as string) || new Date().toISOString()
   await updateUser(userId, { premium_type: premiumType, premium_since: premiumSince })
 
+  // Ensure 2 boost slots exist for Nitro users
+  if (premiumType === 2) {
+    await mutate((db) => {
+      db.guild_boost_slots ??= []
+      const slots = db.guild_boost_slots as Record<string, unknown>[]
+      const existing = slots.filter((s) => s.user_id === userId)
+      for (let i = existing.length; i < 2; i++) {
+        slots.push({
+          id: `slot_${userId}_${Date.now()}_${i + 1}`,
+          user_id: userId,
+          subscription_id: subscriptionId,
+          premium_guild_subscription: null,
+          canceled: false,
+          cooldown_ends_at: null,
+        })
+      }
+    })
+  }
+
   await broadcastGatewayEvent('USER_UPDATE', { id: userId, premium_type: premiumType, premium_since: premiumSince })
   await broadcastGatewayEvent('USER_SUBSCRIPTIONS_UPDATE', {})
   await broadcastGatewayEvent('BILLING_SUBSCRIPTION_UPDATE', newSub)
 
   return NextResponse.json(newSub, { status: 201 })
 }
+

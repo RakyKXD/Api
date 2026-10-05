@@ -4,8 +4,10 @@ import {
   getUser,
   getUserSubscriptions,
   saveUserSubscription,
+  updateUser,
   cancelUserSubscription,
   isSubscriptionCancelPayload,
+  applyBoostPurchasePatch,
 } from '@/lib/discord-store'
 import { broadcastGatewayEvent } from '@/lib/gateway-broadcast'
 
@@ -44,6 +46,15 @@ export async function PATCH(request: NextRequest, { params }: Context) {
   // suscripción y el usuario "recupera" el Nitro que acaba de cancelar.
   if (isSubscriptionCancelPayload(body)) {
     return NextResponse.json(await cancelUserSubscription(userId, subscriptionId))
+  }
+
+  // Compra de mejoras sobre esta suscripción (modal de mejora del servidor):
+  // cobra, concede los slots sin aplicar y guarda Nitro + mejoras en los items.
+  // Si no, caería en el cambio de plan de abajo y los slots nunca aparecerían
+  // en `GET .../premium/subscription-slots`.
+  const boostPurchase = await applyBoostPurchasePatch(userId, subscriptionId, body)
+  if (boostPurchase) {
+    return NextResponse.json(boostPurchase)
   }
 
   const user = await getUser(userId)

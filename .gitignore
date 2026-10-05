@@ -15,3 +15,6 @@ node_modules
 .DS_Store
 data/*.tmp
 *.log
+# CDP test scripts + perfiles de navegador de pruebas (muy grandes; Tailwind v4 los escanea)
+scratch/
+

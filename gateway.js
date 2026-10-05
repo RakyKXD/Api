@@ -41,8 +41,14 @@ const server = http.createServer((req, res) => {
         // El contador no se incrementaba nunca: /status siempre decía
         // dispatchSent: 0 y no había forma de saber si el REST estaba avisando al
         // gateway (p. ej. MESSAGE_CREATE, CHANNEL_CREATE, RELATIONSHIP_REMOVE).
+        //
+        // `user_id` opcional: los eventos de relaciones (RELATIONSHIP_ADD/UPDATE/
+        // REMOVE) van dirigidos a un solo usuario. Sin filtro, el cliente recibía
+        // la fila del OTRO usuario y se autoañadía como amigo (id === su propio id).
+        const targetUserId = payload.user_id ? String(payload.user_id) : null
         let sent = 0
         for (const client of clients) {
+          if (targetUserId && client.userId && String(client.userId) !== targetUserId) continue
           try {
             sendFrame(client, frame)
             sent += 1
@@ -213,6 +219,9 @@ server.on('upgrade', (req, socket, head) => {
             } catch {}
           }
           const matchedUser = db && db.users && db.users.find((u) => u.id === tokenUserId || u.username === tokenUserId)
+          // Guarda a qué usuario pertenece este socket: /dispatch lo usa para
+          // entregar eventos dirigidos (relaciones, presencia) solo a su dueño.
+          socket.userId = String(matchedUser?.id || tokenUserId || '900000000000000001')
           const testUser = {
             id: String(matchedUser?.id || tokenUserId || '900000000000000001'),
             username: String(matchedUser?.username || 'user'),
@@ -345,13 +354,16 @@ server.on('upgrade', (req, socket, head) => {
               max_presences: null,
               max_members: 250000,
               vanity_url_code: null,
-              premium_tier: 0,
-              premium_subscription_count: 0,
+              // Estos campos estaban fijos a 0, así que el cliente creía que el
+              // servidor no tenía ninguna mejora ("No hay mejoras") aunque el
+              // REST devolviese tier 3 con 16 boosts. Ahora se toman del store.
+              premium_tier: Number(g.premium_tier) || 0,
+              premium_subscription_count: Number(g.premium_subscription_count) || 0,
               preferred_locale: 'en-US',
               rules_channel_id: null,
               safety_alerts_channel_id: null,
               public_updates_channel_id: null,
-              premium_progress_bar_enabled: false,
+              premium_progress_bar_enabled: Boolean(g.premium_progress_bar_enabled),
               nsfw: false,
               nsfw_level: 0,
             }
@@ -420,6 +432,12 @@ server.on('upgrade', (req, socket, head) => {
                   type: Number(r.type || 1),
                   nickname: r.nickname || null,
                   user: u,
+                  // `note` es la nota de la solicitud de amistad ("Personaliza tu
+                  // solicitud"); sin ella el receptor nunca veía el mensaje.
+                  note: typeof r.note === 'string' && r.note ? r.note : undefined,
+                  user_ignored: Boolean(r.user_ignored),
+                  stranger_request: Boolean(r.stranger_request),
+                  is_stranger_request: Boolean(r.stranger_request),
                   since: r.since || new Date().toISOString(),
                 }
               })

@@ -10,6 +10,56 @@ const TRANSPARENT_PNG = Buffer.from(
   'base64'
 )
 
+// Animación Lottie mínima válida (un rectángulo estático). Si el fichero
+// `.lottiejson` solicitado no existe localmente se devuelve esto: antes caía al
+// fallback de abajo (200 con body vacío) y `loadAnimation` del cliente lanzaba
+// "Unexpected end of JSON input", dejando el diálogo de pago (p. ej. el checkout
+// de regalo "Finalizar") girando en spinner para siempre.
+const MINIMAL_LOTTIE = {
+  v: '5.7.4',
+  fr: 60,
+  ip: 0,
+  op: 60,
+  w: 100,
+  h: 100,
+  nm: 'asset-stub',
+  ddd: 0,
+  assets: [],
+  layers: [
+    {
+      ddd: 0,
+      ind: 1,
+      ty: 4,
+      nm: 'rect',
+      sr: 1,
+      ks: {
+        o: { a: 0, k: 100 },
+        r: { a: 0, k: 0 },
+        p: { a: 0, k: [50, 50, 0] },
+        a: { a: 0, k: [0, 0, 0] },
+        s: { a: 0, k: [100, 100, 100] },
+      },
+      ao: 0,
+      shapes: [
+        {
+          ty: 'gr',
+          it: [
+            { ty: 'rc', d: 1, s: { a: 0, k: [40, 40] }, p: { a: 0, k: [0, 0] }, r: { a: 0, k: 0 }, nm: 'Path', mn: 'ADBE Vector Shape - Rect' },
+            { ty: 'fl', c: { a: 0, k: [0.35, 0.4, 0.9, 1] }, o: { a: 0, k: 100 }, nm: 'Fill', mn: 'ADBE Vector Graphic - Fill' },
+            { ty: 'tr', p: { a: 0, k: [0, 0] }, a: { a: 0, k: [0, 0] }, s: { a: 0, k: [100, 100] }, r: { a: 0, k: 0 }, o: { a: 0, k: 100 }, nm: 'Transform' },
+          ],
+          nm: 'Rectangle',
+          mn: 'ADBE Vector Group',
+        },
+      ],
+      ip: 0,
+      op: 60,
+      st: 0,
+      bm: 0,
+    },
+  ],
+}
+
 export async function GET(request: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
   const { path: segments } = await params
   const filename = segments.join('/')
@@ -108,6 +158,13 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     return new NextResponse('Not found', {
       status: 404,
       headers: { 'Content-Type': 'text/plain' },
+    })
+  }
+
+  // Animaciones Lottie: nunca body vacío (rompe JSON.parse en loadAnimation).
+  if (ext === '.lottiejson' || ext === '.lottie') {
+    return NextResponse.json(MINIMAL_LOTTIE, {
+      headers: { 'Cache-Control': 'public, max-age=86400' },
     })
   }
 

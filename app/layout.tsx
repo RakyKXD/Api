@@ -3,25 +3,16 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Discord-compatible API v10',
-  description: 'REST API compatible con el formato de recursos de Discord v10.',
+  title: 'Raky',
+  description: 'Raky - Red de comunicación con diseño Liquid Glass y soporte E2EE.',
   generator: 'v0.app',
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        url: '/2.png',
       },
     ],
-    apple: '/apple-icon.png',
+    apple: '/2.png',
   },
 }
 

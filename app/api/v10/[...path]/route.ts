@@ -673,6 +673,91 @@ function skuIdFromListingId(listingId: string) {
   return STORE_SKU_TEMPLATES.find((template) => snowflakeWithOffset(template.id, 200) === listingId)?.id ?? listingId
 }
 
+/**
+ * Interpreta el cuerpo de una compra/suscripción (Nitro o boosts) y devuelve el
+ * SKU, el tipo de Nitro resultante y el precio, para que el mock no dependa de
+ * una tabla de `if` duplicada en cada handler.
+ */
+function nitroPlanInfo(input: Record<string, unknown>) {
+  const items = (Array.isArray(input.items) ? input.items : []) as Record<string, unknown>[]
+  const firstItem = items[0]
+  const boostSku = '590663762298667008'
+  const boostPlanIds = ['590665532894740483', '590665538238152709', '944037355453415424', '944037391444738048']
+  const isBoostItem = (item: Record<string, unknown> | undefined) =>
+    !!item && (String(item.sku_id) === boostSku || boostPlanIds.includes(String(item.plan_id)))
+
+  // El cliente manda todos los items juntos: primero la suscripción de Nitro
+  // que ya existe y después los boosts que quiere añadir. Mirar solo el primer
+  // item hacía que comprar boosts se registrara como una segunda suscripción
+  // de Nitro, en vez de añadir slots de mejora.
+  const boostItem = items.find((item) => isBoostItem(item)) || (isBoostItem(input) ? input : undefined)
+
+  const planId =
+    (boostItem?.plan_id as string) ||
+    (firstItem?.plan_id as string) ||
+    (input.plan_id as string) ||
+    (input.subscription_plan_id as string) ||
+    '511651880837840896'
+  const skuFromInput =
+    (boostItem?.sku_id as string) || (firstItem?.sku_id as string) || (input.sku_id as string) || ''
+
+  const isBoost = skuFromInput === boostSku || boostPlanIds.includes(planId)
+
+  let skuId = '521847234246082599'
+  let premiumType = 2
+  let price = 999
+
+  if (isBoost) {
+    skuId = boostSku
+    premiumType = 0
+    price =
+      planId === '590665538238152709' ? 4999 : planId === '944037355453415424' ? 1497 : planId === '944037391444738048' ? 2994 : 499
+  } else if (
+    skuFromInput === '978380684370378762' ||
+    planId === '978380692553465866' ||
+    planId === '1024422698568122368' ||
+    planId === '978387023482069042'
+  ) {
+    skuId = '978380684370378762'
+    premiumType = 3
+    price = planId === '1024422698568122368' ? 2999 : 299
+  } else if (skuFromInput === '521846918637420545' || planId === '511651871736201216' || planId === '511651876987469824') {
+    skuId = '521846918637420545'
+    premiumType = 1
+    price = planId === '511651876987469824' ? 2999 : 499
+  } else if (planId === '511651885459963904' || planId === '511651880837840897') {
+    skuId = '521847234246082599'
+    premiumType = 2
+    price = 9999
+  } else if (planId === '642251038925127690') {
+    price = 2499
+  } else if (planId === '944037208325619722') {
+    price = 4999
+  }
+
+  // Sanidad: el cliente ha mandado cantidades compuestas (p. ej. 3e39) en la
+  // compra de mejoras; se topan a 100 para que ni `sub.items` ni las facturas
+  // se disparen.
+  const rawQuantity = Math.max(1, Number(boostItem?.quantity) || Number(firstItem?.quantity) || Number(input.quantity) || 1)
+  const quantity = Math.min(100, Math.round(rawQuantity))
+  return { planId, skuId, premiumType, isBoost, price, quantity }
+}
+
+/**
+ * Precio y SKU reales de un `plan_id` concreto, buscados en el catálogo del
+ * store. Lo usan las facturas preview: el cliente pide un `invoice_item` por
+ * cada item del pedido (plan de Nitro + boosts) y su invariante
+ * "Missing guild boosting invoice item" revienta si falta el de boosts.
+ */
+function planInfoForPlanId(planId: string) {
+  for (const template of STORE_SKU_TEMPLATES) {
+    const plan = template.plans.find((candidate) => candidate.id === planId)
+    if (plan) return { planId, skuId: template.id, price: plan.amount }
+  }
+  const fallback = nitroPlanInfo({ plan_id: planId })
+  return { planId: fallback.planId, skuId: fallback.skuId, price: fallback.price }
+}
+
 /* ---------------------------------------------------------------------------
  * Stable defaults for background endpoints
  *
@@ -985,13 +1070,45 @@ async function handleGet(request: NextRequest, { params }: Params) {
   }
   // /promotions -> /users/@me/outbound-promotions ya está arriba; los enlaces de
   // afiliación y las suscripciones premium de un gremio también son listas.
-  if (resource === 'guilds' && resourceId && subresource === 'premium' && subId === 'subscriptions') return json([])
+  // Los boosts aplicados a un gremio alimentan la pestaña de boosts. Devolver
+  // siempre `[]` dejaba esa vista vacía aunque el servidor tuviera boosts, así
+  // que se leen del store.
+  if (resource === 'guilds' && resourceId && subresource === 'premium' && subId === 'subscriptions') {
+    const { getGuildBoosts } = await import('@/lib/discord-store')
+    return json(await getGuildBoosts(resourceId))
+  }
   if (resource === 'applications' && resourceId === 'detectable') return json([])
   // `GET /applications/{id}/skus`: el cliente lo recorre con `for (const sku of
   // body)` en SKUS_FETCH_SUCCESS, así que la respuesta debe ser una LISTA. Al caer
   // en el objeto genérico lanzaba "TypeError: n is not iterable" y se llevaba por
   // delante la tienda, la wishlist y los regalos (parte de las "funciones Nitro").
   if (resource === 'applications' && resourceId && subresource === 'skus') return json([])
+  // `GET /applications/{id}/public`: los metadatos públicos de la aplicación se
+  // piden dentro del checkout (flujo de regalo de Nitro). El 404 dejaba el cuerpo
+  // del diálogo "Finalizar" en un LoadingContainer eterno (spinner sin fin) y la
+  // compra nunca llegaba a emitir el POST de creación del gift code.
+  if (resource === 'applications' && resourceId && subresource === 'public') {
+    return json({
+      id: resourceId,
+      name: 'Discord',
+      icon: null,
+      description: 'Make your space yours with Discord, the all-in-one place to talk and hang out.',
+      summary: '',
+      type: null,
+      hook: true,
+      bot_public: true,
+      bot_require_code_grant: false,
+      verify_key: '',
+      flags: 0,
+      tags: [],
+      guild_id: null,
+      is_verified: true,
+      interactions_endpoint_url: null,
+      approximate_guild_count: 0,
+      redirect_uris: [],
+      rpc_origins: [],
+    })
+  }
 
   /* ---------------------------------------------------------------------------
    * Experiments (legacy) and Apex experiments
@@ -1297,6 +1414,7 @@ async function handleGet(request: NextRequest, { params }: Params) {
     return channels ? json(channels) : error(10004, 'Unknown Guild', 404)
   }
   if (resource === 'users' && resourceId === '@me' && subresource === 'relationships') {
+    // `note` es la nota personalizable de la solicitud ("Personaliza tu solicitud").
     const { listRelationships } = await import('@/lib/discord-store')
     return json(await listRelationships(currentUser))
   }
@@ -1349,8 +1467,14 @@ async function handleGet(request: NextRequest, { params }: Params) {
     // function" y dejaba a medias la carga de las funciones de Nitro.
     if (subId === 'nitro-affinity') return json([])
     if (subId === 'subscriptions') {
-      const { getUserSubscriptions } = await import('@/lib/discord-store')
-      const userSubs = await getUserSubscriptions(currentUser)
+      const { getUserSubscriptions, ensureNitroForTestUser } = await import('@/lib/discord-store')
+      // Este catch-all es el ÚNICO handler vivo para /users/@me/** (los
+      // route.ts de `users/@me/...` no se registran: Next trata `@me` como
+      // parallel route), así que aquí hay que provisionar el Nitro de
+      // test@raky.es. Se devuelven TODAS las suscripciones, incluidas las
+      // canceladas, para que sigan visibles después de cancelar.
+      await ensureNitroForTestUser(currentUser)
+      const userSubs = await getUserSubscriptions(currentUser, true)
       if (action === 'preview') {
         const sub = userSubs[0]
         const planId = (sub?.plan_id as string) || '511651880837840896'
@@ -1411,7 +1535,13 @@ async function handleGet(request: NextRequest, { params }: Params) {
           status: 1,
         })
       }
-      if (action && extraAction === 'invoices') return json([])
+      if (action && extraAction === 'invoices') {
+        // Historial de facturas de UNA suscripción: antes devolvía `[]` y la
+        // ficha de la suscripción no mostraba ningún pago.
+        const { getUserInvoices } = await import('@/lib/discord-store')
+        const invoices = await getUserInvoices(currentUser)
+        return json(invoices.filter((invoice) => invoice.subscription_id === action))
+      }
       if (action) {
         const found = userSubs.find((s) => s.id === action)
         return found ? json(found) : error(10013, 'Unknown Subscription', 404)
@@ -1419,30 +1549,29 @@ async function handleGet(request: NextRequest, { params }: Params) {
       return json(userSubs)
     }
     if (subId === 'payment-sources') {
-      return json([
-        {
-          id: '500000000000000001',
+      const { getUserPaymentSources, createUserPaymentSource } = await import('@/lib/discord-store')
+      let sources = await getUserPaymentSources(currentUser)
+      // Si el usuario no tiene ninguna tarjeta, dejamos una de prueba para que
+      // el modal de pago muestre una tarjeta lista y el cobro simulado pueda
+      // completarse (el cliente también permite añadir otra con el formulario).
+      if (sources.length === 0) {
+        await createUserPaymentSource(currentUser, {
           type: 1,
-          invalid: false,
-          flags: 0,
-          default: true,
-          billing_address: {
-            name: 'User',
-            line_1: 'Street 123',
-            line_2: null,
-            city: 'Madrid',
-            state: 'MD',
-            country: 'ES',
-            postal_code: '28001',
-          },
           brand: 'visa',
           last_4: '4242',
           expires_month: 12,
           expires_year: 2030,
-        },
-      ])
+          billing_address: { name: 'Test User', line_1: 'Street 123', city: 'Madrid', state: 'MD', country: 'ES', postal_code: '28001' },
+        })
+        sources = await getUserPaymentSources(currentUser)
+      }
+      if (action) return json(sources.find((source) => source.id === action) ?? sources[0] ?? {})
+      return json(sources)
     }
-    if (subId === 'invoices') return json([])
+    if (subId === 'invoices') {
+      const { getUserInvoices } = await import('@/lib/discord-store')
+      return json(await getUserInvoices(currentUser))
+    }
     if (subId === 'payments') return json([])
     // The Nitro panel/wishlist also asks for plans through billing; answer with
     // the same objects as /store/published-listings/skus/{sku}/subscription-plans
@@ -1476,6 +1605,15 @@ async function handleGet(request: NextRequest, { params }: Params) {
   if (resource === 'guilds' && resourceId && subresource === 'premium' && subId === 'subscriptions') {
     const { getGuildBoosts } = await import('@/lib/discord-store')
     return json(await getGuildBoosts(resourceId))
+  }
+  // `GET /guilds/{id}/powerups?include_ends_at=true` (GUILD_POWERUPS): la
+  // pestaña de mejoras de servidor lo consume con
+  // GUILD_BOOST_ENTITLEMENTS_FETCH_SUCCESS (unlockedPowerups). Sin esta rama
+  // caía en el fallback genérico del guild (`guild['powerups'] ?? []`) y
+  // devolvía `[]`, dejando la pestaña vacía.
+  if (resource === 'guilds' && resourceId && subresource === 'powerups') {
+    const { getGuildPowerupEntitlements } = await import('@/lib/powerups')
+    return json(await getGuildPowerupEntitlements(resourceId))
   }
   if (resource === 'applications' && subresource === 'entitlements') return json([])
   if (resource === 'users' && resourceId === '@me' && subresource === 'affinities') {
@@ -2251,8 +2389,15 @@ async function handlePost(request: NextRequest, { params }: Params) {
     return json(await verifyBotApplication(resourceId, String(input.repo_url || ''), String(input.dni_doc || 'DNI_VERIFIED')))
   }
   if (resource === 'users' && resourceId === '@me' && subresource === 'relationships') {
-    if (typeof input.id !== 'string' || typeof input.type !== 'number') return validationError('id and type are required')
-    return json(await createCollectionItem('relationships', { ...input, user_id: currentUser }), 201)
+    // fosscord: POST /relationships recibe {username, discriminator, note} y crea
+    // las filas espejo OUTGOING(4)/INCOMING(3) con la nota de la solicitud.
+    // Antes exigía `input.id && input.type`, así que el formulario de amistades
+    // del cliente siempre devolvía 400 y "casi nada funcionaba".
+    const { sendFriendRequest } = await import('@/lib/relationships')
+    const outcome = await sendFriendRequest(currentUser, input)
+    return outcome.status === 204
+      ? new NextResponse(null, { status: 204 })
+      : json(outcome.body ?? { code: outcome.status }, outcome.status)
   }
   if (resource === 'applications' && resourceId && subresource === 'commands') {
     if (typeof input.name !== 'string' || !input.name) return validationError('name is required')
@@ -2266,35 +2411,91 @@ async function handlePost(request: NextRequest, { params }: Params) {
     return json(publicUserSetting((await saveUserSetting('user_consents', currentUser, next)) ?? next))
   }
   if (resource === 'users' && resourceId === '@me' && subresource === 'billing') {
+    if (subId === 'payment-sources') {
+      // Añadir una tarjeta desde el formulario del modal de pago.
+      if (action === 'validate-billing-address') return json({ valid: true })
+      const { createUserPaymentSource } = await import('@/lib/discord-store')
+      return json(await createUserPaymentSource(currentUser, input), 201)
+    }
+    if (subId === 'stripe') {
+      // Stratos/Stripe payment intent: el cliente confirma el cobro de la
+      // tarjeta y espera `succeeded` para continuar con la compra.
+      const paymentId = path[6] || `pi_${Date.now()}`
+      return json({ id: paymentId, status: 'succeeded', client_secret: 'mock_client_secret', payment_method: null })
+    }
+    if (subId === 'payments') {
+      if (action === 'void') return new NextResponse(null, { status: 204 })
+      return json({ id: path[5] || `pay_${Date.now()}`, status: 'succeeded', amount: 0, currency: 'eur' })
+    }
+    if (subId === 'subscriptions' && action === 'preview') {
+      // Vista previa de la factura: se devuelve el precio real del plan pedido
+      // (antes se ponía a 0 para test@raky.es y el modal de pago no aparecía).
+      const info = nitroPlanInfo(input)
+      const amount = info.price * info.quantity
+      return json({
+        id: `preview_${Date.now()}`,
+        invoice_items: [
+          {
+            id: `ii_${Date.now()}`,
+            subscription_plan_id: info.planId,
+            subscription_plan_price: info.price,
+            amount,
+            quantity: info.quantity,
+            discounts: [],
+            unit_price: { amount: info.price, currency: 'eur' },
+            tax: 0,
+            sku_id: info.skuId,
+          },
+        ],
+        total: amount,
+        subtotal: amount,
+        currency: (input.currency as string) || 'eur',
+        tax: 0,
+        tax_inclusive: true,
+        subscription_period_start: now(),
+        subscription_period_end: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+        status: 1,
+      })
+    }
     if (subId === 'subscriptions') {
-      const { getUser, saveUserSubscription, updateUser } = await import('@/lib/discord-store')
+      const {
+        getUser,
+        saveUserSubscription,
+        updateUser,
+        recordBillingInvoice,
+        purchaseGuildBoostSlots,
+        getUserPaymentSources,
+      } = await import('@/lib/discord-store')
       const user = await getUser(currentUser)
-      const email = (user?.email as string)?.toLowerCase()
-      if (email !== 'test@raky.es') {
-        return json({
-          message: 'Solo la cuenta test@raky.es puede suscribirse de forma gratuita.',
-          code: 50000,
-        }, 402)
-      }
       const items = Array.isArray(input.items) ? input.items : []
-      const firstItem = items[0] as Record<string, unknown> | undefined
-      const planId = (firstItem?.plan_id as string) || (input.plan_id as string) || '511651880837840896'
-      let skuId = '521847234246082599'
-      let premiumType = 2
-      if (
-        planId === '978380692553465866' ||
-        planId === '1024422698568122368' ||
-        planId === '978387023482069042'
-      ) {
-        skuId = '978380684370378762'
-        premiumType = 3
-      } else if (planId === '511651871736201216' || planId === '511651876987469824') {
-        skuId = '521846918637420545'
-        premiumType = 1
-      } else if (planId === '511651885459963904' || planId === '511651880837840897') {
-        skuId = '521847234246082599'
-        premiumType = 2
+      const info = nitroPlanInfo(input)
+      const { planId, skuId, premiumType, isBoost, price, quantity } = info
+
+      // Sin método de pago no se completa la compra: el usuario tiene que pasar
+      // por el formulario de tarjeta del modal de pago.
+      const paymentSources = await getUserPaymentSources(currentUser)
+      const paymentSourceId =
+        (input.payment_source_id as string) ||
+        (paymentSources.find((source) => source.default)?.id as string) ||
+        (paymentSources[0]?.id as string)
+      if (!paymentSourceId) {
+        return json({ message: 'Se requiere un método de pago para completar la compra.', code: 50000 }, 402)
       }
+
+      // Comprar boosts no crea una suscripción de Nitro: añade slots que luego
+      // se aplican al servidor y deja la factura del cobro simulado.
+      if (isBoost) {
+        const created = await purchaseGuildBoostSlots(currentUser, quantity)
+        await recordBillingInvoice(currentUser, {
+          amount: price * quantity,
+          currency: (input.currency as string) || 'eur',
+          payment_source_id: paymentSourceId,
+          items: [{ sku_id: skuId, plan_id: planId, quantity }],
+        })
+        await broadcastGatewayEvent('USER_SUBSCRIPTIONS_UPDATE', {})
+        return json(created, 201)
+      }
+
       const newSub = {
         id: `sub_${Date.now()}`,
         type: 1,
@@ -2306,7 +2507,7 @@ async function handlePost(request: NextRequest, { params }: Params) {
         plan_id: planId,
         sku_id: skuId,
         items: [{ id: `item_${Date.now()}`, plan_id: planId, quantity: 1 }],
-        payment_source_id: (input.payment_source_id as string) || '500000000000000001',
+        payment_source_id: paymentSourceId,
         payment_gateway: 1,
         flags: 0,
         user_id: currentUser,
@@ -2314,6 +2515,14 @@ async function handlePost(request: NextRequest, { params }: Params) {
         currency: (input.currency as string) || 'eur',
       }
       await saveUserSubscription(currentUser, newSub)
+      // Pago simulado: se registra la factura del cobro contra la tarjeta.
+      await recordBillingInvoice(currentUser, {
+        amount: price,
+        currency: (input.currency as string) || 'eur',
+        payment_source_id: paymentSourceId,
+        subscription_id: newSub.id,
+        items: [{ sku_id: skuId, plan_id: planId, quantity: 1 }],
+      })
       const premiumSince = (user?.premium_since as string) || now()
       await updateUser(currentUser, { premium_type: premiumType, premium_since: premiumSince })
       await broadcastGatewayEvent('USER_UPDATE', { id: currentUser, premium_type: premiumType, premium_since: premiumSince })
@@ -2334,12 +2543,8 @@ async function handlePost(request: NextRequest, { params }: Params) {
     }
   }
   if (resource === 'users' && resourceId === '@me' && subresource === 'entitlements' && subId === 'gift-codes') {
-    const { getUser, createGiftCode } = await import('@/lib/discord-store')
-    const user = await getUser(currentUser)
-    const email = (user?.email as string)?.toLowerCase()
-    if (email !== 'test@raky.es') {
-      return json({ message: 'Solo la cuenta test@raky.es puede regalar suscripciones de forma gratuita.', code: 50000 }, 402)
-    }
+    // Crear un regalo de Nitro. El pago se valida antes en el flujo de compra.
+    const { createGiftCode } = await import('@/lib/discord-store')
     const skuId = String(input.sku_id || '521847234246082599')
     const planId = input.subscription_plan_id as string | undefined
     const giftStyle = Number(input.gift_style) || 0
@@ -2347,17 +2552,78 @@ async function handlePost(request: NextRequest, { params }: Params) {
     return json(gift, 201)
   }
   if (resource === 'store' && resourceId === 'skus' && subId === 'purchase') {
-    const { getUser, createGiftCode } = await import('@/lib/discord-store')
-    const user = await getUser(currentUser)
-    const email = (user?.email as string)?.toLowerCase()
-    if (email !== 'test@raky.es') {
-      return json({ message: 'Solo la cuenta test@raky.es puede regalar suscripciones de forma gratuita.', code: 50000 }, 402)
-    }
+    const {
+      createGiftCode,
+      purchaseGuildBoostSlots,
+      recordBillingInvoice,
+      getUserPaymentSources,
+      saveUserSubscription,
+      updateUser,
+    } = await import('@/lib/discord-store')
     const skuId = subresource || '521847234246082599'
-    const planId = (input.subscription_plan_id as string) || (skuId === '978380684370378762' ? '978380692553465866' : '511651880837840896')
+    const isGift = Boolean(input.gift) || Boolean(input.is_gift) || Boolean(input.gifting_facet)
     const giftStyle = Number(input.gift_style) || 0
-    const gift = await createGiftCode(currentUser, skuId, planId, giftStyle)
-    return json({ entitlements: [], gift_code: gift.code, library_applications: [] })
+    const info = nitroPlanInfo({ ...input, sku_id: skuId })
+    const planId = info.planId
+    const currency = (input.currency as string) || 'eur'
+
+    // El pago se exige también para regalar/comprar. Si no hay tarjeta, el
+    // cliente ya habrá abierto el formulario de pago antes de llegar aquí.
+    const paymentSources = await getUserPaymentSources(currentUser)
+    const paymentSourceId =
+      (input.payment_source_id as string) ||
+      (paymentSources.find((source) => source.default)?.id as string) ||
+      (paymentSources[0]?.id as string)
+    if (!paymentSourceId && !isGift) {
+      return json({ message: 'Se requiere un método de pago para completar la compra.', code: 50000 }, 402)
+    }
+
+    // Cobro simulado de la compra.
+    await recordBillingInvoice(currentUser, {
+      amount: info.price * info.quantity,
+      currency,
+      payment_source_id: paymentSourceId ?? null,
+      items: [{ sku_id: skuId, plan_id: planId, quantity: info.quantity }],
+    })
+
+    // Compra de boosts adicionales.
+    if (info.isBoost) {
+      const created = await purchaseGuildBoostSlots(currentUser, info.quantity)
+      await broadcastGatewayEvent('USER_SUBSCRIPTIONS_UPDATE', {})
+      return json({ entitlements: [], gift_code: null, library_applications: [], boost_slots: created })
+    }
+
+    // Regalo: se genera el código para canjear.
+    if (isGift) {
+      const gift = await createGiftCode(currentUser, skuId, planId, giftStyle)
+      return json({ entitlements: [], gift_code: gift.code, library_applications: [] })
+    }
+
+    // Compra directa: se activa la suscripción de Nitro.
+    const newSub = {
+      id: `sub_${Date.now()}`,
+      type: 1,
+      status: 1,
+      created_at: now(),
+      canceled_at: null,
+      current_period_start: now(),
+      current_period_end: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
+      plan_id: planId,
+      sku_id: skuId,
+      items: [{ id: `item_${Date.now()}`, plan_id: planId, quantity: 1 }],
+      payment_source_id: paymentSourceId,
+      payment_gateway: 1,
+      flags: 0,
+      user_id: currentUser,
+      country_code: 'ES',
+      currency,
+    }
+    await saveUserSubscription(currentUser, newSub)
+    await updateUser(currentUser, { premium_type: info.premiumType, premium_since: now() })
+    await broadcastGatewayEvent('USER_UPDATE', { id: currentUser, premium_type: info.premiumType, premium_since: now() })
+    await broadcastGatewayEvent('USER_SUBSCRIPTIONS_UPDATE', {})
+    await broadcastGatewayEvent('BILLING_SUBSCRIPTION_UPDATE', newSub)
+    return json({ entitlements: [], gift_code: null, library_applications: [], subscription: newSub })
   }
   if (resource === 'entitlements' && resourceId === 'gift-codes' && subresource && subId === 'redeem') {
     const { redeemGiftCode } = await import('@/lib/discord-store')
@@ -2547,54 +2813,83 @@ async function handlePatch(request: NextRequest, { params }: Params) {
   }
   if (resource === 'users' && resourceId === '@me' && subresource === 'billing' && subId === 'subscriptions') {
     if (action === 'preview' || extraAction === 'preview') {
+      // Vista previa de la factura de una suscripción existente. El cliente
+      // envía TODOS los items que quiere facturar (plan de Nitro + boosts) y
+      // espera un `invoice_item` por cada uno: devolviendo solo el primer item
+      // la compra de boosts moría con "Invariant Violation: Missing guild
+      // boosting invoice item" en el paso de revisión.
       const { getUserSubscriptions } = await import('@/lib/discord-store')
       const userSubs = await getUserSubscriptions(currentUser)
-      const sub = userSubs[0]
-      const items = Array.isArray(input.items) ? input.items : []
-      const firstItem = items[0] as Record<string, unknown> | undefined
-      const planId = (firstItem?.plan_id as string) || (input.plan_id as string) || (sub?.plan_id as string) || '511651880837840896'
-      let skuId = '521847234246082599'
-      let price = 999
-      if (
-        planId === '978380692553465866' ||
-        planId === '1024422698568122368' ||
-        planId === '978387023482069042'
-      ) {
-        skuId = '978380684370378762'
-        price = 299
-      } else if (planId === '511651871736201216' || planId === '511651876987469824') {
-        skuId = '521846918637420545'
-        price = 499
-      }
+      const sub = userSubs.find((candidate) => candidate.id === action) || userSubs[0]
+      const currency = (input.currency as string) || (sub?.currency as string) || 'eur'
+      const requested = (
+        Array.isArray(input.items) && input.items.length
+          ? input.items
+          : [{ plan_id: sub?.plan_id || '511651880837840896', quantity: 1 }]
+      ) as Record<string, unknown>[]
+
+      const invoiceItems = requested.map((item, index) => {
+        const planId = String(
+          item?.plan_id || item?.subscription_plan_id || sub?.plan_id || '511651880837840896'
+        )
+        const { price, skuId } = planInfoForPlanId(planId)
+        const quantity = Math.max(1, Number(item?.quantity) || 1)
+        return {
+          id: String(item?.id || `ii_${Date.now()}_${index}`),
+          subscription_plan_id: planId,
+          subscription_plan_price: price,
+          amount: price * quantity,
+          quantity,
+          discounts: [],
+          unit_price: { amount: price, currency },
+          tax: 0,
+          sku_id: skuId,
+        }
+      })
+      const subtotal = invoiceItems.reduce((total, item) => total + item.amount, 0)
+
       return json({
-        id: '700000000000000001',
-        invoice_items: [
-          {
-            id: '700000000000000002',
-            subscription_plan_id: planId,
-            subscription_plan_price: price,
-            amount: price,
-            quantity: 1,
-            discounts: [],
-            unit_price: { amount: price, currency: 'eur' },
-            tax: 0,
-            sku_id: skuId,
-          },
-        ],
-        total: price,
-        subtotal: price,
-        currency: (sub?.currency as string) || 'eur',
+        id: `invc_${Date.now()}`,
+        invoice_items: invoiceItems,
+        total: subtotal,
+        subtotal,
+        currency,
         tax: 0,
         tax_inclusive: true,
         subscription_period_start: (sub?.current_period_start as string) || now(),
-        subscription_period_end: (sub?.current_period_end as string) || new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
+        subscription_period_end:
+          (sub?.current_period_end as string) ||
+          new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
         status: 1,
       })
     }
-    // Plan switch (e.g. PATCH /users/@me/billing/subscriptions/:id)
+    // Plan switch / cancelación (PATCH /users/@me/billing/subscriptions/:id)
     if (action) {
       const subscriptionId = action
-      const { getUser, getUserSubscriptions, saveUserSubscription, updateUser } = await import('@/lib/discord-store')
+      const {
+        getUser,
+        getUserSubscriptions,
+        saveUserSubscription,
+        updateUser,
+        isSubscriptionCancelPayload,
+        cancelUserSubscription,
+        applyBoostPurchasePatch,
+      } = await import('@/lib/discord-store')
+
+      // El modal de "Cancelar suscripción" emite un PATCH con los `items` del
+      // plan pero SIN `status` (o con `status != 1`). Hay que detectarlo ANTES
+      // del cambio de plan: si no, se reactivaba la suscripción y el usuario
+      // "recuperaba" el Nitro que acababa de cancelar.
+      if (isSubscriptionCancelPayload(input)) {
+        const canceled = await cancelUserSubscription(currentUser, subscriptionId)
+        return json(canceled)
+      }
+
+      // Compra de mejoras sobre la suscripción existente: cobra, concede slots
+      // sin aplicar y guarda Nitro + mejoras (ver applyBoostPurchasePatch).
+      const boostPurchase = await applyBoostPurchasePatch(currentUser, subscriptionId, input)
+      if (boostPurchase) return json(boostPurchase)
+
       const user = await getUser(currentUser)
       const email = (user?.email as string)?.toLowerCase()
       if (email !== 'test@raky.es') {
@@ -2653,11 +2948,26 @@ async function handlePatch(request: NextRequest, { params }: Params) {
 
   // Guild boost apply (PUT /guilds/:guildId/premium/subscriptions)
   if (resource === 'guilds' && resourceId && subresource === 'premium' && subId === 'subscriptions') {
-    const { applyGuildBoostSlots } = await import('@/lib/discord-store')
+    const { applyGuildBoostSlots, getUserGuildBoostSlots } = await import('@/lib/discord-store')
     const slotIds = Array.isArray(input.user_premium_guild_subscription_slot_ids)
       ? (input.user_premium_guild_subscription_slot_ids as string[])
       : []
-    if (slotIds.length === 0) return validationError('user_premium_guild_subscription_slot_ids is required')
+    if (slotIds.length === 0) {
+      // El cliente manda la lista vacía con `disable_powerup_auto_apply: false`
+      // cuando pide que el servidor aplique solo los slots disponibles (p. ej.
+      // justo después de comprar mejoras). Si la autoaplicación está
+      // desactivada, la lista vacía sí es un error.
+      if (input.disable_powerup_auto_apply !== false) {
+        return validationError('user_premium_guild_subscription_slot_ids is required')
+      }
+      const available = (await getUserGuildBoostSlots(currentUser))
+        .filter((slot) => !slot.premium_guild_subscription && !slot.canceled)
+        .map((slot) => slot.id)
+      if (available.length === 0) {
+        return error(50000, 'No boost slots available', 400)
+      }
+      slotIds.push(...available)
+    }
     try {
       const applied = await applyGuildBoostSlots(currentUser, resourceId, slotIds)
       return json(applied)
@@ -2765,27 +3075,26 @@ async function handlePatch(request: NextRequest, { params }: Params) {
     const problem = validateVoiceConnection({ ...existing, ...input }); if (problem) return validationError(problem)
     return json(await updateCollectionItem('voice_connections', resourceId, input))
   }
+  if (resource === 'users' && resourceId === '@me' && subresource === 'relationships' && subId && action === 'ignore') {
+    const { setRelationshipIgnored } = await import('@/lib/relationships')
+    const outcome = await setRelationshipIgnored(currentUser, subId, request.method === 'PUT')
+    return outcome.status === 204 ? new NextResponse(null, { status: 204 }) : json(outcome.body ?? {}, outcome.status)
+  }
   if (resource === 'users' && resourceId === '@me' && subresource === 'relationships' && subId) {
     // IMPORTANTE: los archivos de `app/api/v10/users/@me/**` NO se ejecutan (Next
     // compila `@me` como "named slot", no como ruta: 0 entradas en
     // app-paths-manifest.json), así que todo el eco del gateway de /users/@me sale
     // desde el catch-all. Sin RELATIONSHIP_ADD, aceptar/añadir un amigo (PUT) se
     // guardaba en la BD pero la lista del cliente no cambiaba hasta recargar.
-    const type = typeof input.type === 'number' ? input.type : 1
-    const nickname = typeof input.nickname === 'string' ? input.nickname : null
-    const user = await getUser(subId)
-    await broadcastGatewayEvent('RELATIONSHIP_ADD', {
-      id: subId,
-      type,
-      nickname,
-      user: user ?? { id: subId, username: 'user', discriminator: '0', global_name: null, avatar: null, bot: false },
-      user_id: currentUser,
-    })
-    const existing = (await listCollection('relationships')).find((item) => item.id === subId)
-    const updated = existing
-      ? await updateCollectionItem('relationships', subId, { ...input, type, user_id: currentUser })
-      : await createCollectionItem('relationships', { id: subId, user_id: currentUser, type, nickname })
-    return updated ? json(updated) : new NextResponse(null, { status: 204 })
+    const { applyRelationshipChange, setRelationshipNickname, RELATIONSHIP_TYPE } = await import('@/lib/relationships')
+    // PATCH {nickname} renombra; PUT {type,...} crea/acepta/bloquea (fosscord).
+    const outcome =
+      request.method === 'PATCH' && input.nickname !== undefined && input.type === undefined
+        ? await setRelationshipNickname(currentUser, subId, input.nickname)
+        : await applyRelationshipChange(currentUser, subId, input)
+    if (outcome.status === 204) return new NextResponse(null, { status: 204 })
+    if (outcome.status === 404) return error(10013, 'Unknown Relationship', 404)
+    return json(outcome.body ?? { code: outcome.status }, outcome.status)
   }
   if (resource === 'users' && resourceId === '@me' && subresource === 'settings') return json(await createCollectionItem('user_settings', input))
   if (resource === 'users' && resourceId === '@me' && subresource === 'email-settings') return json(await createCollectionItem('email_settings', input))
@@ -2902,25 +3211,13 @@ async function handleDelete(request: NextRequest, { params }: Params) {
   }
   if (resource === 'users' && resourceId === '@me' && subresource === 'billing' && subId === 'subscriptions') {
     const subscriptionId = action
-    const { getUserSubscriptions, deleteUserSubscription, updateUser } = await import('@/lib/discord-store')
-    const userSubs = await getUserSubscriptions(currentUser)
-    const found = userSubs.find((s) => s.id === subscriptionId) || userSubs[0]
-
-    await deleteUserSubscription(currentUser, subscriptionId)
-    await updateUser(currentUser, { premium_type: 0, premium_since: null })
-
-    const canceledPayload = found
-      ? {
-          ...found,
-          status: 4, // ENDED
-          canceled_at: now(),
-          metadata: { ended_at: now() },
-        }
-      : { id: subscriptionId, status: 4, canceled_at: now() }
-
-    await broadcastGatewayEvent('USER_UPDATE', { id: currentUser, premium_type: 0, premium_since: null })
-    await broadcastGatewayEvent('USER_SUBSCRIPTIONS_UPDATE', {})
-    await broadcastGatewayEvent('BILLING_SUBSCRIPTION_UPDATE', canceledPayload)
+    const { cancelUserSubscription } = await import('@/lib/discord-store')
+    // DELETE y PATCH de cancelación comparten la misma limpieza total:
+    // `cancelUserSubscription` deja la suscripción como finalizada (status 4,
+    // visible en Ajustes > Facturación) y retira TODO lo concedido: boosts
+    // aplicados, slots, entitlements y premium_type. Antes aquí se borraba la
+    // suscripción de la BD, por eso no se podía ver después de cancelar.
+    await cancelUserSubscription(currentUser, subscriptionId)
 
     return new NextResponse(null, { status: 204 })
   }
@@ -2948,17 +3245,24 @@ async function handleDelete(request: NextRequest, { params }: Params) {
       return error(40001, err.message, 400)
     }
   }
-  if (resource === 'users' && resourceId === '@me' && subresource === 'relationships' && subId) {
-    const removed = await deleteCollectionItem('relationships', subId)
-    // Las carpetas `users/@me/...` de Next son "named slots" (no rutas), así que
-    // esta petición la atiende el catch-all y no el route.ts específico. Los
-    // amigos de demo vienen de READY y no son filas de la colección: el borrado
-    // devolvía 404 y el cliente no podía quitar a nadie ("no deja quitar de
-    // amigos"). Además hay que emitir RELATIONSHIP_REMOVE por el gateway, que es
-    // lo que actualiza la lista de amigos en pantalla.
-    void removed
-    await broadcastGatewayEvent('RELATIONSHIP_REMOVE', { id: subId, type: 1, user_id: currentUser, nickname: null })
+  if (resource === 'users' && resourceId === '@me' && subresource === 'relationships' && !subId) {
+    // DELETE /users/@me/relationships?relationship_type=3 -> vacía las pendientes.
+    const relationshipType = Number(request.nextUrl.searchParams.get('relationship_type'))
+    const { clearPendingRelationships } = await import('@/lib/relationships')
+    await clearPendingRelationships(currentUser, Number.isFinite(relationshipType) ? relationshipType : undefined)
     return new NextResponse(null, { status: 204 })
+  }
+  if (resource === 'users' && resourceId === '@me' && subresource === 'relationships' && subId && action === 'ignore') {
+    const { setRelationshipIgnored } = await import('@/lib/relationships')
+    const outcome = await setRelationshipIgnored(currentUser, subId, false)
+    return new NextResponse(null, { status: outcome.status })
+  }
+  if (resource === 'users' && resourceId === '@me' && subresource === 'relationships' && subId) {
+    // Borra las dos filas (la mía y la del otro) y emite RELATIONSHIP_REMOVE a
+    // ambos: antes solo se borraba la mía y el otro seguía viéndome.
+    const { removeRelationship } = await import('@/lib/relationships')
+    const outcome = await removeRelationship(currentUser, subId)
+    return outcome.status === 204 ? new NextResponse(null, { status: 204 }) : json(outcome.body ?? {}, outcome.status)
   }
   if (resource === 'guilds' && resourceId && guildResourceNames.has(subresource ?? '') && subId) {
     const values = await guildArray(resourceId, subresource as string)

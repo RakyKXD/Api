@@ -2,6 +2,22 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import { broadcastGatewayEvent } from '@/lib/gateway-broadcast'
 
+const DISCORD_EPOCH = 1420070400000
+
+/**
+ * Snowflake al estilo Discord: timestamp en los bits altos (42 bits) + 22 bits
+ * de aleatorio. Lo usan los ids de las mejoras de servidor porque el cliente
+ * deriva la fecha de aplicación con `extractTimestamp(id)`: con un id no
+ * numérico recibía `NaN`, `new Date(NaN)` y la página de mejoras se caía con
+ * `RangeError: Invalid time value`.
+ */
+export function createSnowflake() {
+  const unit = BigInt(4194304) // 2 ** 22
+  const timestamp = BigInt(Date.now() - DISCORD_EPOCH) * unit
+  const random = BigInt(Math.floor(Math.random() * 4194304))
+  return (timestamp + random).toString()
+}
+
 const filePath = path.join(process.cwd(), 'data', 'discord.json')
 
 export type Guild = {
@@ -90,7 +106,7 @@ export type Database = {
   [collection: string]: Array<Record<string, unknown>> | Guild[] | undefined
 }
 
-async function mutate<T>(callback: (database: Database) => T): Promise<T> {
+export async function mutate<T>(callback: (database: Database) => T): Promise<T> {
   const database = await readDatabase()
   const result = callback(database)
   await writeDatabase(database)
@@ -1552,17 +1568,24 @@ export async function getUser(userId: string) {
   }
 }
 
-export async function getUserSubscriptions(userId: string) {
+export async function getUserSubscriptions(userId: string, includeInactive = false) {
   const database = await readDatabase()
   const subscriptions = (database.subscriptions as Array<Record<string, unknown>>) || []
-  return subscriptions.filter((s) => s.user_id === userId && s.status === 1)
+  // `includeInactive` devuelve TAMBIÉN las canceladas/finalizadas (status 4):
+  // Ajustes > Facturación tiene que seguir mostrando la suscripción después de
+  // cancelar. Los flujos internos (cambios de plan, compras) siguen pidiendo solo
+  // las activas.
+  return subscriptions.filter((s) => s.user_id === userId && (includeInactive || s.status === 1))
 }
 
 export async function saveUserSubscription(userId: string, subscription: Record<string, unknown>) {
   return mutate((database) => {
     database.subscriptions ??= []
     const subs = database.subscriptions as Array<Record<string, unknown>>
-    const idx = subs.findIndex((s) => s.user_id === userId)
+    // Se empareja por id de suscripción (y no por usuario) para que una
+    // suscripción cancelada se conserve en el historial y una compra posterior
+    // cree una entrada nueva en vez de sobrescribirla.
+    const idx = subs.findIndex((s) => (subscription.id != null ? s.id === subscription.id : s.user_id === userId))
     if (idx >= 0) {
       subs[idx] = { ...subs[idx], ...subscription, user_id: userId }
       return subs[idx]
@@ -1597,28 +1620,171 @@ export async function deleteUserSubscription(userId: string, subscriptionId?: st
  * finalizada (status 4 / ENDED) y limpiamos el estado premium.
  */
 export async function cancelUserSubscription(userId: string, subscriptionId?: string) {
-  const database = await readDatabase()
-  const subs = ((database.subscriptions as Array<Record<string, unknown>>) || []).filter((s) => s.user_id === userId)
-  const found = (subscriptionId ? subs.find((s) => s.id === subscriptionId) : undefined) || subs[0] || null
-
-  await deleteUserSubscription(userId, subscriptionId)
-  await updateUser(userId, { premium_type: 0, premium_since: null })
-
   const canceledAt = new Date().toISOString()
-  const canceledPayload = found
-    ? {
+  let canceledPayload: Record<string, unknown> = {
+    id: subscriptionId || `sub_${Date.now()}`,
+    status: 4, // ENDED
+    canceled_at: canceledAt,
+  }
+
+  const affectedGuilds = await mutate((database) => {
+    database.subscriptions ??= []
+    database.guild_boost_slots ??= []
+    database.guild_boosts ??= []
+    database.entitlements ??= []
+
+    const subs = asItemArray(database.subscriptions)
+    const userSubs = subs.filter((s) => s.user_id === userId)
+    const found = (subscriptionId ? userSubs.find((s) => s.id === subscriptionId) : undefined) || userSubs[0] || null
+    if (found) {
+      canceledPayload = {
         ...found,
-        status: 4, // ENDED
+        status: 4,
         canceled_at: canceledAt,
         metadata: { ...((found.metadata as Record<string, unknown>) || {}), ended_at: canceledAt },
       }
-    : { id: subscriptionId || `sub_${Date.now()}`, status: 4, canceled_at: canceledAt }
+    }
+
+    // Cancelar = "dejar sin nada": se finalizan TODAS las suscripciones del
+    // usuario (status 4 / ENDED), pero se CONSERVAN en el historial para que
+    // Ajustes > Facturación siga mostrándolas después de cancelar.
+    for (const sub of userSubs) {
+      sub.status = 4
+      sub.canceled_at = canceledAt
+      sub.metadata = { ...((sub.metadata as Record<string, unknown>) || {}), ended_at: canceledAt }
+    }
+
+    // Terminar sus boosts y liberar sus slots.
+    const boosts = asItemArray(database.guild_boosts)
+    const guildIds = new Set<string>()
+    for (const boost of boosts) {
+      if (boost.user_id === userId && !boost.ended) {
+        boost.ended = true
+        guildIds.add(String(boost.guild_id))
+      }
+    }
+    database.guild_boost_slots = asItemArray(database.guild_boost_slots).filter((s) => s.user_id !== userId)
+
+    // Quitar entitlements del usuario.
+    database.entitlements = asItemArray(database.entitlements).filter((e) => e.user_id !== userId)
+
+    // Recalcular el tier de cada servidor afectado.
+    for (const guildId of guildIds) {
+      const guild = database.guilds.find((g) => g.id === guildId)
+      if (!guild) continue
+      const count = boosts.filter((b) => b.guild_id === guildId && !b.ended).length
+      guild.premium_subscription_count = count
+      guild.premium_tier = count >= 14 ? 3 : count >= 7 ? 2 : count >= 2 ? 1 : 0
+    }
+
+    return Array.from(guildIds)
+  })
+
+  await updateUser(userId, { premium_type: 0, premium_since: null })
 
   await broadcastGatewayEvent('USER_UPDATE', { id: userId, premium_type: 0, premium_since: null })
   await broadcastGatewayEvent('USER_SUBSCRIPTIONS_UPDATE', {})
   await broadcastGatewayEvent('BILLING_SUBSCRIPTION_UPDATE', canceledPayload)
 
+  for (const guildId of affectedGuilds) {
+    const guild = await getGuild(guildId)
+    if (guild) await broadcastGatewayEvent('GUILD_UPDATE', guild)
+  }
+
   return canceledPayload
+}
+
+const TEST_EMAIL = 'test@raky.es'
+
+/**
+ * Provisiona Nitro + boosts a la cuenta de prueba `test@raky.es`.
+ *
+ * El catch-all `app/api/v10/[...path]/route.ts` es el ÚNICO handler vivo para
+ * `/users/@me/**` (Next trata los segmentos que empiezan por `@` como parallel
+ * routes, así que los `route.ts` bajo `users/@me/` nunca se registran). Esta
+ * función se ejecuta en `GET /users/@me/billing/subscriptions` y guarda dos
+ * invariantes:
+ *
+ *  1. Solo aplica a la cuenta de correo test@raky.es.
+ *  2. NO revive la suscripción si ya existe algún registro de suscripción del
+ *     usuario (aunque esté cancelada): cancelar tiene que durar, si no el
+ *     siguiente GET devolvía el Nitro recién cancelado.
+ *
+ * Además la cuenta queda con boosts comprados: 2 slots incluidos con Nitro +
+ * 2 comprados aparte, y 2 de ellos aplicados al primer servidor al que
+ * pertenece (la pestaña "Mejora del servidor" necesita boosts reales). Al
+ * cancelar, `cancelUserSubscription` los retira todos.
+ */
+export async function ensureNitroForTestUser(userId: string) {
+  const user = await getUser(userId)
+  const email = (user?.email as string)?.toLowerCase()
+  if (email !== TEST_EMAIL) return
+
+  const database = await readDatabase()
+  const existing = asItemArray(database.subscriptions).filter((s) => s.user_id === userId)
+  if (existing.length > 0) return
+
+  const subId = `sub_auto_${userId}`
+  const planId = '511651880837840896'
+  const nowIso = new Date().toISOString()
+
+  await saveUserSubscription(userId, {
+    id: subId,
+    type: 1,
+    status: 1,
+    created_at: nowIso,
+    canceled_at: null,
+    current_period_start: nowIso,
+    current_period_end: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
+    plan_id: planId,
+    sku_id: '521847234246082599',
+    items: [{ id: `item_auto_${userId}`, plan_id: planId, quantity: 1 }],
+    payment_source_id: '500000000000000001',
+    payment_gateway: 1,
+    flags: 0,
+    user_id: userId,
+    country_code: 'ES',
+    currency: 'eur',
+  })
+  await updateUser(userId, { premium_type: 2, premium_since: nowIso })
+
+  // 2 slots incluidos con Nitro…
+  await mutate((db) => {
+    db.guild_boost_slots ??= []
+    const slots = db.guild_boost_slots as Array<Record<string, unknown>>
+    const mine = slots.filter((s) => s.user_id === userId)
+    for (let i = mine.length; i < 2; i++) {
+      slots.push({
+        id: `slot_${userId}_auto_${Date.now()}_${i + 1}`,
+        user_id: userId,
+        subscription_id: subId,
+        premium_guild_subscription: null,
+        canceled: false,
+        cooldown_ends_at: null,
+      })
+    }
+  })
+  // …+ 2 boosts comprados aparte (la cuenta "tiene comprado boosts").
+  await purchaseGuildBoostSlots(userId, 2)
+
+  // Aplica 2 mejoras al primer servidor del usuario: es lo que rellena la
+  // pestaña "Mejora del servidor" (boosters, nivel del servidor, powerups).
+  try {
+    const guilds = await listUserGuilds(userId)
+    if (guilds.length > 0) {
+      const freeSlots = (await getUserGuildBoostSlots(userId))
+        .filter((slot) => !slot.premium_guild_subscription && !slot.canceled)
+        .map((slot) => slot.id)
+      if (freeSlots.length >= 2) {
+        await applyGuildBoostSlots(userId, guilds[0].id, freeSlots.slice(0, 2))
+      }
+    }
+  } catch {
+    // Si no hay servidor donde aplicarlos, los slots quedan libres igualmente.
+  }
+
+  await broadcastGatewayEvent('USER_UPDATE', { id: userId, premium_type: 2, premium_since: nowIso })
+  await broadcastGatewayEvent('USER_SUBSCRIPTIONS_UPDATE', {})
 }
 
 /**
@@ -1634,7 +1800,129 @@ export function isSubscriptionCancelPayload(input: Record<string, unknown>): boo
   if (input.status !== undefined && input.status !== null && input.status !== '') {
     return Number(input.status) !== 1
   }
+  // Una compra contra la suscripción existente (p. ej. añadir mejoras de
+  // servidor al plan de Nitro) manda `payment_source_id`/`purchase_token` y
+  // precios esperados SIN `status`, así que se parecía al PATCH de cancelación
+  // (items y nada más). Cancelar nunca paga nada: sin esta guarda, comprar
+  // mejoras borraba la suscripción, los slots y los boosts del usuario.
+  const expected = input.expected_invoice_price as { amount?: number } | undefined | null
+  const paidUpdate =
+    Boolean(input.payment_source_id || input.purchase_token) &&
+    (expected == null || (Number.isFinite(Number(expected.amount)) && Number(expected.amount) > 0))
+  if (paidUpdate) return false
   return Array.isArray(input.items) && input.items.length > 0
+}
+
+const BOOST_PLAN_IDS = new Set([
+  '590665532894740483', // Mejora mensual
+  '590665538238152709', // Mejora con descuento/mes
+  '944037355453415424',
+  '944037391444738048',
+])
+const BOOST_SKU_ID = '590663762298667008'
+const BOOST_UNIT_PRICE = 499 // céntimos EUR / mes por mejora
+// Tope de sanidad: el cliente ha llegado a mandar cantidades de mejora
+// compuestas (3e39) que se colaban en `sub.items` y en las facturas y
+// rompían la pestaña de suscripciones con "3e+39x mejoras - EUR 1.497e37".
+const MAX_BOOSTS_PER_ITEM = 100
+const MAX_INVOICE_AMOUNT = 999_999 // céntimos (€9.999)
+
+/**
+ * Cuenta cuántas mejoras de servidor hay en los `items` de un PATCH de
+ * suscripción (0 si no compra mejoras).
+ */
+export function boostQuantityInItems(items: unknown): number {
+  if (!Array.isArray(items)) return 0
+  let total = 0
+  for (const item of items) {
+    const record = (item ?? {}) as Record<string, unknown>
+    if (BOOST_PLAN_IDS.has(String(record.plan_id))) {
+      total += Math.min(MAX_BOOSTS_PER_ITEM, Math.max(1, Number(record.quantity) || 1))
+    }
+  }
+  return total
+}
+
+/**
+ * Compra de mejoras sobre una suscripción existente
+ * (`PATCH /users/@me/billing/subscriptions/{id}` desde el modal de mejora).
+ *
+ * El cliente manda los items del plan de Nitro + los de mejora con
+ * `payment_source_id`, `purchase_token` y precios esperados, pero sin `status`.
+ * Antes eso caía en la detección de cancelación (se borraba todo el estado
+ * premium) o en el cambio de plan (se perdía el item de mejora y no se daban
+ * slots): `GET .../premium/subscription-slots` volvía vacío, el `PUT` que
+ * aplica las mejoras llegaba con la lista `[]` y devolvía 400.
+ *
+ * Devuelve la suscripción actualizada o `null` si el payload no compra mejoras.
+ */
+export async function applyBoostPurchasePatch(
+  userId: string,
+  subscriptionId: string,
+  input: Record<string, unknown>
+): Promise<Record<string, unknown> | null> {
+  const items = (Array.isArray(input.items) ? input.items : []) as Record<string, unknown>[]
+  const boostQuantity = boostQuantityInItems(items)
+  if (boostQuantity <= 0) return null
+
+  const currency = (input.currency as string) || 'eur'
+  const expected = input.expected_invoice_price as { amount?: number } | undefined | null
+  const expectedAmount = Math.floor(Number(expected?.amount))
+  const amount = Math.min(
+    MAX_INVOICE_AMOUNT,
+    Number.isFinite(expectedAmount) && expectedAmount > 0 ? expectedAmount : BOOST_UNIT_PRICE * boostQuantity
+  )
+
+  const paymentSources = await getUserPaymentSources(userId)
+  const paymentSourceId =
+    (input.payment_source_id as string) ||
+    (paymentSources.find((source) => source.default)?.id as string) ||
+    (paymentSources[0]?.id as string) ||
+    null
+
+  const subs = await getUserSubscriptions(userId)
+  const existingSub = subs.find((s) => s.id === subscriptionId)
+  const persistedItems = items.map((item, index) => ({
+    id: String(item?.id || `item_${Date.now()}_${index}`),
+    plan_id: String(item.plan_id),
+    quantity: Math.min(MAX_BOOSTS_PER_ITEM, Math.max(1, Math.round(Number(item.quantity)) || 1)),
+  }))
+
+  const updatedSub = {
+    ...(existingSub ?? {
+      id: subscriptionId,
+      type: 1,
+      status: 1,
+      created_at: new Date().toISOString(),
+      payment_gateway: 1,
+      currency,
+    }),
+    status: 1,
+    canceled_at: null,
+    items: persistedItems,
+  } as Record<string, unknown>
+
+  // Guardamos la suscripción primero para que los slots nuevos apunten a ella.
+  await saveUserSubscription(userId, updatedSub)
+  // Slots sin aplicar: el cliente los recoge con
+  // GET .../premium/subscription-slots y luego los aplica con
+  // PUT /guilds/{id}/premium/subscriptions.
+  await purchaseGuildBoostSlots(userId, boostQuantity)
+  await recordBillingInvoice(userId, {
+    amount,
+    currency,
+    payment_source_id: paymentSourceId,
+    subscription_id: subscriptionId,
+    items: persistedItems.map((item) => ({
+      sku_id: BOOST_PLAN_IDS.has(item.plan_id) ? BOOST_SKU_ID : '521847234246082599',
+      plan_id: item.plan_id,
+      quantity: item.quantity,
+    })),
+  })
+
+  await broadcastGatewayEvent('USER_SUBSCRIPTIONS_UPDATE', {})
+  await broadcastGatewayEvent('BILLING_SUBSCRIPTION_UPDATE', updatedSub)
+  return updatedSub
 }
 
 export async function updateUser(userId: string, input: Record<string, unknown>) {
@@ -1817,12 +2105,33 @@ export async function updateUserSettings(userId: string, input: Record<string, u
   })
 }
 
+// Amigos demo que se siembran cuando una cuenta todavía no tiene filas de
+// relaciones (mismos ids que usa el gateway en su payload READY).
+const DEMO_FRIEND_IDS = ['900000000000000001', '900000000000000002']
+
 export async function listRelationships(currentUserId = '900000000000000001') {
   const database = await readDatabase()
   const list = database.relationships ?? []
+  // Si el usuario todavía no tiene filas (cuenta nueva o BD recién creada), se
+  // siembran los amigos demo para que GET y READY devuelvan lo mismo y la
+  // lista de amistades no arranque vacía.
+  const mine = list.filter((r) => String(r.user_id) === String(currentUserId) && String(r.id) !== String(currentUserId))
+  if (mine.length === 0) {
+    await mutate((db) => {
+      db.relationships ??= []
+      const rows = db.relationships as Array<Record<string, unknown>>
+      if (rows.some((r) => String(r.user_id) === String(currentUserId))) return
+      for (const demo of DEMO_FRIEND_IDS) {
+        if (demo === currentUserId) continue
+        rows.push({ id: demo, user_id: currentUserId, type: 1, nickname: null, user_ignored: false, since: new Date().toISOString() })
+        rows.push({ id: currentUserId, user_id: demo, type: 1, nickname: null, user_ignored: false, since: new Date().toISOString() })
+      }
+    })
+  }
   const relationships = []
   for (const rel of list) {
     if (String(rel.user_id) === String(currentUserId)) {
+      if (String(rel.id) === String(currentUserId)) continue // fila "yo conmigo" (basura)
       const targetUser = await getUser(String(rel.id))
       relationships.push({
         id: String(rel.id),
@@ -1830,6 +2139,8 @@ export async function listRelationships(currentUserId = '900000000000000001') {
         nickname: (rel.nickname as string) ?? null,
         user: targetUser ?? { id: String(rel.id), username: 'user', discriminator: '0', avatar: null },
         user_ignored: Boolean(rel.user_ignored),
+        // Nota personalizada de la solicitud ("Personaliza tu solicitud").
+        note: typeof rel.note === 'string' && rel.note ? rel.note : undefined,
         since: rel.since ?? new Date().toISOString(),
       })
     }
@@ -1925,8 +2236,10 @@ export async function getUserGuildBoostSlots(userId: string) {
   const isTest = (user?.email as string)?.toLowerCase() === 'test@raky.es'
   const isNitro = Number(user?.premium_type) === 2
 
-  // If user has Nitro, ensure they have boost slots available (test@raky.es gets 14 when they have Nitro)
-  const minSlots = isNitro ? (isTest ? 14 : 2) : 0
+  // If user has Nitro, ensure they have boost slots available. Nitro incluye 2
+  // boosts (como en Discord real); los boosts extra se compran aparte con
+  // `purchaseGuildBoostSlots` y por eso no se recortan aquí.
+  const minSlots = isNitro ? 2 : 0
   if (userSlots.length < minSlots) {
     await mutate((db) => {
       db.guild_boost_slots ??= []
@@ -2020,7 +2333,11 @@ export async function applyGuildBoostSlots(
         slots.push(slot)
       }
 
-      const boostId = `boost_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`
+      // Los ids de `premium_guild_subscription` tienen que ser snowflakes: la
+      // página de mejoras hace `extractTimestamp(id)` para fechar cada mejora y
+      // con un id tipo `boost_...` recibía `NaN` → `RangeError: Invalid time
+      // value` y `/channels/:id/boosts` se caía ("Vaya, esto es incómodo").
+      const boostId = createSnowflake()
       const boostRecord = {
         id: boostId,
         guild_id: guildId,
@@ -2145,6 +2462,167 @@ export async function getUserGuildBoosts(userId: string) {
   const database = await readDatabase()
   const boosts = (database.guild_boosts as Array<Record<string, unknown>>) || []
   return boosts.filter((b) => b.user_id === userId && !b.ended)
+}
+
+// ---------------------------------------------------------------------------
+// Payment Sources (tarjetas)
+//
+// El flujo de compra pide `GET /users/@me/billing/payment-sources` y, si no hay
+// ninguna, muestra el formulario de tarjeta; al enviarlo hace `POST` y después
+// `POST /users/@me/billing/subscriptions` con ese `payment_source_id`.
+// Persistimos las tarjetas por usuario para que el pago simulado "cobre" de
+// verdad contra una tarjeta existente.
+// ---------------------------------------------------------------------------
+
+function normalizePaymentSource(userId: string, input: Record<string, unknown>, isDefault: boolean) {
+  const billingAddress = (input.billing_address as Record<string, unknown> | undefined) ?? {}
+  const brand = String(input.brand || input.card_brand || 'visa').toLowerCase()
+  const last4 =
+    String(input.last_4 || input.last4 || input.card_last_4 || '') ||
+    String(Math.floor(1000 + Math.random() * 9000))
+  const now = new Date()
+  return {
+    id: `ps_${Date.now()}${Math.floor(Math.random() * 1000)}`,
+    user_id: userId,
+    type: Number(input.type) || 1, // 1 = CARD
+    invalid: false,
+    flags: Number(input.flags) || 0,
+    default: isDefault,
+    brand,
+    last_4: last4,
+    expires_month: Number(input.expires_month) || 12,
+    expires_year: Number(input.expires_year) || now.getFullYear() + 3,
+    billing_address: {
+      name: String(billingAddress.name || input.name || 'Test User'),
+      line_1: String(billingAddress.line_1 || 'Street 1'),
+      line_2: (billingAddress.line_2 as string) ?? null,
+      city: String(billingAddress.city || 'Madrid'),
+      state: String(billingAddress.state || 'MD'),
+      country: String(billingAddress.country || 'ES'),
+      postal_code: String(billingAddress.postal_code || '28001'),
+    },
+    payment_gateway: Number(input.payment_gateway) || 1, // 1 = STRIPE
+    created_at: now.toISOString(),
+  }
+}
+
+export async function getUserPaymentSources(userId: string) {
+  const database = await readDatabase()
+  const sources = asItemArray(database.payment_sources)
+  return sources.filter((source) => !source.user_id || source.user_id === userId)
+}
+
+export async function createUserPaymentSource(userId: string, input: Record<string, unknown>) {
+  return mutate((database) => {
+    database.payment_sources ??= []
+    const sources = asItemArray(database.payment_sources)
+    const existingForUser = sources.filter((source) => !source.user_id || source.user_id === userId)
+    const source = normalizePaymentSource(userId, input, existingForUser.length === 0)
+    sources.push(source)
+    database.payment_sources = sources
+    return source
+  })
+}
+
+export async function updateUserPaymentSource(
+  userId: string,
+  paymentSourceId: string,
+  input: Record<string, unknown>
+) {
+  return mutate((database) => {
+    database.payment_sources ??= []
+    const sources = asItemArray(database.payment_sources)
+    const source = sources.find((s) => s.id === paymentSourceId && (!s.user_id || s.user_id === userId))
+    if (!source) return null
+    if (input.default === true) {
+      for (const other of sources) {
+        if (!other.user_id || other.user_id === userId) other.default = false
+      }
+    }
+    Object.assign(source, input, { id: source.id, user_id: userId })
+    database.payment_sources = sources
+    return source
+  })
+}
+
+export async function deleteUserPaymentSource(userId: string, paymentSourceId: string) {
+  return mutate((database) => {
+    database.payment_sources ??= []
+    const sources = asItemArray(database.payment_sources)
+    const next = sources.filter((s) => !(s.id === paymentSourceId && (!s.user_id || s.user_id === userId)))
+    database.payment_sources = next
+    return next.length !== sources.length
+  })
+}
+
+/**
+ * Compra de boosts adicionales (los que no vienen incluidos con Nitro). Cada
+ * boost comprado añade un slot que el usuario puede aplicar a cualquier
+ * servidor con `applyGuildBoostSlots`.
+ */
+export async function purchaseGuildBoostSlots(userId: string, quantity = 1) {
+  const amount = Math.max(1, Math.min(20, Math.floor(Number(quantity)) || 1))
+  return mutate((database) => {
+    database.guild_boost_slots ??= []
+    const slots = asItemArray(database.guild_boost_slots)
+    const userSub = asItemArray(database.subscriptions).find((s) => s.user_id === userId && s.status === 1)
+    const subscriptionId = (userSub?.id as string) || '600000000000000001'
+    const created: Array<Record<string, unknown>> = []
+    for (let i = 0; i < amount; i += 1) {
+      const slot = {
+        id: `slot_${userId}_${Date.now()}_${i + 1}`,
+        user_id: userId,
+        subscription_id: subscriptionId,
+        premium_guild_subscription: null,
+        canceled: false,
+        cooldown_ends_at: null,
+      }
+      slots.push(slot)
+      created.push(slot)
+    }
+    database.guild_boost_slots = slots
+    return created.map((slot) => ({
+      id: String(slot.id),
+      subscription_id: String(slot.subscription_id),
+      premium_guild_subscription: null,
+      canceled: false,
+      cooldown_ends_at: null,
+    }))
+  })
+}
+
+/**
+ * Registra la "factura" del pago simulado. El cliente consulta
+ * `GET /users/@me/billing/invoices`, así que dejamos rastro del cobro para que
+ * el historial de compras y la suscripción muestren el pago real.
+ */
+export async function recordBillingInvoice(userId: string, input: Record<string, unknown>) {
+  return mutate((database) => {
+    database.invoices ??= []
+    const invoices = asItemArray(database.invoices)
+    const amount = Number(input.amount) || 0
+    const invoice = {
+      id: `inv_${Date.now()}${Math.floor(Math.random() * 1000)}`,
+      user_id: userId,
+      subscription_id: (input.subscription_id as string) ?? null,
+      total: amount,
+      subtotal: amount,
+      currency: (input.currency as string) || 'eur',
+      tax: 0,
+      status: 1, // PAID
+      payment_source_id: (input.payment_source_id as string) ?? null,
+      items: Array.isArray(input.items) ? input.items : [],
+      created_at: new Date().toISOString(),
+    }
+    invoices.push(invoice)
+    database.invoices = invoices
+    return invoice
+  })
+}
+
+export async function getUserInvoices(userId: string) {
+  const database = await readDatabase()
+  return asItemArray(database.invoices).filter((invoice) => invoice.user_id === userId)
 }
 
 // ---------------------------------------------------------------------------

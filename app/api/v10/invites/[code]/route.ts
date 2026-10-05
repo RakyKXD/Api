@@ -21,7 +21,7 @@ export async function GET(_: NextRequest, { params }: Context) {
   if (invite.guild?.id) {
     const guild = await getGuild(invite.guild.id)
     if (guild) {
-      const memberCount = Array.isArray(guild.members) ? guild.members.length : (guild.member_count || 1)
+      const memberCount = Array.isArray(guild.members) ? guild.members.length : (Number(guild.member_count) || 1)
       invite = {
         ...invite,
         approximate_member_count: memberCount,
